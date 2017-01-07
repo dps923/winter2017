@@ -1,5 +1,7 @@
 ### DPS923 and MAP523 for the Winter 2017 academic term
 
+Course home page is at: https://dps923.github.io/winter2017/
+
 **Code examples**
 
 Organized by week. Each "week" page has a README file that describes the code examples.
