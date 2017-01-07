@@ -1,36 +1,37 @@
 ```
-import Foundation
-
-struct ByValueType {
-    var x: Int = 0;
+struct StructValueType {
+    var x = 0
 }
 
-class ByReferenceType {
-    var x: Int = 0;
+class ClassReferenceType {
+    var x = 0
 }
 
-var str: String = "no value";
-var byRef: ByReferenceType = ByReferenceType();
-var byVal: ByValueType = ByValueType();
-
-func foo(var type: ByValueType) {
-    type.x = 10;
+func modifyStruct(type: StructValueType) {
+    var type = type
+    type.x = 10
 }
-func foo(var type: ByReferenceType) {
-    type.x = 10;
+func modifyClass(type: ClassReferenceType) {
+    var type = type
+    type.x = 10
 }
 
-func foo(var type: String) {
-    type = "foo was here";
+func modifyString(type: String) {
+    var type = type
+    type = "this doesn't change it"
 }
 
-foo(byRef);
-foo(byVal);
-foo(str);
+var str = "original value"
+var structType = StructValueType()
+var classType = ClassReferenceType()
 
-print(byRef.x);
-print(byVal.x);
-print(str);
+modifyStruct(type: structType)
+modifyClass(type: classType)
+modifyString(type: str)
+
+print(structType.x)
+print(classType.x)
+print(str)
 
 ```
 The output is
