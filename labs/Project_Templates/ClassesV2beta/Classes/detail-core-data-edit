@@ -1,0 +1,78 @@
+//
+//  Detail (standard view)
+//  Core Data
+//  Edit item pattern
+//
+//  Created by Peter McIntyre on 2015-02-11.
+//  Copyright (c) 2015 School of ICT, Seneca College. All rights reserved.
+//
+
+import UIKit
+
+class FriendDetail: UIViewController, EditItemDelegate {
+
+// MARK: - Properties
+
+var detailItem: Friend!
+var model: Model!
+
+// MARK: - User interface
+
+@IBOutlet weak var friendName: UILabel!
+@IBOutlet weak var course: UILabel!
+@IBOutlet weak var phone: UILabel!
+@IBOutlet weak var email: UILabel!
+@IBOutlet weak var dateAdded: UILabel!
+
+// MARK: - View lifecycle
+
+override func viewDidLoad() {
+super.viewDidLoad()
+
+// Add an 'edit' button to the nav bar, right side
+let editButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: "edit")
+self.navigationItem.rightBarButtonItem = editButton
+}
+
+override func viewWillAppear(animated: Bool) {
+super.viewWillAppear(animated)
+
+// This code was copied from the viewDidLoad() method
+// It handles initial load, as well as reload (after the 'edit' scene)
+
+friendName.text = detailItem.friendName
+course.text = detailItem.course
+phone.text = String(format: "Phone: \(detailItem.phone)")
+email.text = detailItem.email
+
+let date = NSDateFormatter.localizedStringFromDate(detailItem.dateAdded, dateStyle: NSDateFormatterStyle.LongStyle, timeStyle: NSDateFormatterStyle.NoStyle)
+
+dateAdded.text = String(format: "Added: \(date)")
+}
+
+func edit() {
+
+// Create a controller
+let vc = self.storyboard?.instantiateViewControllerWithIdentifier("AddEditFriend") as FriendEdit
+
+// Configure its properties
+vc.title = "Edit"
+vc.model = self.model
+vc.friend = self.detailItem
+vc.delegate = self
+
+// Present the controller, using the built-in 'push' navigation
+self.navigationController?.pushViewController(vc, animated: true)
+}
+
+// MARK: - Delegate methods
+
+func editItemDelegate(controller: AnyObject, didEditItem item: AnyObject?) {
+
+self.model.saveChanges()
+
+// Was pushed on to the navigation stack, so pop it
+self.navigationController?.popViewControllerAnimated(true)
+}
+
+}
