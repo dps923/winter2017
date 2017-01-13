@@ -12,19 +12,60 @@
 * Xcode Playgrounds allow you to practice swift. It is a type of REPL (Read-Evaluate-Print-Loop, that is, a tool to write code and see immediate output without setting up a project). 
 
 ### Learning Swift
+
+Please excuse when I write code as one-line instead of on multiple lines in the following examples. It is just to illustrate a point, I expect you to format your code on multiple lines.
+
 #### First period
 * Variables
+    * Read: [The Basics, Declaring Constants and Variables, Type Annotations](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html)
 * Basic Types
+    * Declaration of Boolean (`var swiftIsFun = true`), Int (`var x = 10`), Double (`var d = 2.2`), Float (`var f: Float = 2.2`), String (`var hello = "is it me you're looking for?"`)
+    * All are objects, there are no primitive (non-object) types like C++. They are 'value types', which means they are copied when assigned to another variable or passed to a function. (`var x = 1; var y = x; var x = 2;`, the variable `y == 1` still, it is unchanged)
 * Strings
+    * Swift has built-in unicode support, the downside being a slightly clunky way to access characters and their count (`var count = hello.characters.count`
+    * Read [String Interpolation](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/StringsAndCharacters.html#//apple_ref/doc/uid/TP40014097-CH7-ID292)
 * Conditionals
+    * Read: [Conditionals](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ControlFlow.html)
+    * Should be similar to other languages. 
 * Looping
+    * Read: [For In Loops] (https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ControlFlow.html)
+    * Common loops to know:
+        * half-open range operator: `for i in 0..<10 {}` -> how many times does this run?
+        * reverse of a range `for i in (0..<3).reversed() {}` -> what values are there for i?
+        * Equivalent of `for (int i = 0; i < 9; i += 3)` in Swift is `for i in stride(from: 0, to: 9, by: 3) {}` <sub>Stride is less important but good to be aware of</sub>
 
 #### Second period
 * Built-in Collection Types
+    * Array and Dictionary. Both very similar declaration using square brackets.
+    * Array: `var cars = ["Honda", "Ford", "Toyota"]` if type can be inferred.
+    * initializing empty array (notice type can't be inferred, need to use explicit typing):
+        * `var cars: [String] = []`
+        * `var cars = [String]()` is equivalent to the above, and we didn't cover in class
+    * Dictionary: `var importantDates = ["Confederation": 1867, "Moon Landing": 1969, "Justin Bieber Birthday": 1994]`
+    * and for an empty Dictionary initialization, there are 2 equivalent ways:
+        * `var importantDates: [String: Int] = [:]`
+        * `var importantDates = [String: Int]()`
+    * Reference is (unlike the above reading links, this is long, I don't expect you to read it just yet): [Collection Types](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID105) 
 * Looping collection types
+    * `for car in cars { print(car) }` or `for i in 0..<cars.count { print(cars[i]) }`
+    * We did not cover iterating dictionaries, we'll cover it later:
+        * `for (event, year) in importantDates { print("In \(year) this happened: \(event)") }` 
+        * `for event in importantDates.keys { print("In \(importantDates[event]) this happened: \(event)") }` 
 * Functions
+    * Read: [Functions With Multiple Parameters](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158)
+    * C++ equivalents
+        * `void noParams() {}` in Swift is `func noParams() -> Void {}`, the `-> Void` can be left off of functions that return nothing: `func noParams() {}`
+        * `int gimmieAnInt() { return 1; }` in Swift is `func gimmieAnInt() -> Int { return 1 }`
+        * `void greetPerson(string name) { cout << "hello " << name; }` in Swift is `func greetPerson(name: String) { print("hello \(name)") }`
 * Classes and Structs
+    * Simplified reason to use structs:
+        1. Don't need inheritance from a base type
+        1. Don't need reference counting of the object<br>Struct is a `value type`, see the example for how a value type behaves in the "Variables" section above 
+     * Similar to C++, a class can inherit from another class, but no multiple inheritance.
+     * Read these brief sections: [Definition Syntax, Class and Structure Instances, Accessing Properties, Memberwise Initializers for Structure Types](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82) 
+     
 * Optional Type
+    * Covered in Jan 12 lab
 
 #### Resources
 [WWDC Intro to Swift Video](https://developer.apple.com/videos/play/wwdc2016/404/)
