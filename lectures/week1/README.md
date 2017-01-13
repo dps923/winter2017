@@ -64,6 +64,7 @@ All the referenced documentation sections should only be 1-2 paragraphs in lengt
     * Simplified reason to use structs:
         1. Don't need inheritance from a base type
         1. Don't need reference counting of the object<br>Struct is a `value type`, see the example for how a value type behaves in the "Variables" section above 
+
      * Similar to C++, a class can inherit from another class, but no multiple inheritance.
      * Read these brief sections: [Definition Syntax, Class and Structure Instances, Accessing Properties, Memberwise Initializers for Structure Types](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82) 
      
