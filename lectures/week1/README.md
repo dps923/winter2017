@@ -61,13 +61,12 @@ All the referenced documentation sections should only be 1-2 paragraphs in lengt
         * `int gimmieAnInt() { return 1; }` in Swift is<br>`func gimmieAnInt() -> Int { return 1 }`
         * `void greetPerson(string name) { cout << "hello " << name; }` in Swift is<br>`func greetPerson(name: String) { print("hello \(name)") }`
 * Classes and Structs
+    * Similar to C++, a class can inherit from another class, but no multiple inheritance.
+    * Read these brief sections: [Definition Syntax, Class and Structure Instances, Accessing Properties, Memberwise Initializers for Structure Types](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82) 
     * Simplified reason to use structs:
         1. Don't need inheritance from a base type
         1. Don't need reference counting of the object<br>Struct is a `value type`, see the example for how a value type behaves in the "Variables" section above 
-
-     * Similar to C++, a class can inherit from another class, but no multiple inheritance.
-     * Read these brief sections: [Definition Syntax, Class and Structure Instances, Accessing Properties, Memberwise Initializers for Structure Types](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82) 
-     
+ 
 * Optional Type
     * Covered in Jan 12 lab
 
