@@ -14,13 +14,16 @@
 ### Learning Swift
 
 Please excuse when I write code as one-line instead of on multiple lines in the following examples. It is just to illustrate a point, I expect you to format your code on multiple lines.
+All the referenced documentation sections should only be 1-2 paragraphs in length, my intention is to give you short summaries to refer to.
 
 #### First period
 * Variables
     * Read: [The Basics, Declaring Constants and Variables, Type Annotations](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html)
 * Basic Types
     * Declaration of Boolean (`var swiftIsFun = true`), Int (`var x = 10`), Double (`var d = 2.2`), Float (`var f: Float = 2.2`), String (`var hello = "is it me you're looking for?"`)
-    * All are objects, there are no primitive (non-object) types like C++. They are 'value types', which means they are copied when assigned to another variable or passed to a function. (`var x = 1; var y = x; var x = 2;`, the variable `y == 1` still, it is unchanged)
+    * All are objects, there are no primitive (non-object) types like C++. 
+    * All are **value types**, which means they are copied when assigned to another variable or passed to a function. (`var x = 1; var y = x; var x = 2;`, the variable `y == 1` still, it is unchanged)
+    * Tip: only **class** types are not **value types**. We'll talk about this more later.
 * Strings
     * Swift has built-in unicode support, the downside being a slightly clunky way to access characters and their count (`var count = hello.characters.count`
     * Read [String Interpolation](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/StringsAndCharacters.html#//apple_ref/doc/uid/TP40014097-CH7-ID292)
