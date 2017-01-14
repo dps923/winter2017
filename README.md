@@ -10,7 +10,7 @@ Or, you can clone the repository to your own computer.
 
 |Week&nbsp;and&nbsp;date|Topic theme and coverage|Due today|Mark value|
 |--------------------|------------------------|---------|----------|
-| [Week 1](lectures/week1), Jan 9, Lab Jan 12 | Introduction to the course, and to the Swift language<br>hands on with macOS and dev tools, app creation basics |
+| Week 1, [Lecture Jan 9](lectures/week1), [Lab Jan 12](https://petermcintyre.com/dps923/notes/jan12) | Introduction to the course, and to the Swift language<br>hands on with macOS and dev tools, app creation basics |
 | Week 2, Jan 16, Jan 19 | MVC pattern, delegate pattern, UI control interaction, collections<br>writing classes, view-view controller pattern |	
 | Week 3, Jan 23, Jan 26 |	Intro to 2D graphics and touch, camera, deploy app to device		
 | Week 4, Jan 30, Feb 2|	Layout, auto layout, making apps for different devices including iPad		
