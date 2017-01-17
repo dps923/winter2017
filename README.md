@@ -12,7 +12,7 @@ Or, you can clone the repository to your own computer.
 |--------------------|------------------------|---------|----------|
 | Week 1, [Lecture Jan 9](lectures/week1),<br>[Lab Jan 12](labs/week1) | Introduction to the course, and to the Swift language<br>hands on with macOS and dev tools, app creation basics |
 | Week 2, [Lecture Jan 16](lectures/week2),<br>Lab Jan 19 | MVC pattern, delegate pattern, UI control interaction, collections<br>writing classes, view-view controller pattern |	
-| Week 3, Jan 23, <br>Lab Jan 26 |	Intro to 2D graphics and touch, camera, deploy app to device		
+| Week 3, [Lecture Jan 23](lectures/week3), <br>Lab Jan 26 |	Intro to 2D graphics and touch, camera, deploy app to device		
 | Week 4, Jan 30, <br>Lab Feb 2|	Layout, auto layout, making apps for different devices including iPad		
 | Week 5, Feb 6, <br>Lab Feb 9|	Navigation app style, table view, model object		
 | Week 6, Feb 13, <br>Lab Feb 16|	Data persistence, Core Data intro		
