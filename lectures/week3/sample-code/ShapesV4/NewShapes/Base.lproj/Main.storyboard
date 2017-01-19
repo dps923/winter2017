@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Shapes-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="Shapes" customModule="ShapesV4" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="bedrock-background" translatesAutoresizingMaskIntoConstraints="NO" id="ZQP-MS-rpP">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Gg3-0R-l22">
+                                <rect key="frame" x="64" y="28" width="51" height="31"/>
+                                <connections>
+                                    <action selector="toggleFred:" destination="vXZ-lx-hvc" eventType="valueChanged" id="fVl-Gf-nUe"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fred" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzd-bJ-tce">
+                                <rect key="frame" x="16" y="32" width="40" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wsp-tg-wbO">
+                                <rect key="frame" x="184" y="28" width="51" height="31"/>
+                                <connections>
+                                    <action selector="toggleWilma:" destination="vXZ-lx-hvc" eventType="valueChanged" id="a6I-11-jhc"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wilma" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZX-F1-hDd">
+                                <rect key="frame" x="121" y="32" width="55" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="xTU-b6-yJy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BXP-3z-5qu">
+                                <rect key="frame" x="321" y="28" width="51" height="31"/>
+                                <connections>
+                                    <action selector="togglePebbles:" destination="vXZ-lx-hvc" eventType="valueChanged" id="oSN-RR-2Qs"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pebbles" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTd-6O-La3">
+                                <rect key="frame" x="241" y="32" width="72" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="yUf-36-vZX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="bzd-bJ-tce" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="12" id="1np-tC-eUv"/>
+                            <constraint firstItem="wsp-tg-wbO" firstAttribute="top" secondItem="Gg3-0R-l22" secondAttribute="top" id="883-Lp-G7N"/>
+                            <constraint firstItem="ZQP-MS-rpP" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="GeZ-Sc-4dT"/>
+                            <constraint firstItem="ZQP-MS-rpP" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="J7O-CX-Eio"/>
+                            <constraint firstItem="Gg3-0R-l22" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" symbolic="YES" id="YZd-We-f5D"/>
+                            <constraint firstItem="BXP-3z-5qu" firstAttribute="top" secondItem="wsp-tg-wbO" secondAttribute="top" id="f7e-7d-xwt"/>
+                            <constraint firstItem="ZQP-MS-rpP" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="j7z-IB-1aK"/>
+                            <constraint firstItem="Gg3-0R-l22" firstAttribute="leading" secondItem="bzd-bJ-tce" secondAttribute="trailing" constant="8" symbolic="YES" id="kIF-LJ-b2U"/>
+                            <constraint firstItem="BXP-3z-5qu" firstAttribute="leading" secondItem="WTd-6O-La3" secondAttribute="trailing" constant="8" symbolic="YES" id="mdi-3W-pJj"/>
+                            <constraint firstItem="bzd-bJ-tce" firstAttribute="baseline" secondItem="zZX-F1-hDd" secondAttribute="baseline" id="mqY-jO-bre"/>
+                            <constraint firstItem="WTd-6O-La3" firstAttribute="leading" secondItem="wsp-tg-wbO" secondAttribute="trailing" constant="8" symbolic="YES" id="nGf-Pp-xla"/>
+                            <constraint firstAttribute="trailing" secondItem="ZQP-MS-rpP" secondAttribute="trailing" id="ome-Ju-1et"/>
+                            <constraint firstItem="bzd-bJ-tce" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="ulx-lU-PR4"/>
+                            <constraint firstItem="wsp-tg-wbO" firstAttribute="leading" secondItem="zZX-F1-hDd" secondAttribute="trailing" constant="8" symbolic="YES" id="vYm-H3-eqH"/>
+                            <constraint firstItem="zZX-F1-hDd" firstAttribute="baseline" secondItem="WTd-6O-La3" secondAttribute="baseline" id="xQz-3q-QOB"/>
+                            <constraint firstItem="zZX-F1-hDd" firstAttribute="leading" secondItem="Gg3-0R-l22" secondAttribute="trailing" constant="8" symbolic="YES" id="xRj-ZX-sIZ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bedrock-background" width="667" height="375"/>
+    </resources>
+</document>
