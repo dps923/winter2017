@@ -2,7 +2,7 @@ Introduction to graphics and touch.
 
 #### Code examples for today’s topics
 
-A series of four code examples has been published in the [Week 12 folder](https://github.com/peteratseneca/dps923winter2015/tree/master/Week_12) of this course’s GitHub code repository. 
+A series of four code examples has been published in the [sample-code](sample-code) of this course’s GitHub code repository. 
 They introduce you to an app that works with graphics and touch.
 
 #### Graphics introduction
