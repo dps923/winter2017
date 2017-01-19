@@ -123,6 +123,34 @@ class CustomView: UIView {
 A brief explanation [is here](http://www.quora.com/Why-does-Swift-force-you-to-implement-initWithCoder-for-UIView-subclasses) 
 (and in The Swift Programming Language document). [This Stack Overflow answer](http://stackoverflow.com/a/26081426) also helps.
 
+**Drawing in UIView.drawRect()**
+
+The pattern for this is to first access a graphics context with `UIGraphicsGetCurrentContext()`, and then to use either legacy syntax `CGContext<name of operation>` calls, or the equivalent newer syntax, `context.<name of operation>`.
+Both are fine to use, just avoid mixing them so as not to confuse the reader.
+
+```swift
+    // Draw a diagonal line using old syntax
+    override func drawRect(rect: CGRect) {
+        if let context = UIGraphicsGetCurrentContext() {
+            CGContextSetStrokeColorWithColor(context, UIColor.red.cgColor)
+            CGContextSetLineWidth(context, 2.0)
+            CGContextMoveToPoint(context, 0, 0)
+            CGContextAddLineToPoint(context, 100, 100)
+            CGContextStrokePath(context)
+        }
+    }
+    
+    // Draw a diagonal line using new syntax
+    override func drawRect(rect: CGRect) {
+        if let context = UIGraphicsGetCurrentContext() {
+            context.setStrokeColor(UIColor.red.cgColor);
+            context.setLineWidth(2.0);
+            context.move(to: CGPoint(x: 0, y: 0))
+            context.addLine(to: CGPoint(x: 100, y: 100))
+            context.strokePath()
+        }
+    }
+```
 **Graphics (with UIKit, and Quartz 2D, aka Core Craphics)**
 
 [Here](http://www.techotopia.com/index.php/An_iOS_8_Swift_Graphics_Tutorial_using_Core_Graphics_and_Core_Image) is a decent tutorial on this topic, using Swift.
