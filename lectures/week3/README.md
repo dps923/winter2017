@@ -55,7 +55,11 @@ In iOS Core Graphics (Quartz 2D), you create a `CGContext` object. From the CGCo
 Where does this graphics context live? In a subclass of UIView. When you study today’s code examples, you will see a <span class="skimlinks-unlinked">Shape.swift</span> class, 
 which is a subclass of UIView. This class is the graphical object that gets created programmatically.
 
+**Coordinate System of the Graphics Context**
 
+UIKit uses an *upper-left origin* coordinate system, but you will see mentioned in Quartz 2D (a.k.a. Core Graphics) documentation that the Quartz 2D API uses a *lower-left origin* coordinate system.
+
+Fortunately, to make life easier for iOS developers, in the `UIView.drawRect(rect: CGRect)` function, the context that is acquired there is flipped to have a *upper-left origin*. In nearly all cases, `drawRect` is where an iOS app does it's custom drawing.
 
 **Touch**
 
