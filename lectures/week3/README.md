@@ -57,9 +57,11 @@ which is a subclass of UIView. This class is the graphical object that gets crea
 
 **Coordinate System of the Graphics Context**
 
-UIKit uses an *upper-left origin* coordinate system, but you will see mentioned in Quartz 2D (a.k.a. Core Graphics) documentation that the Quartz 2D API uses a *lower-left origin* coordinate system.
+UIKit uses an *upper-left origin* coordinate system. You will see mentioned in Core Graphics / Quartz 2D documentation that this API uses a different *lower-left origin* coordinate system. This is rarely a problem in practice.
 
-Fortunately, to make life easier for iOS developers, in the `UIView.drawRect(rect: CGRect)` function, the context that is acquired there is flipped to have a *upper-left origin*. In nearly all cases, `drawRect` is where an iOS app does it's custom drawing.
+To make life easier for iOS developers, in the `UIView.drawRect(rect: CGRect)` function, the `context` that is acquired there is setup to have a *upper-left origin*. In nearly all cases, `drawRect` is where an iOS app does its custom drawing using Core Graphics / Quartz 2D.
+
+In summary, for the purposes of this course and for most apps you would work on, UIKit's *upper-left origin* is the coordinate system origin you will be using.
 
 **Touch**
 
