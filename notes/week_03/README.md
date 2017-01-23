@@ -1,5 +1,76 @@
 Introduction to graphics and touch.
 
+## But first, a few new Swift concepts
+
+Underscore (_) syntax: parameter is not named, used in these cases:
+* Functions: enabling a function caller to leave out the parameter label.<br>
+```swift
+        func doubleIt(_ x: Int) -> Int { 
+            return x * 2
+        }
+        print( doubleIt(4) ) // note: we didn't have to say doubleIt(x: 4)
+```
+* Variable names: to indicate we are not using the result of a function:<br>
+```swift
+        let result = doubleIt(4) // will get a warning if result is not used
+        let _ = doubleIt(4) // silly code, but no warning about unused return value
+```
+* Actual uses for _ as a variable name:
+    * Optional unwrapping syntax (i.e. `if let` syntax):
+    ```swift
+    if let _ = optionalThing {
+        // We know optionalThing is not nil
+        // but this block doesn't care/use the value of optionalThing
+    }
+    ```
+
+    * Ignoring parts of tuple return values:
+    ```swift
+    let weather = {"monday": 4, "tuesday": -2, "wednesday": 1}
+    for (day, temp) in weather { // side note: order is random when iterating dict
+        print("On \(day) it is \(temp) degrees")
+    }
+
+    // if we don't care about the day name, and we want to avoid unused variable warnings
+    for (_, temp) in weather {
+        print("next temperature is \(temp) degrees")
+    }
+    ```
+
+### Tuples
+The above example of iterating a dict used a *tuple* type.
+
+Tuples are fixed-length lists of heterogenous types (i.e. don't have to be all one type).<br>
+They look like this (note the different types in a list):
+```swift
+ let car = (make: "Honda", model: "Accord", year: 2007)
+ print(car.year) // "2007"
+ // or 
+ let car2 = ("Honda", "Accord", 2007) 
+ print(car.2) // "2007"
+ ```
+ In all cases a tuple elements can be accessed using the `.<element number>` syntax.<br> 
+ If the tuple elements are named, these can be used as accessors.
+
+Tuples are most useful for **returning multiple values from a function**, like this:
+```swift 
+func getReliableCar() -> (String, String, Int) {
+    return ("Honda", "Accord", 2007)
+} 
+```
+#### Tuple Destructuring
+
+Similar to declaring a tuple using parenthesis, but used as a shortcut for getting values returned from a function:
+```swift 
+let (make, model, year) = getReliableCar()
+// now have 3 named variables we can use, 2 Strings and an Int. 
+print(make) // "Honda"
+print(model) // "Accord"
+print("Is the car older than 2010? \(year < 2010 ? "Yes, older" : "No, newer")")
+```
+
+## Graphics and Touch
+
 #### Code examples for today’s topics
 
 A series of four code examples has been published in the [sample-code](sample-code) of this course’s GitHub code repository. 
@@ -164,3 +235,4 @@ Both are fine to use, just avoid mixing them so as not to confuse the reader.
 Apple does have a regularly-updated document, the [Quartz 2D Programming Guide](https://developer.apple.com/library/mac/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html).
 
 Ray Wenderlich has [a series of tutorials](http://www.raywenderlich.com/tag/core-graphics) on this topic. Content from Ray is typically good quality.
+
