@@ -1,0 +1,78 @@
+//
+//  Standard UIViewController
+//  Core Data
+//  User interface for add and edit tasks
+//  Protocol definition
+//
+//  Created by Peter McIntyre on 2015-02-11.
+//  Copyright (c) 2015 School of ICT, Seneca College. All rights reserved.
+//
+
+import UIKit
+
+class FriendEdit: UIViewController {
+
+// MARK: - Properties
+
+var delegate: EditItemDelegate?
+var model: Model!
+var friend: Friend?
+
+// MARK: - User interface
+
+@IBOutlet weak var friendName: UITextField!
+@IBOutlet weak var course: UITextField!
+@IBOutlet weak var phone: UITextField!
+@IBOutlet weak var email: UITextField!
+
+// MARK: - User actions
+
+@IBAction func cancel(sender: UIBarButtonItem) {
+
+delegate?.editItemDelegate(self, didEditItem: nil)
+}
+
+@IBAction func save(sender: UIBarButtonItem) {
+
+// If a passed-in Friend object exists,
+// we're in 'edit item' mode
+// Otherwise, we're in 'add item' mode,
+// and we need to create a new Friend object
+
+if friend == nil {
+
+friend = model.addNew("Friend") as? Friend
+}
+
+// Configure the object's attributes
+friend?.friendName = friendName.text
+friend?.course = course.text
+friend?.phone = phone.text
+friend?.email = email.text
+friend?.dateAdded = NSDate()
+
+delegate?.editItemDelegate(self, didEditItem: friend)
+}
+
+// MARK: - View lifecycle
+
+override func viewDidLoad() {
+super.viewDidLoad()
+
+// If a Friend object was passed in,
+// use its values to configure the user interface
+
+if let f = friend {
+
+friendName.text = f.friendName
+course.text = f.course
+phone.text = f.phone
+email.text = f.email
+}
+}
+}
+
+protocol EditItemDelegate {
+
+func editItemDelegate(controller: AnyObject, didEditItem item: AnyObject?)
+}
