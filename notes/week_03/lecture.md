@@ -130,7 +130,7 @@ which is a subclass of UIView. This class is the graphical object that gets crea
 
 UIKit uses an *upper-left origin* coordinate system. You will see mentioned in Core Graphics / Quartz 2D documentation that this API uses a different *lower-left origin* coordinate system. This is rarely a problem in practice.
 
-To make life easier for iOS developers, in the `UIView.drawRect(rect: CGRect)` function, the `context` that is acquired there is setup to have a *upper-left origin*. In nearly all cases, `drawRect` is where an iOS app does its custom drawing using Core Graphics / Quartz 2D.
+To make life easier for iOS developers, in the `UIView.draw(rect: CGRect)` function, the `context` that is acquired there is setup to have a *upper-left origin*. In nearly all cases, `draw(rect)` is where an iOS app does its custom drawing using Core Graphics / Quartz 2D.
 
 In summary, for the purposes of this course and for most apps you would work on, UIKit's *upper-left origin* is the coordinate system origin you will be using.
 
@@ -182,8 +182,8 @@ class CustomView: UIView {
         // put initialization code here
     }
 
-    /* For Core Graphics work, you would override drawRect, and do some drawing, for example
-    override func drawRect(rect: CGRect) {
+    /* For Core Graphics work, you would override draw rect, and do some drawing, for example
+    override func draw(_ rect: CGRect) {
         if let context = UIGraphicsGetCurrentContext() {
             CGContextSetLineWidth(context, 2)
             CGContextMoveToPoint(context, 0, 0)
@@ -200,14 +200,14 @@ class CustomView: UIView {
 A brief explanation [is here](http://www.quora.com/Why-does-Swift-force-you-to-implement-initWithCoder-for-UIView-subclasses) 
 (and in The Swift Programming Language document). [This Stack Overflow answer](http://stackoverflow.com/a/26081426) also helps.
 
-**Drawing in UIView.drawRect()**
+**Drawing in UIView.draw(rect: CGRect)**
 
 The pattern for this is to first access a graphics context with `UIGraphicsGetCurrentContext()`, and then to use either legacy syntax `CGContext<name of operation>` calls, or the equivalent newer syntax, `context.<name of operation>`.
 Both are fine to use, just avoid mixing them so as not to confuse the reader.
 
 ```swift
     // Draw a diagonal line using old syntax
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         if let context = UIGraphicsGetCurrentContext() {
             CGContextSetStrokeColorWithColor(context, UIColor.red.cgColor)
             CGContextSetLineWidth(context, 2.0)
@@ -218,7 +218,7 @@ Both are fine to use, just avoid mixing them so as not to confuse the reader.
     }
     
     // Draw a diagonal line using new syntax
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         if let context = UIGraphicsGetCurrentContext() {
             context.setStrokeColor(UIColor.red.cgColor);
             context.setLineWidth(2.0);
