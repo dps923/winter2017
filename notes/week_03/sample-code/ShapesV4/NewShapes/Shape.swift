@@ -25,8 +25,7 @@ class Shape: UIView {
     }
 
     private func commonInit() {
-        self.layer.borderWidth = 10
-        self.layer.borderColor = UIColor.red.cgColor
+    
         // This is necessary (leave it out and you'll see why)
         self.backgroundColor = UIColor.clear
 
@@ -115,14 +114,12 @@ class Shape: UIView {
         
         // Handle pinch or zoom
         recognizer.view!.transform = recognizer.view!.transform.scaledBy(x: recognizer.scale, y: recognizer.scale)
-        recognizer.scale = 1
     }
     
     func rotateHandler(_ recognizer: UIRotationGestureRecognizer) {
         
         // Handle rotation
         recognizer.view!.transform = recognizer.view!.transform.rotated(by: recognizer.rotation);
-        recognizer.rotation = 0;
     }
     
 }

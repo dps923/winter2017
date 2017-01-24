@@ -167,6 +167,7 @@
 				TargetAttributes = {
 					D03839C71AD1928E008BF84D = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = N2VQUP3835;
 						LastSwiftMigration = 0820;
 					};
 					D03839DC1AD1928E008BF84D = {
@@ -346,6 +347,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = N2VQUP3835;
 				INFOPLIST_FILE = NewShapes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = ShapesV4;
@@ -357,6 +359,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = N2VQUP3835;
 				INFOPLIST_FILE = NewShapes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = ShapesV4;

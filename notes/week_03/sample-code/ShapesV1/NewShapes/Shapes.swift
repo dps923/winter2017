@@ -32,10 +32,9 @@ class Shapes: UIViewController {
             newShape.shapeTypeLabel = "Square"
             newShape.shapeColor = UIColor.orange.cgColor
             newShape.tag = 1
-            
+
             // Add the new shape to the view
             self.view.addSubview(newShape)
-
         } else {
             
             // Locate the shape to be removed
