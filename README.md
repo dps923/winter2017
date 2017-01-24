@@ -2,6 +2,8 @@
 
 Course welcome page is [here](welcome.md)
 
+Please review the [Graded work policy](graded-work-policy.md)
+
 #### Code examples
 Organized by week. Each "week" page has a README file that describes the code examples.
 
