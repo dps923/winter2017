@@ -4,7 +4,7 @@ Up until now, if you have simply dropped a UIView control (button, slider, text 
 Fixed coordinates are not adaptable to different screen sizes and orientations.
 Auto Layout is the name for the iOS rule-based layout system, which uses sets of constraints which you will specify.
 
-Constraints: rules that specify how UIViews are positioned (i.e. 20 points from the left edge, align the top edge with the top of the superview)
+Constraints: rules that specify how UIViews are positioned (i.e. 20 points from the left edge, align the top edge with the top of the superview).
 
 > Tip: the `UIView.superview` is the the name of the containing view, that is, if UIView A's superview is UIView B, then B.subviews contains A. 
 
@@ -35,7 +35,7 @@ A UIView needs enough constraints to specify its horizontal and vertical positio
 However, many UI controls have an `intrinsic size` which is a preferred width and height, and only require 2 constraints for positioning.
 A label for instance, will set its `intrinsic size` to a width and height to fit its text, and will use this for width and height constraints if you don't manually specify these.
 
-Read this article [https://cocoacasts.com/what-is-intrinsic-content-size/]() up to the section `How Does It Work` (you can stop reading at `Conflicts & Intrinsic Content Size`)
+Read this article [https://cocoacasts.com/what-is-intrinsic-content-size/]() up to the section `How Does It Work` (you can stop reading at `Conflicts & Intrinsic Content Size`).
 
 ## Pin Tool 
 
@@ -65,7 +65,7 @@ You can view an individual constraint's properties in the right-side Utilities p
 * click the constraint in the Scene object panel on the left (both the Size and Attributes inspectors show the same thing in this case)
 * or, click on the constraint line on the Scene view
 
-To view **all** constraints for a view, select the view on the Scene, and click on the Size Inspector in the right-side Utilities panel
+To view **all** constraints for a view, select the view on the Scene, and click on the Size Inspector in the right-side Utilities panel.
 
 At this point one can edit constraint properties. 
 
@@ -87,7 +87,7 @@ The top-level Stack View in your Scene will require constraints to specify its s
 Typically, this will be pinned to the edges of the top-level view:
 ## INSERT IMAGE HERE
 
-Contraints can now be added selectively, for instance to set items to a specific width, or to adjust spacing. 
+Constraints can now be added selectively, for instance to set items to a specific width, or to adjust spacing. 
 
 Please read this short article: [http://www.thinkandbuild.it/introduction-to-uistackview/]()
 
@@ -103,7 +103,7 @@ Adjusting the layout in a stack view can be done primarily with:
 Inter-item spacing is zero by default, which is rarely what you want.<br>
 Use `spacing` to adjust this.
 
-An easy method to add a space between views, is to add a blank UIView (called simply a `View` in Interface Builder's object library), and add contraints for its width and height as needed. 
+An easy method to add a space between views, is to add a blank UIView (called simply a `View` in Interface Builder's object library), and add constraints for its width and height as needed. 
 
 ## Changing how items grow and move
 
@@ -144,6 +144,11 @@ of the app by storing the current horizontal and vertical Size Classes.
 
 To customize an app in interface builder for difference screen sizes, there is a button to `Vary for traits`,
 which means to enable different layouts (and different views on the layout) for different Size Classes.
+
+### Different layouts for iPad and iPhone
+
+This is the most common use-case. The size classes for iPad are always `W:Regular, H:Regular` regardless of orientation, and
+no iPhone matches this, so anything customized based on a Size Class / Trait of `W:Regular, H:Regular` will be different on iPad vs iPhone.
 
 >PROBLEM: In Interface Builder how do I customize the view for portrait/landscape orientation on iPad?<br>
 Unlike iPhones, the size classes for iPad are always `W:Regular, H:Regular` regardless of orientation.<br>
