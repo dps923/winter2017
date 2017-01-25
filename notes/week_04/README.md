@@ -15,11 +15,18 @@ Typical constraints will specify:
 ## Adding constraints
 
 Constraints are added using the buttons:
-* `Pin Tool` -also referred to as `Add Constraints` tool
-* `Align Tool` -also referred to as `Add Alignment Constraints` tool
-* `Resolve Auto Layout Issues`
+* `Pin Tool` -also referred to as `Add Constraints` tool<br>
+![](images/button-pin.png)
 
-Interface Builder can take a best-guess approach at adding constraints by using `Resolve Auto Layout Issues>Reset to selected constraints`.
+* `Align Tool` -also referred to as `Add Alignment Constraints` tool<br>
+![](images/button-align.png)
+
+* `Resolve Auto Layout Issues`<br>
+![](images/button-fix.png)
+
+
+Interface Builder can take a best-guess approach at adding constraints by using<br>
+`Resolve Auto Layout Issues>Reset to selected constraints`.<br>
 If you position elements in your view manually, then click this, you will see a bunch of blue lines appear indicating the added constraints. 
 
 This best-guess approach will only work for simple cases, and it is more reliable to manually specify the constraints. 
@@ -35,18 +42,18 @@ A UIView needs enough constraints to specify its horizontal and vertical positio
 However, many UI controls have an `intrinsic size` which is a preferred width and height, and only require 2 constraints for positioning.
 A label for instance, will set its `intrinsic size` to a width and height to fit its text, and will use this for width and height constraints if you don't manually specify these.
 
-Read this article [https://cocoacasts.com/what-is-intrinsic-content-size/]() up to the section `How Does It Work` (you can stop reading at `Conflicts & Intrinsic Content Size`).
+Read this article https://cocoacasts.com/what-is-intrinsic-content-size/ up to the section `How Does It Work` (you can stop reading at `Conflicts & Intrinsic Content Size`).
 
 ## Pin Tool 
 
 The title of this tool panel is `Add Constraints`, and is often referred to by that name.
-This button opens a panel that allows you to create constraints by editing fields in the panel and clicking `Add Constraints`. This is not a property viewer panel (you won't use this to view the current constraints, it only for creating/modifying constraints). Created constraints appear in the object tree for your view.
+This button opens a panel that allows you to create constraints by editing fields in the panel and clicking `Add Constraints`. This is not a property viewer panel (you won't use this to view the current constraints, it only for creating/modifying constraints). Created constraints appear in the **Document Outline** for your view.
 
 The `Align Tool` works similarly.
 
 ## Constraint Problems 
 
-Constraints appear as blue or orange lines on the Scene. Blue lines mean the constraint has no problems. The constraint turns orange when it is incomplete or conflicting. Also, the View Controller Scene in the Scene object list will get an orange arrow you can click to view the constraint problems.
+Constraints appear as blue or orange lines on the Scene. Blue lines mean the constraint has no problems. The constraint turns orange when it is incomplete or conflicting. Also, the View Controller Scene in the **Document Outline** will get an orange arrow you can click to view the constraint problems.
 
 A common situation that will turn constraints orange is when manually moving a UI element after having applied constraints, and the position of the element no longer matches what the constraint is. Instead of locking UI objects in place when you have constraints setup, Interface Builder allows you to move them. However, moving them will turn the constraint orange to indicate you either need to move the UI object back, or update the constraint to the new position.
 
@@ -54,15 +61,16 @@ To fix bad constraints (orange) after moving an element manually:
 * To use the new position: `Resolve Auto Layout Issues>Update Constraint Constants`<br>
 [This StackOverflow question shows how to use Update Constraint Constants](https://stackoverflow.com/questions/40323794/how-to-update-frame-in-xcode-8)
 * To reset the position to match the existing constraint: `Update Frames` button<br>
-[A StackOverlow answer that illustrates this](http://stackoverflow.com/a/40606477/490488)
+[A StackOverlow answer that illustrates this](http://stackoverflow.com/a/40606477/490488)<br>
+![](images/button-update-frames.png)
+
 
 ## Viewing and modifying an existing constraint
 
-![](https://i.stack.imgur.com/DGc5x.png)
-<br><sup><sub>Image from [https://stackoverflow.com/questions/25870505/layout-constraints-are-shown-in-orange-color-in-storyboard]()</sub></sup>
+![](images/constraints-in-document.png)
 
 You can view an individual constraint's properties in the right-side Utilities panel's Size Inspector:
-* click the constraint in the Scene object panel on the left (both the Size and Attributes inspectors show the same thing in this case)
+* click the constraint in the **Document Outline** panel on the left (both the Size and Attributes inspectors show the same thing in this case)
 * or, click on the constraint line on the Scene view
 
 To view **all** constraints for a view, select the view on the Scene, and click on the Size Inspector in the right-side Utilities panel.
@@ -74,7 +82,8 @@ For instance, if a button height constraint was 24 points, and you wanted to mak
 # Stack Views (UIStackView)
 
 Here is where things get much easier! The button for Stack View layout looks like:<br>
-![](http://www.thinkandbuild.it/wp-content/uploads/2015/08/Screen-Shot-2015-08-06-at-00.17.35.png)<br>
+![](images/button-stackview.png)
+
 
 UIStackView is a layout container for grouping views in a horizontal or vertical rows. 
 
@@ -85,12 +94,14 @@ By nesting Stack Views to arrange everything on your Scene, you can avoid using 
 
 The top-level Stack View in your Scene will require constraints to specify its spacing from the edges of the top-level view.
 Typically, this will be pinned to the edges of the top-level view:
-## INSERT IMAGE HERE
+
+![](images/constraints-on-top-stackview.png)
+
+[This image](images/constraints-on-top-stackview-full.png) shows more of the screen to show the selection of top-level Stack View (the first subview of the item named `view`) in the **Document Outline** on the left.
 
 Constraints can now be added selectively, for instance to set items to a specific width, or to adjust spacing. 
 
-Please read this short article: [http://www.thinkandbuild.it/introduction-to-uistackview/]()
-
+Please read this short article: http://www.thinkandbuild.it/introduction-to-uistackview/
 > TIP: use `Editor>Unembed` to break a stack layout
 
 ## Configuring Stack Views
@@ -128,7 +139,12 @@ Reference: https://krakendev.io/blog/autolayout-magic-like-harry-potter-but-real
 ## Margins and Constrain to Margins option
 
 Constraints for position can be relative to the margin of a superview
-UIView has a `margin` property to define the margins for the top, bottom, left, and right of a view. The default value for this is `(8,8,8,8)`, and it can be changed in code. It depends on your interface design whether you want to use this or not, and if you forsee having to adjust the margin. You may know up front that your app design will always have views pinned to the edge of the top-level view, in which case you can uncheck this option. I recommend using it, as it allows for simple changes of edge spacing.
+UIView has a [layoutMargins](https://developer.apple.com/reference/uikit/uiview/1622566-layoutmargins) property to define the margins for the top, bottom, left, and right of a view. 
+The default value for this is `(8,8,8,8)`, and it can be changed in code. 
+
+It depends on your interface design whether you want to use this or not, and if you forsee having to adjust the margin. 
+You may know up front that your app design will always have views pinned to the edge of the top-level view, in which case you can uncheck this option.
+ I recommend using it, as it allows for simple changes of edge spacing.
 
 
 # Customizing the layout for different devices or orientations:<br> Size Classes and Vary for Traits
@@ -152,7 +168,7 @@ no iPhone matches this, so anything customized based on a Size Class / Trait of 
 
 >PROBLEM: In Interface Builder how do I customize the view for portrait/landscape orientation on iPad?<br>
 Unlike iPhones, the size classes for iPad are always `W:Regular, H:Regular` regardless of orientation.<br>
-You would have to do this in code. We won't get into that topic, but here is link to [how it is detected in code](http://stackoverflow.com/a/39655564/490488)
+You would have to do this in code. We won't get into that topic, but here is link to [how it is detected in code](http://stackoverflow.com/a/39655564/490488).
 
 Here is a great demo on Size Classes and Vary for Traits (this info starts at 9 min mark, but the intro is good also):<br>
-[https://www.youtube.com/watch?v=7iT9fueKCJM]()
+https://www.youtube.com/watch?v=7iT9fueKCJM
