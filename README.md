@@ -15,7 +15,7 @@ Or, you can clone the repository to your own computer.
 | [Week 1](notes/week_01) | Introduction to the course, and to the Swift language<br>hands on with macOS and dev tools, app creation basics |
 | [Week 2](notes/week_02) | MVC pattern, delegate pattern, UI control interaction, collections<br>writing classes, view-view controller pattern |	
 | [Week 3](notes/week_03) | Intro to 2D graphics and touch, camera, deploy app to device | <sub>Test&nbsp;23rd<br>Assign.&nbsp;Jan&nbsp;25</sub> | <sub>5%<br>5%</sub>
-| Week 4, Jan 30, <br>Lab Feb 2|	Layout, auto layout, making apps for different devices including iPad | Test 30th | 5%
+| [Week 4](notes/week_04) |	Layout, auto layout, making apps for different devices including iPad | Test 30th | 5%
 | Week 5, Feb 6, <br>Lab Feb 9|	Navigation app style, table view, model object		
 | Week 6, Feb 13, <br>Lab Feb 16|	Data persistence, Core Data intro		
 | Week 7, Feb 20, <br>Lab Feb 23	|(no class on Monday, Family Day)<br>Add item, edit item patterns		
