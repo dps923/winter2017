@@ -85,6 +85,9 @@ By nesting Stack Views to arrange everything on your Scene, you can avoid using 
 
 The top-level Stack View in your Scene will require constraints to specify its spacing from the edges of the top-level view.
 Typically, this will be pinned to the edges of the top-level view:
+## INSERT IMAGE HERE
+
+Contraints can now be added selectively, for instance to set items to a specific width, or to adjust spacing. 
 
 Please read this short article: [http://www.thinkandbuild.it/introduction-to-uistackview/]()
 
@@ -92,25 +95,59 @@ Please read this short article: [http://www.thinkandbuild.it/introduction-to-uis
 
 ## Configuring Stack Views
 
+Adjusting the layout in a stack view can be done primarily with:
+*  `spacing`, `alignment`, `distribution` on the Stack View properties
+* `content hugging priority` and `content compression priority` on views in the Stack View
+
 ### Spacing
 Inter-item spacing is zero by default, which is rarely what you want.<br>
 Use `spacing` to adjust this.
 
 An easy method to add a space between views, is to add a blank UIView (called simply a `View` in Interface Builder's object library), and add contraints for its width and height as needed. 
 
-### Changing how items grow and move
+## Changing how items grow and move
 
-#### Content Hugging Priority
+There are two very useful properties for this, and I find them particularly useful to control the behaviour
+of items in Stack Views.
 
-#### Content Compression Resistance Priority
+##### Content Hugging Priority
 
-### Margins and Constrain to Margins option
+This affects how likely a view is to **hug** its content, relative to other views. The higher the number the more likely it is to avoid expanding.
+Best explained by example:
+> Given 2 labels, we want the first one to fill the available space as the screen size increases,<br>
+so whichever label has the lower value for the `Content Hugging Priority` will grow to fill the space
+
+##### Content Compression Resistance Priority
+
+This property is used for a view to **resist being resized smaller than its content**.
+Again this is relative to other views in the layout, and the view with a lower value will
+compress before a view with a higher value.
+
+Reference: https://krakendev.io/blog/autolayout-magic-like-harry-potter-but-real
+
+## Margins and Constrain to Margins option
 
 Constraints for position can be relative to the margin of a superview
 UIView has a `margin` property to define the margins for the top, bottom, left, and right of a view. The default value for this is `(8,8,8,8)`, and it can be changed in code. It depends on your interface design whether you want to use this or not, and if you forsee having to adjust the margin. You may know up front that your app design will always have views pinned to the edge of the top-level view, in which case you can uncheck this option. I recommend using it, as it allows for simple changes of edge spacing.
 
 
-Size Classes and Vary for Traits
+# Customizing the layout for different devices or orientations:<br> Size Classes and Vary for Traits
 
+Size Classes are the names for different screen sizes, using a classification system that is more general than specifying exact screen dimensions or device.
+The size is described using classes `compact size` and `regular size`, and this is used to describe width and height.
+
+Here is the size classes in a table: [Apple doc on size classes](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/TheAdaptiveModel.html#//apple_ref/doc/uid/TP40007457-CH19-SW4)
+<br>Here is the Apple doc showing the size classes in images: [uitraitcollection](https://developer.apple.com/reference/uikit/uitraitcollection)
+
+The word traits is synonymous with Size Classes, as the `UITraitsCollection` is Swift object that stores the current view state 
+of the app by storing the current horizontal and vertical Size Classes.
+
+To customize an app in interface builder for difference screen sizes, there is a button to `Vary for traits`,
+which means to enable different layouts (and different views on the layout) for different Size Classes.
+
+>PROBLEM: In Interface Builder how do I customize the view for portrait/landscape orientation on iPad?<br>
+Unlike iPhones, the size classes for iPad are always `W:Regular, H:Regular` regardless of orientation.<br>
+You would have to do this in code. We won't get into that topic, but here is link to [how it is detected in code](http://stackoverflow.com/a/39655564/490488)
+
+Here is a great demo on Size Classes and Vary for Traits (this info starts at 9 min mark, but the intro is good also):<br>
 [https://www.youtube.com/watch?v=7iT9fueKCJM]()
-
