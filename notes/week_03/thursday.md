@@ -16,6 +16,8 @@ Many students have one or more iOS devices (iPhone, iPad, iPod touch). We can in
 
 Your device must run iOS version 9 or later. We will configure a setting in each app project (in Xcode) to match this requirement. 
 
+Also, it must be connected to the Internet (wifi or cellular). 
+
 > If you do not have an iOS device, the School of ICT will loan you a device. The loan period is for the duration of the current academic term, and you must return the device by the end of Thursday, April 13, 2017. There is no cost to borrow the device, as long as it's returned, and is in working order. 
 
 There are a few important tasks that must be done before you can install/copy an app to an iOS device.
@@ -29,10 +31,36 @@ Instead, open Xcode Preferences (Command+,). On the Accounts panel, add your App
 Now, you can create a new project. On the dialog, there will be a new drop-down list/field, for the team:
 
 ![](images/1-project-create.png)
+<br><br>
 
+When the project loads, we must change some settings. On the main project page, in the "Signing" area, choose your personal team for the "Team" setting.
 
+![](images/3-project-target-info.png)
+<br><br>
 
-<br>
+Next, we will change an iOS version setting. We suggest setting it to 9.0, so that your app can run on many versions (and not just on the most recently updated iOS version). 
+
+![](images/4-project-deployment-ios-version.png)
+<br><br>
+
+Do some work on your project. In class, we will simply add a Label to the single storyboard scene. Then, run the app on the simulator, and make sure it runs successfully and without errors.  
+
+Now, plug in your iOS device. It will likely display an alert, asking you to "Trust this computer?". Answer yes. 
+
+Next, on the Xcode "Window" menu, choose "Devices". Notice that the new plugged-in device appears on the left side. You can select it, and notice that it is "Processing symbol files" for a couple of minutes. Wait for that to complete.  
+
+![](images/7-devices-showing-iPod-touch.png)
+<br><br>
+
+Next, back on the main Xcode project window, on the device picker, choose your device. Build/compile (Command+B). You will be prompted to allow access to your keychain information. Yes, allow that. 
+
+![](images/8-xcode-devices-menu.png)
+<br><br>
+
+Attempt to run. The first attempt will likely be unsuccessful, and will show you an error dialog. Follow its instructions to change a setting on your iOS device, to allow the app to be "verified" (installed). 
+
+Then, attempt to run it again. It should run successfully from now on. 
+
 
 ### Debugging introduction
 ( more to come )  
