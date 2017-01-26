@@ -30,7 +30,7 @@ It should target the iPhone, and do not use source control (e.g. git).
 
 ## Submitting your work
 Follow these instructions to send me your work:  
-1. Make sure your project works correctly
-2. Locate your **AllAboutMe** project folder in Finder
-3. Right-click the folder, and choose **Compress “AllAboutMe”**, which creates a zip file (make sure the zip file is fairly small, around 500KB or less)
-4. Login to Blackboard/My.Seneca, and in this course's Assignments area, look for the upload link, and submit your work there
+1. Make sure your project works correctly  
+2. Locate your **AllAboutMe** project folder in Finder  
+3. Right-click the folder, and choose **Compress “AllAboutMe”**, which creates a zip file (make sure the zip file is fairly small, around 500KB or less)  
+4. Login to Blackboard/My.Seneca, and in this course's Assignments area, look for the upload link, and submit your work there  
