@@ -104,6 +104,10 @@ Constraints can now be added selectively, for instance to set items to a specifi
 Please read this short article: http://www.thinkandbuild.it/introduction-to-uistackview/
 > TIP: use `Editor>Unembed` to break a stack layout
 
+### Example of using Stack Views to make a grid layout
+This is a very common use case, and this post on Stack Overflow illustrates it perfectly:
+http://stackoverflow.com/a/36415807/490488
+
 ## Configuring Stack Views
 
 Adjusting the layout in a stack view can be done primarily with:
@@ -153,7 +157,7 @@ Size Classes are the names for different screen sizes, using a classification sy
 The size is described using classes `compact size` and `regular size`, and this is used to describe width and height.
 
 Here is the size classes in a table: [Apple doc on size classes](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/TheAdaptiveModel.html#//apple_ref/doc/uid/TP40007457-CH19-SW4)
-<br>Here is the Apple doc showing the size classes in images: [uitraitcollection](https://developer.apple.com/reference/uikit/uitraitcollection)
+<br>Here is the Apple doc showing the size classes in images: [UITraitCollection](https://developer.apple.com/reference/uikit/uitraitcollection)
 
 The word traits is synonymous with Size Classes, as the `UITraitsCollection` is Swift object that stores the current view state 
 of the app by storing the current horizontal and vertical Size Classes.
@@ -161,14 +165,48 @@ of the app by storing the current horizontal and vertical Size Classes.
 To customize an app in interface builder for difference screen sizes, there is a button to `Vary for traits`,
 which means to enable different layouts (and different views on the layout) for different Size Classes.
 
-### Different layouts for iPad and iPhone
+## Different layouts for iPad and iPhone
 
-This is the most common use-case. The size classes for iPad are always `W:Regular, H:Regular` regardless of orientation, and
-no iPhone matches this, so anything customized based on a Size Class / Trait of `W:Regular, H:Regular` will be different on iPad vs iPhone.
+This is the most common use-case. The size classes for iPad are always `Width:Regular, Height:Regular` regardless of orientation, and
+no iPhone matches this, so anything customized based on a Size Class / Trait of `Width:Regular, Height:Regular` will be different on iPad vs iPhone.
 
 >PROBLEM: In Interface Builder how do I customize the view for portrait/landscape orientation on iPad?<br>
-Unlike iPhones, the size classes for iPad are always `W:Regular, H:Regular` regardless of orientation.<br>
+Unlike iPhones, the size classes for iPad are always `Width:Regular, Height:Regular` regardless of orientation.<br>
 You would have to do this in code. We won't get into that topic, but here is link to [how it is detected in code](http://stackoverflow.com/a/39655564/490488).
 
 Here is a great demo on Size Classes and Vary for Traits (this info starts at 9 min mark, but the intro is good also):<br>
-https://www.youtube.com/watch?v=7iT9fueKCJM
+https://www.youtube.com/watch?v=7iT9fueKCJM <br>
+
+### Method 1: `Vary for Traits` button
+What is shown in the above demo is how to use the button `Vary for Traits` to add a new UI element for a specific Size Class.
+I find the next method easier to use.
+
+### Method 2: `Add customization` (the `+` button) in the Attributes Inspector
+Various properties in the Attributes Inspector for a view have a `+` button next them to customize the property for different screen sizes.
+Here is an example of changing the background color so that it is green on iPhone and black on iPad:
+
+><br>Adding the variation for Width:Regular and Height:Regular (which is iPads only):<br><br>
+>![](images/variation-color-before.png)<br><br>
+>
+>And setting the color for this variation to black:<br><br>
+>![](images/variation-color-after.png)
+
+You can show/hide elements using the `installed` property.
+
+> **Example showing the label "I am an iPad" installed only for Width:Regular and Height:Regular,**
+> **so it will only show on an iPad, and be hidden on iPhones**
+>
+> ![](images/installed-property.png)
+
+
+
+# References
+
+There are a lot of links to required readings, so I am repeating them here to make sure you haven't missed any:
+* Intrinsic content size: https://cocoacasts.com/what-is-intrinsic-content-size/ up to the section `How Does It Work`
+* Overview of Stack View layout: http://www.thinkandbuild.it/introduction-to-uistackview/
+* Stack View layouts to make a grid: http://stackoverflow.com/a/36415807/490488
+* Hugging and Compression Resistance: https://krakendev.io/blog/autolayout-magic-like-harry-potter-but-real
+* "Vary for Traits" button demo: https://www.youtube.com/watch?v=7iT9fueKCJM
+
+
