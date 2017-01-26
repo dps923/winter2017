@@ -1,6 +1,6 @@
 ## FriendPix
 
-Assignment 1 gets you started with iOS programming. You will create an “all about me” app that enables you to use a number of user interface elements, work with the on-screen keyboard, and perform simple data round trips and type conversions.  
+Assignment 2 is designed to enable you to create a fun and simple app that you can install/copy to an iOS device. It lets you work with graphics and touch, and a device feature, the camera.  
 <br>
 
 ### Due date
