@@ -2,9 +2,9 @@ Thursday, January 26, 2017
 Computer-lab room T3078 at 1:30pm  
 
 Agenda for today:  
-1. Install/copy app to iOS device
-2. Debugging introduction
-3. Work on Assignment 2
+1. Install/copy app to iOS device  
+2. Debugging introduction  
+3. Work on Assignment 2  
 <br><br>
 
 ### Install/copy app to iOS device
@@ -60,9 +60,16 @@ Next, back on the main Xcode project window, on the device picker, choose your d
 Attempt to run. The first attempt will likely be unsuccessful, and will show you an error dialog. Follow its instructions to change a setting on your iOS device, to allow the app to be "verified" (installed). 
 
 Then, attempt to run it again. It should run successfully from now on. 
-
+<br><br>
 
 ### Debugging introduction
+To the beginner, debugging in Xcode can be intimidating. Using these notes, and other resources, we will attempt to get you comfortable with the debugging environment. 
+
+
+
+
+
+
 ( more to come )  
 <br>
 
