@@ -148,15 +148,15 @@ We will write a new function that will get the current settings from the control
 
 programSelector.selectedSegmentIndex returns an integer. The control has two segments. Segment 0 (zero) represents the CPA program. Segment 1 represents the BSD program. Use the <a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/BasicOperators.html#//apple_ref/doc/uid/TP40014097-CH6-ID71" target="_blank">Swift ternary conditional</a> form:  
 
-'''swift
+```swift
 let program = (programSelector.selectedSegmentIndex == 0) ? "CPA" : "BSD"
-'''
+```
 
 Next, make a string for the semester. Segment 0 (zero) represents semester 4. Segment 1 represents semester 5. And so on. Therefore, the actual semester is the selected segment, plus 4. Here's the code:  
 
-'''swift
+```swift
 let semester = semesterSelector.selectedSegmentIndex + 4
-'''
+```
 
 Then, you need the GPA value. Get it from the slider control. The "value" property of the slider holds its value, and it's a float type. Therefore, the string format that you'll want to use is "%1.2f".  
 
@@ -191,94 +191,83 @@ Run your app. Make sure there are no errors.
 <br>
 
 ### Make the app work better
-At this point in time, the app should work. However, we can make it work better. How?
-<ul>
- 	- Dismiss the keyboard
- 	- Handle out-of-range or incorrect text field data
- 	- Ensure that the maximum value of CPA semesters is 6
- 	- Set initial/load values programmatically
-</ul>
-&nbsp;
+At this point in time, the app should work. However, we can make it work better. How?  
+- Dismiss the keyboard  
+- Handle out-of-range or incorrect text field data  
+- Ensure that the maximum value of CPA semesters is 6  
+- Set initial/load values programmatically  
+<br>
 
 **Dismiss the keyboard**
 
-Recently, you learned that a text field's resignFirstResponder() function will dismiss the keyboard. You saw us use that in a button-handling function. Well, in this app, we do not have a button.
+Recently, you learned that a text field's resignFirstResponder() function will dismiss the keyboard. You saw us use that in a button-handling function. Well, in this app, we do not have a button.  
 
-We will now introduce you - gently - to delegation. We will add a function that will handle the on-screen keyboard's "Done" button tap. In effect, the text field is <em>delegating</em> behaviour to code that we write.
+We will now introduce you - gently - to delegation. We will add a function that will handle the on-screen keyboard's "Done" button tap. In effect, the text field is *delegating*> behaviour to code that we write.  
 
-There are two steps to complete:
-<ol>
- 	- Set the text field 'delegate' property to the view controller
- 	- Write code to handle an event
-</ol>
+There are two steps to complete:  
+- Set the text field 'delegate' property to the view controller  
+- Write code to handle an event  
+
 On the storyboard, select the text field. Then, make a connection (press and hold Control, then click-drag-drop) to the "View Controller" icon in the dock at the top of the scene. A connection popup will appear. In the Outlets area, select "delegate".
 
 Watch how to do this...
 
 http://www.youtube.com/watch?v=K7Y0lld4-TA
+<br>
 
-&nbsp;
+In the view controller code, edit the class declaration to look like this:  
 
-In the view controller code, edit the class declaration to look like this:
-
-[code language="c"]
+```swift
 class ViewController: UIViewController, UITextFieldDelegate {
-[/code]
-
-&nbsp;
+```
+<br>
 
 Then, add the following method:
 
-[code language="c"]
+```swift
 func textFieldShouldReturn(textField: UITextField) -> Bool {
     return textField.resignFirstResponder()
 }
-[/code]
-
-&nbsp;
+```
+<br>
 
 See how this is done...
 
-https://www.youtube.com/watch?v=aI1viBuMUUY
-
-&nbsp;
+https://www.youtube.com/watch?v=aI1viBuMUUY  
+<br>
 
 **Handle out-of-range or incorrect text field data**
 
-The GPA value ranges from 2.0 to 4.0, and is shown with two decimal places.
+The GPA value ranges from 2.0 to 4.0, and is shown with two decimal places.  
 
-If the user enters incorrect data (e.g. non-numeric text or symbols), the string-to-number converter will set the value to 0.0. In that situation, reset it to the minimum GPA value, 2.0.
+If the user enters incorrect data (e.g. non-numeric text or symbols), the string-to-number converter will set the value to 0.0. In that situation, reset it to the minimum GPA value, 2.0.  
 
-If the user enters a value lower than 2, then set the value to 2.0.
+If the user enters a value lower than 2, then set the value to 2.0.  
 
-If the user enters a value higher than 4, then set the value to 4.0.
+If the user enters a value higher than 4, then set the value to 4.0.  
 
-If the user enters too many decimal places, show the value with two decimal places.
-
-&nbsp;
+If the user enters too many decimal places, show the value with two decimal places.  
+<br>
 
 **Ensure that the maximum value of CPA semesters is 6**
 
-If the user taps the CPA segment, and then if the current semester is 7 or 8, then reset the current semester to 6. That's a property of the segmented control named "selectedSegmentIndex".
+If the user taps the CPA segment, and then if the current semester is 7 or 8, then reset the current semester to 6. That's a property of the segmented control named "selectedSegmentIndex".  
 
-In addition to the above, you can disable the semester 7 and 8 segments, by using a function named "setEnabled()".
+In addition to the above, you can disable the semester 7 and 8 segments, by using a function named "setEnabled()".  
 
-Conversely, if the user taps the BSD segment, then ensure that the semester 7 and 8 segments are enabled.
-
-&nbsp;
+Conversely, if the user taps the BSD segment, then ensure that the semester 7 and 8 segments are enabled.  
+<br>
 
 **Set initial/load values programmatically**
 
-In the viewDidLoad() method, you can set the initial values of the app programmatically, if you wish.
+In the viewDidLoad() method, you can set the initial values of the app programmatically, if you wish.  
 
-Simply write statements that set the initial values to your own personal situation.
+Simply write statements that set the initial values to your own personal situation.  
+<br>
 
-&nbsp;
 ### Submitting your work
-Follow these instructions to submit your work:
-<ol>
- 	- Make sure your project works correctly
- 	- Locate your **AllAboutMe** project folder in Finder
- 	- Right-click the folder, and choose **Compress “AllAboutMe”**, which creates a zip file (make sure the zip file is fairly small, around 500KB or less)
- 	- Login to Blackboard/My.Seneca, and in this course's Assignments area, look for the upload link, and submit your work there
-</ol>
+Follow these instructions to submit your work:  
+- Make sure your project works correctly  
+- Locate your **AllAboutMe** project folder in Finder  
+- Right-click the folder, and choose **Compress “AllAboutMe”**, which creates a zip file (make sure the zip file is fairly small, around 500KB or less)  
+- Login to Blackboard/My.Seneca, and in this course's Assignments area, look for the upload link, and submit your work there  
