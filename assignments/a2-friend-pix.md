@@ -196,6 +196,8 @@ Then, let's configure some settings for a photo. Refer to the UIImageView Class 
 2. Optional, the corner radius, in/for the layer, can be something like 10.0 (it's a Float)
 3. To enable both of these settings, turn on the clips to bounds setting  
 
+> Want to learn a bit more about image resizing?<br>Mattt Thompson has a good post titled [Image Resizing Techniques](http://nshipster.com/image-resizing/)  
+
 Now, we're all done with the Photo class.  
 <br>
 
