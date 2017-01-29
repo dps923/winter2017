@@ -24,15 +24,15 @@ When launched, the app displays current up-to-date information about you, includ
 
 Watch it work...  
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/IyxWjy0f1F8" frameborder="0" allowfullscreen></iframe>
+[![Watch it work](images/youtubeicon.png)](https://www.youtube.com/embed/IyxWjy0f1F8)  
 <br>
 
 ### Specifications
-<img style="float: right; border:1px solid #000000;margin-bottom:10px;margin-left:25px;" src="https://petermcintyre.files.wordpress.com/2015/01/run-initial3.png" alt="run-initial" width="300" height="533" />
-
 Create a new iOS app, using the Single View Application template. The name of the app should be "**AllAboutMe**".  
 
 It should target the iPhone, and do not use source control (e.g. git).  
+
+<kbd><img src="https://petermcintyre.files.wordpress.com/2015/01/run-initial3.png" alt="run-initial" width="300" /></kbd>
 
 Before you begin adding objects to the user interface, get a head shot picture of yourself (aka selfie). Crop and resize it so that it is 100 pixels wide, and 150 pixels tall. It must be a PNG. Use any Mac, Windows, or online program to get this done.  
 
@@ -212,7 +212,7 @@ On the storyboard, select the text field. Then, make a connection (press and hol
 
 Watch how to do this...
 
-http://www.youtube.com/watch?v=K7Y0lld4-TA
+[![Watch it work](images/youtubeicon.png)](https://www.youtube.com/embed/K7Y0lld4-TA)  
 <br>
 
 In the view controller code, edit the class declaration to look like this:  
@@ -231,9 +231,9 @@ func textFieldShouldReturn(textField: UITextField) -> Bool {
 ```
 <br>
 
-See how this is done...
+See how this is done...  
 
-https://www.youtube.com/watch?v=aI1viBuMUUY  
+[![Watch it work](images/youtubeicon.png)](https://www.youtube.com/embed/aI1viBuMUUY)  
 <br>
 
 **Handle out-of-range or incorrect text field data**
@@ -267,7 +267,7 @@ Simply write statements that set the initial values to your own personal situati
 
 ### Submitting your work
 Follow these instructions to submit your work:  
-- Make sure your project works correctly  
-- Locate your **AllAboutMe** project folder in Finder  
-- Right-click the folder, and choose **Compress “AllAboutMe”**, which creates a zip file (make sure the zip file is fairly small, around 500KB or less)  
-- Login to Blackboard/My.Seneca, and in this course's Assignments area, look for the upload link, and submit your work there  
+1. Make sure your project works correctly  
+2. Locate your **AllAboutMe** project folder in Finder  
+3. Right-click the folder, and choose **Compress “AllAboutMe”**, which creates a zip file (make sure the zip file is fairly small, around 500KB or less)  
+4. Login to Blackboard/My.Seneca, and in this course's Assignments area, look for the upload link, and submit your work there  
