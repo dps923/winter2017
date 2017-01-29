@@ -1,14 +1,14 @@
-### DPS923 and MAP523 for the Winter 2017 academic term
+## DPS923 and MAP523 for the Winter 2017 academic term
 
-Course welcome page is [here](welcome.md)
+The course welcome page is [here](welcome.md).  
 
-Please review the [Graded work policy](graded-work-policy.md)
+Please review the [graded work policy](graded-work-policy.md).  
+<br>
 
-#### Code examples
-Organized by week. Each "week" page has a README file that describes the code examples.
+### Notes and code examples
+Organized by week. Each "week" page has a README file that describes the topic themes and code examples.
 
-You can browse the code online. You can also download the repository as a zip file.  
-Or, you can clone the repository to your own computer.  
+You can browse the code online. You can also download this repository as a zip file. Or, you can clone the repository to your own computer.  
 
 |Week&nbsp;and&nbsp;date|Topic theme and coverage|Due today|Mark value|
 |--------------------|------------------------|---------|----------|
