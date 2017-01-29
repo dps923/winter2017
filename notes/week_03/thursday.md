@@ -63,15 +63,11 @@ Then, attempt to run it again. It should run successfully from now on.
 <br><br>
 
 ### Debugging introduction
-To the beginner, debugging in Xcode can be intimidating. Using these notes, and other resources, we will attempt to get you comfortable with the debugging environment. 
-
-
-
-
-
+To the beginner, debugging in Xcode can be intimidating. Using these notes, and other resources, we will attempt to get you comfortable with the debugging environment.  
 
 ( more to come )  
 <br>
 
 ### Work on Assignment 2
-( more to come )  
+The FriendPix [Assignment 2](https://github.com/dps923/winter2017/blob/master/assignments/a2-friend-pix.md) enables you to work with graphics and touch, on a device. It should be fun.   
+
