@@ -4,6 +4,9 @@ Up until now, if you have simply dropped a UIView control (button, slider, text 
 Fixed coordinates are not adaptable to different screen sizes and orientations.
 Auto Layout is the name for the iOS rule-based layout system, which uses sets of constraints which you will specify.
 
+> Apple has an [Auto Layout Guide](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/) that complements today's notes.  
+> Read through its "Getting Started" topics. If you can, create a throw-away Xcode project, and follow along with the topics in the guide.
+
 Constraints: rules that specify how UIViews are positioned (i.e. 20 points from the left edge, align the top edge with the top of the superview).
 
 > Tip: the `UIView.superview` is the the name of the containing view, that is, if UIView A's superview is UIView B, then B.subviews contains A. 
@@ -42,7 +45,7 @@ A UIView needs enough constraints to specify its horizontal and vertical positio
 However, many UI controls have an `intrinsic size` which is a preferred width and height, and only require 2 constraints for positioning.
 A label for instance, will set its `intrinsic size` to a width and height to fit its text, and will use this for width and height constraints if you don't manually specify these.
 
-Read this article https://cocoacasts.com/what-is-intrinsic-content-size/ up to the section `How Does It Work` (you can stop reading at `Conflicts & Intrinsic Content Size`).
+Read this article https://cocoacasts.com/what-is-intrinsic-content-size/ up to the end of the section `How Does It Work` (you can stop reading at `Conflicts & Intrinsic Content Size`).
 
 ## Pin Tool 
 
@@ -203,10 +206,11 @@ You can show/hide elements using the `installed` property.
 # References
 
 There are a lot of links to required readings, so I am repeating them here to make sure you haven't missed any:
-* Intrinsic content size: https://cocoacasts.com/what-is-intrinsic-content-size/ up to the section `How Does It Work`
+* Intrinsic content size: https://cocoacasts.com/what-is-intrinsic-content-size/ up to the end of the section `How Does It Work`
 * Overview of Stack View layout: http://www.thinkandbuild.it/introduction-to-uistackview/
 * Stack View layouts to make a grid: http://stackoverflow.com/a/36415807/490488
 * Hugging and Compression Resistance: https://krakendev.io/blog/autolayout-magic-like-harry-potter-but-real
 * "Vary for Traits" button demo: https://www.youtube.com/watch?v=7iT9fueKCJM
-
+* Apple "Auto Layout Guide":
+https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/
 
