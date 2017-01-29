@@ -12,15 +12,15 @@ For the Winter 2017 academic term, a team of professors will teach the course:
 
 **Garvan Keeley**
 - Professor Keeley can be reached by email, at garvan.keeley@senecacollege.ca  
-- Professor Keeley is on campus on Mondays, with office hours from 10:45am to 11:30am in room T2094  
+- Professor Keeley is on campus and teaching in-class on Mondays, with drop-in office hours from 10:45am to 11:30am in room T2094  
 
 **Peter McIntyre**
-- Professor McIntyre’s contact information is available at <a href="http://petermcintyre.com/welcome/contact/" target="_blank">this link</a>  
-- Professor McIntyre’s timetable is available at <a href="http://petermcintyre.com/welcome/timetable/" target="_blank">this link</a>  
+- Professor McIntyre’s contact information is available at [this link](http://petermcintyre.com/welcome/contact/)  
+- Professor McIntyre is teaching in-class on Thursdays, and his timetable is available at [this link](http://petermcintyre.com/welcome/timetable/)  
 <br>
 
 ### Planned schedule of topics, tests, and assignments  
-The planned schedule of topics, tests, and assignments is available at <a title="DPS913 Weekly Schedule" href="http://petermcintyre.com/dps923/weekly-schedule/"  target="_blank">this link</a>.  
+The planned schedule of topics, tests, and assignments is available on this web site's [home page](README.md).  
 <br>
 
 ### Other information
