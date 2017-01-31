@@ -105,21 +105,21 @@ Make sure that the storyboard editor is showing these:
 * The inspectors panel (on the right side)
 
 For each of the four scenes...  
-1. Select (click) its View Controller icon in the header 
-2. Then, show its Identity Inspector
-3. In the Custom Class section (at the top), in the Class drop-down list/field, type or select its view controller
-4. Show its Attributes inspector, and then enter a descriptive (but short!) "Title" for the view controller 
-5. Next, in the document outline, select (click) "Item" (which has a star icon) 
-6. On the Attributes Inspector, enter the same descriptive "Title" text that you used above
-7. Optionally, add a Label to the scene, that has the same descriptive "Title" text that you used above (we'll remove the label later; you can use it during coding/testing/running to be sure that you're making progress)
+1. Select (click) its View Controller icon in the header  
+2. Then, show its Identity Inspector  
+3. In the Custom Class section (at the top), in the Class drop-down list/field, type or select its view controller  
+4. Show its Attributes inspector, and then enter a descriptive (but short!) "Title" for the view controller  
+5. Next, in the document outline, select (click) "Item" (which has a star icon)  
+6. On the Attributes Inspector, enter the same descriptive "Title" text that you used above  
+7. Optionally, add a Label to the scene, that has the same descriptive "Title" text that you used above (we'll remove the label later; you can use it during coding/testing/running to be sure that you're making progress)  
 
 **Connect the new scenes to the tab bar controller**  
 Notice above, that the two originally-placed scenes have lines/connectors to the tab bar controller. Those were done automatically, when you added the tab bar controller to the storyboard.  
 
 Now, let's connect the other two new scenes. For each scene:  
-1. Select (click) the tab bar controller. 
-2. Control+click+drag from the center of the tab bar controller box, to the new scene, and release the mouse/pointer button
-3. In the popup, choose "view controllers" from the "Relationship Segue" section of the popup
+1. Select (click) the tab bar controller  
+2. Control+click+drag from the center of the tab bar controller box, to the new scene, and release the mouse/pointer button  
+3. In the popup, choose "view controllers" from the "Relationship Segue" section of the popup  
 4. Notice that a new line/connect is placed on the storyboard  
 
 Here's how the storyboard may look now:  
