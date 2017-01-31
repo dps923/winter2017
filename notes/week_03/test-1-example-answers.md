@@ -2,7 +2,7 @@
 
 When your test is marked, we are looking for an answer that captures the essence of the example answers (indented, below). Your answer does not necessarily have to be exactly the same, and part marks are possible. Over time, you should strive to improve your explanations, as that will improve your academic and career prospects.
 
-1. Briefly define and describe the purpose of any two (2) of the following iOS application components. If it helps your answer, use an example. (1 mark each; 2 marks total)  
+`1.` Briefly define and describe the purpose of any two (2) of the following iOS application components. If it helps your answer, use an example. (1 mark each; 2 marks total)  
 Application delegate  
 Delegate  
 View controller  
@@ -21,7 +21,7 @@ Scene
 
 <br>
 
-2. Briefly explain the purpose of protocol in Swift.
+`2.` Briefly explain the purpose of protocol in Swift.
 
 >Names required and/or optional methods that must be implemented by adopting classes.
 >
@@ -29,7 +29,7 @@ Scene
 
 <br>
 
-3. Consider a scenario where a scene includes a picker view object. Briefly explain the storyboard and coding tasks that must be done to enable the picker view to display its data at runtime.
+`3.` Consider a scenario where a scene includes a picker view object. Briefly explain the storyboard and coding tasks that must be done to enable the picker view to display its data at runtime.
 
 >Drag a picker view to the scene.
 >
@@ -42,8 +42,8 @@ Scene
 >Implement the necessary protocol methods to build and react to the picker view
 
 <br>
-
-4. Name the property that’s used to read or write data to a UITextField object. Then, briefly explain why we must do string/number conversions on its data (assuming that we need the data as a number). 
+
+`4.` Name the property that’s used to read or write data to a UITextField object. Then, briefly explain why we must do string/number conversions on its data (assuming that we need the data as a number). 
 
 >“text”
 >
@@ -51,7 +51,7 @@ Scene
 
 <br>
 
-5. Is it possible to configure a user interface object as both an outlet and an action? Explain your answer.
+`5.` Is it possible to configure a user interface object as both an outlet and an action? Explain your answer.
 
 >Yes.
 >
