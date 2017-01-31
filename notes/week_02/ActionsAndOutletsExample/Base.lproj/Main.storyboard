@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,14 +21,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="eWF-fG-Tgx">
-                                <rect key="frame" x="36" y="40" width="323" height="607"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eWF-fG-Tgx">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="C77-PP-9WP">
-                                        <rect key="frame" x="0.0" y="0.0" width="323" height="54"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="vfa-px-SGf">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                                         <subviews>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UKN-Xb-6WA">
-                                                <rect key="frame" x="40" y="0.0" width="243" height="29"/>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UKN-Xb-6WA">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="29"/>
                                                 <segments>
                                                     <segment title="First"/>
                                                     <segment title="Second"/>
@@ -40,36 +39,37 @@
                                                     <action selector="segmentedControlChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Iqa-e8-5l9"/>
                                                 </connections>
                                             </segmentedControl>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;segmented control state&gt;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0t-Me-xgA">
-                                                <rect key="frame" x="68.5" y="36" width="186.5" height="18"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="&lt;segmented control state&gt;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0t-Me-xgA">
+                                                <rect key="frame" x="0.0" y="32" width="375" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wgK-pH-KGl">
-                                        <rect key="frame" x="0.0" y="68" width="323" height="70"/>
+                                        <rect key="frame" x="0.0" y="57" width="375" height="46"/>
                                         <subviews>
-                                            <slider opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="22" minValue="0.0" maxValue="40" translatesAutoresizingMaskIntoConstraints="NO" id="abX-wB-gF6">
-                                                <rect key="frame" x="10" y="0.0" width="303" height="31"/>
+                                            <slider opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="22" minValue="0.0" maxValue="40" translatesAutoresizingMaskIntoConstraints="NO" id="abX-wB-gF6">
+                                                <rect key="frame" x="10" y="0.0" width="355" height="19"/>
                                                 <connections>
                                                     <action selector="temperatureSliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="R1W-zD-UwF"/>
                                                 </connections>
                                             </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;slider info&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nK-Ki-s9y">
-                                                <rect key="frame" x="113.5" y="40" width="96" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="&lt;slider label&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nK-Ki-s9y">
+                                                <rect key="frame" x="141" y="28" width="93" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="abX-wB-gF6" secondAttribute="trailing" constant="12" id="HGm-bF-TaO"/>
                                             <constraint firstItem="abX-wB-gF6" firstAttribute="leading" secondItem="wgK-pH-KGl" secondAttribute="leading" constant="12" id="TM2-om-9dV"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="yGB-us-iOk">
-                                        <rect key="frame" x="0.0" y="152" width="323" height="31"/>
+                                        <rect key="frame" x="0.0" y="111" width="375" height="31"/>
                                         <subviews>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9gr-OD-Dmw">
                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
@@ -78,54 +78,49 @@
                                                 </connections>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;switch state&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGa-BU-5Xd">
-                                                <rect key="frame" x="71" y="0.0" width="252" height="31"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="71" y="0.0" width="304" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="YKL-Yx-lrV">
-                                        <rect key="frame" x="0.0" y="197" width="323" height="410"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pk-k6-71c">
+                                        <rect key="frame" x="0.0" y="150" width="375" height="29"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4pk-k6-71c">
-                                                <rect key="frame" x="0.0" y="0.0" width="94" height="49.5"/>
-                                                <subviews>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minimumValue="16" maximumValue="99" translatesAutoresizingMaskIntoConstraints="NO" id="5kg-eB-7bZ" userLabel="Age Stepper">
-                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="29"/>
-                                                        <connections>
-                                                            <action selector="stepperChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="u5j-rI-AKm"/>
-                                                        </connections>
-                                                    </stepper>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;stepper val&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZP-Ev-WAf" userLabel="Age Label">
-                                                        <rect key="frame" x="0.0" y="29" width="94" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="seneca" translatesAutoresizingMaskIntoConstraints="NO" id="6fn-At-lOX">
-                                                <rect key="frame" x="110" y="0.0" width="213" height="224"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="5"/>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
-                                                        <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </imageView>
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minimumValue="16" maximumValue="99" translatesAutoresizingMaskIntoConstraints="NO" id="5kg-eB-7bZ" userLabel="Age Stepper">
+                                                <rect key="frame" x="0.0" y="0.0" width="94" height="29"/>
+                                                <connections>
+                                                    <action selector="stepperChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="u5j-rI-AKm"/>
+                                                </connections>
+                                            </stepper>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;stepper val&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZP-Ev-WAf" userLabel="Age Label">
+                                                <rect key="frame" x="94" y="0.0" width="281" height="29"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </stackView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" image="seneca" translatesAutoresizingMaskIntoConstraints="NO" id="6fn-At-lOX">
+                                        <rect key="frame" x="0.0" y="187" width="375" height="460"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="5"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
                                 </subviews>
+                                <variation key="heightClass=regular-widthClass=regular" spacing="24"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="eWF-fG-Tgx" secondAttribute="bottom" constant="20" symbolic="YES" id="DsO-TI-nyX"/>
-                            <constraint firstItem="eWF-fG-Tgx" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Ne6-GJ-DFO"/>
-                            <constraint firstItem="eWF-fG-Tgx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="hCF-LV-jLk"/>
-                            <constraint firstItem="eWF-fG-Tgx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="o7R-Vl-zHL"/>
+                            <constraint firstAttribute="trailing" secondItem="eWF-fG-Tgx" secondAttribute="trailing" id="31R-vT-fBu"/>
+                            <constraint firstItem="eWF-fG-Tgx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="8k0-d0-fj8"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="eWF-fG-Tgx" secondAttribute="bottom" id="Eoo-I6-Mok"/>
+                            <constraint firstItem="eWF-fG-Tgx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="VLM-Bh-vSx"/>
                         </constraints>
                     </view>
                     <connections>
