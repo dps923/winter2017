@@ -73,10 +73,10 @@ Press Command+N to add a new item/file:
 
 On the next screen, choose these options: 
 * Subclass of UIViewController
-* Class (name) is `One`
+* Class (name) is `PhotoFilter`
 * Language is Swift (obviously!)
 
-Repeat the steps above to create view controllers `Two`, `Three`, and `Four`.
+Repeat the steps above to create view controllers `AllAboutMe`, `IconGrid`, and `UserInput`.
 
 Later, we will return and write code for these new view controllers.  
 <br>
@@ -139,31 +139,81 @@ Run the app in the simulator. Hopefully, it will load and run, and show the app'
 </kbd>
 <br>
 
-Now, you're ready to do the layout tasks.  
+Now, you're ready to do the layout tasks on the scenes.  
+
+> A suggestion, hopefully helpful:
+>
+>The problem with layout is that sometimes you feel like you have clicked all the right buttons and it still isn't working. 
+>
+> Please be aware that sometimes you just have to remove the constraints, and build it again. There is no magic, just iterations, until you get it right. There is some inherent trial-and-error in using IB's layout tools. 
+
 <br>
 
-<br><br><br><br>
-( more to come )
-<br><br><br><br>
+### Layout task 1 (on the **PhotoFilter** view controller)  
+We have two tasks to accomplish on this scene (in addition to the layout task!). First, learn something new and fun about photo editing. And, get a little practice with a picker view.  
 
-### Layout task 1 (on the TBA view controller)  
+This will be the only scene with code that you must write in the PhotoFilter view controller. We'll cover that soon (below).  
+<br>
+
+#### Photo editing with Core Image Filters  
+We can use Core Image filters to edit or change the appearance of images.  
+
+FYI, the [Core Image Programming Guide](https://developer.apple.com/library/content/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html) will introduce you to some of the things that you could possibly do to images. 
+
+The  [Core Image Filter Reference](https://developer.apple.com/library/content/documentation/GraphicsImaging/Reference/CoreImageFilterReference/) document can also be helpful. 
+
+This scene will have two objects:  
+1. An image (UIImageView)  
+2. A picker view (UIPickerView)  
+
+In *portrait* mode, the two objects will be vertically stacked.  
+
+![Photo filter portrait](images/photofilter-portrait.png)  
+<br>
+
+In *landscape* mode, the two objects will be horizontally side-by-side.  
+![Photo filter portrait](images/photofilter-landscape.png)  
+<br>
+
+(Hint - stack view, size classes and vary for traits)
+
 (TBA - more to come)  
 <br>
 
-### Layout task 2 (on the TBA view controller)  
+### Layout task 2 (on the **AllAboutMe** view controller)  
+Think back to your work on Assignment 1, the "All About Me" app. It is possible that you had layout problems, and did trial-and-error tasks to fix the layout problems.  
+
+Now that you have learned something about layout techniques, add 
+
+(Hint - view constraints and layout handles)  
+<br>
+
+### Layout task 3 (on the **IconGrid** view controller)  
+In a recent class, there was discussion about a 3x3 or 4x4 grid layout of objects. That's what you'll implement here on this scene.  
+
+(Preview - will have a grid of icons that work on devices of different sizes, and in different orientations)  
+
+(Hint - nested stack views)  
+
 (TBA - more to come)  
 <br>
 
-### Layout task 3 (on the TBA view controller)  
-(TBA - more to come)  
-<br>
+### Layout task 4 (on the **UserInput** view controller)  
+On this scene, we'll do a very typical and often-implemented UI task - working with user input into text fields (UITextField).  
 
-### Layout task 4 (on the TBA view controller)  
+As an example, we'll use a typical "login screen" example, with two (correctly configured!) text fields and a button.  
+
 (TBA - more to come)  
 <br>
 
 ### Test your work
-TBA  
+Run the app on the iOS Simulator, using different devices (that have different screen sizes):  
+1. iPhone SE or 5 (4-inch screen)  
+2. iPhone 7 (4.7-inch screen)  
+3. iPhone 7 Plus (5.5-inch screen)  
+4. iPad Pro (9.7-inch screen)  
+
+Make sure that the content lays out nicely, in portrait mode, on all of these screen sizes.  
 <br>
 
 #### Borrowing a device
