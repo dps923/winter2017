@@ -6,7 +6,8 @@ Layout, auto layout, making apps for different devices, including iPad.
 <br>
 
 ### Thursday notes  
-(TBA)
+Introduce the Tab Bar Controller.  
+Begin work on Assignment 3.  
 <br>
 
 ### Code examples  
