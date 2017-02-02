@@ -40,7 +40,9 @@ As you have seen before, the project creator process creates a "ViewController.s
 
 ![Delete?](images/delete-from-project-navigator.png)  
 
-The project creator also creates a "Main.storyboard" source code file. Show the storyboard in the editor. We want to create our own scenes. Therefore, you can delete it.  
+The project creator also creates a "Main.storyboard" source code file. Show the storyboard in the editor. 
+
+We want to create our own scenes. Therefore, you can delete the existing "ViewController" scene.   
 <br> 
 
 ### New topic for you - Tab Bar Controller
