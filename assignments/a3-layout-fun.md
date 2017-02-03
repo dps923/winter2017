@@ -168,26 +168,60 @@ This scene will have two objects:
 1. An image (UIImageView)  
 2. A picker view (UIPickerView)  
 
-In *portrait* mode, the two objects will be vertically stacked.  
+In *portrait* mode, the two objects will be vertically stacked.
 
 ![Photo filter portrait](images/photofilter-portrait.png)  
 <br>
 
-In *landscape* mode, the two objects will be horizontally side-by-side.  
+In *landscape* mode, the two objects will be horizontally side-by-side.
 ![Photo filter portrait](images/photofilter-landscape.png)  
 <br>
 
+You only need to solve this for iPhones in landscape/portrait other than the iPhone **Plus** models (that is a special case of size class we can ignore for now). The plus models are the iPhone 6 Plus and the iPhone 7 Plus.
+
+If you get the other cases solved, and would like to get it working on the 6 Plus or 7 Plus for fun, you are welcome to add that.
+
 (Hint - stack view, size classes and vary for traits)
 
-(TBA - more to come)  
+#### Some code for you to use for the picker
+
+Here is a list to use for the picker:
+```swift
+ let filterNameList = ["No Filter" ,"CIPhotoEffectChrome", "CIPhotoEffectFade", "CIPhotoEffectInstant", "CIPhotoEffectMono", "CIPhotoEffectNoir", "CIPhotoEffectProcess", "CIPhotoEffectTonal", "CIPhotoEffectTransfer"]
+```
+
+And here is the code you can run when an item in the picker is selected:
+```swift
+    let sourceImage = CIImage(image: self.imageView.image!)
+    // introducing guard statement as a cleaner form of "if let" for early return from functions
+    guard let filter = CIFilter(name: filterNameList[row]) else {
+        print("Can't create filter")
+        return;
+    }
+
+    filter.setDefaults()
+    filter.setValue(sourceImage, forKey: kCIInputImageKey)
+    let context = CIContext(options: nil)
+    // introducing: multiple "if let" in one statement, quite handy!
+    if let outputImage = filter.outputImage,
+        let outputCGImage = context.createCGImage(outputImage, from: outputImage.extent) {
+            let filteredImage = UIImage(cgImage: outputCGImage)
+            self.imageView.image = filteredImage
+    }
+```
+
+You can figure out where to put the above code. Note that this code doesn't reset the image back to normal; it just keeps applying filters as they are picked. You can add that if you like, but it isn't required for the assignment. This part is just a chance to hook up a picker view to do something interesting.
+
 <br>
 
 ### Layout task 2 (on the **AllAboutMe** view controller)  
 Think back to your work on Assignment 1, the "All About Me" app. It is possible that you had layout problems, and did trial-and-error tasks to fix the layout problems.  
 
-Now that you have learned something about layout techniques, add 
+Now that you have learned something about layout techniques, add a layout to this scene.
 
-(Hint - view constraints and layout handles)  
+You **don't need to make the UI functional** this is just a layout exercise. You should be able to copy the UI from that assignment into the view for this tab. Then use layout techniques to apply a layout. We won't test that the items on the scene are hooked up to actions.
+
+(Hint - stack views, view constraints and layout handles)  
 <br>
 
 ### Layout task 3 (on the **IconGrid** view controller)  
@@ -212,10 +246,9 @@ As an example, we'll use a typical "login screen" example, with two (correctly c
 Run the app on the iOS Simulator, using different devices (that have different screen sizes):  
 1. iPhone SE or 5 (4-inch screen)  
 2. iPhone 7 (4.7-inch screen)  
-3. iPhone 7 Plus (5.5-inch screen)  
-4. iPad Pro (9.7-inch screen)  
+3. iPad Pro (9.7-inch screen)  
 
-Make sure that the content lays out nicely, in portrait mode, on all of these screen sizes.  
+Make sure that the content lays out nicely, in portrait mode, on all of these screen sizes.
 <br>
 
 #### Borrowing a device
@@ -227,9 +260,20 @@ If you do not have an iOS device, the School of ICT has a limited supply of iPod
 #### Show / prove that your app works
 Final testing of your app must be on a device. Then, take a screenshot. 
 
-You can do this on the device itself, and then submit it with your project. Put it in the project folder, before doing the zip task.
+Screenshots can be taken:
+- on the device itself
+- using the Xcode Devices window (on the Window menu), you can use the "take screenshot" button, and it will be stored on the desktop.
+- in the Simulator, File>Screenshot, it will store the file on the desktop
 
-Alternatively, using the Xcode Devices window (on the Window menu), you can use the "take screenshot" button, and it will be stored on the desktop. Again, put it in the project folder, before doing the zip task.  
+Submit it with your project. Put it in the project folder, before doing the zip task.
+
+Please include a screenshot of:
+
+1. tab 1 portrait and landscape showing the layout changing (2 screenshots)
+1. tab 2 portrait
+1. tab 3 portrait
+1. tab 4 portrait
+
 <br>
 
 ### Submitting your work
