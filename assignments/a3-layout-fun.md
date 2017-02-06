@@ -83,7 +83,7 @@ Locate *Tab Bar Controller* in the lower-right Object Library. Drag it on to the
 
 If you wish, you can rearrange (drag) the boxes so that the tab bar controller is above the row of the two other scenes.  
 
-Then, from the Object Library, locate then drag a *View Controller* to the design surface. Put it beside the two scenes. Do this again, to add a ``fourth scene`` third scene to the row (we will only do three). Here's how it may look now:  
+Then, from the Object Library, locate then drag a *View Controller* to the design surface. Put it beside the two scenes. Do this again, to add a ~~fourth scene~~ third scene to the row (we will only do three). Here's how it may look now:  
 
 ![Storyboard before](images/storyboard-tbc-before.png)  
 <br>
