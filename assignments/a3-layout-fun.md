@@ -3,11 +3,6 @@
 Assignment 3 enables you to show that you can work with and solve a number of typical layout challenges in an iOS app, on devices with different screen sizes and orientations. 
 <br>
 
-> This is a *draft* document, and is still being edited.  
-> This notice will be removed when the edits are complete.
-
-<br>
-
 ### Due date
 Wednesday, February 8, 2017, at 11:00pm ET  
 Grade value: 5% of your final course grade  
@@ -23,9 +18,6 @@ Learn about a *tab bar* controller that manages a collection of view controllers
 
 ### Introduction to the problem that you will solve
 We need an iOS app that has a number of scenes. Each scene has content that must show properly on different screen sizes and orientations. The content includes static-like user interface objects (labels, images, etc.), as well as interactive user interface objects (text fields, buttons, etc.).  
-
->( image example )
-
 <br>
 
 ### Getting started
@@ -78,7 +70,7 @@ On the next screen, choose these options:
 * Class (name) is `PhotoFilter`
 * Language is Swift (obviously!)
 
-Repeat the steps above to create view controllers `AllAboutMe`, `IconGrid`, and `UserInput`.
+Repeat the steps above to create view controllers `AllAboutMe`, and `UserInput`.
 
 Later, we will return and write code for these new view controllers.  
 <br>
@@ -221,25 +213,16 @@ Now that you have learned something about layout techniques, add a layout to thi
 
 You **don't need to make the UI functional** this is just a layout exercise. You should be able to copy the UI from that assignment into the view for this tab. Then use layout techniques to apply a layout. We won't test that the items on the scene are hooked up to actions.
 
+You only need to get this working in portrait for this assignment.
+
 (Hint - stack views, view constraints and layout handles)  
 <br>
 
-### Layout task 3 (on the **IconGrid** view controller)  
-In a recent class, there was discussion about a 3x3 or 4x4 grid layout of objects. That's what you'll implement here on this scene.  
-
-(Preview - will have a grid of icons that work on devices of different sizes, and in different orientations)  
-
-(Hint - nested stack views)  
-
-(TBA - more to come)  
-<br>
-
-### Layout task 4 (on the **UserInput** view controller)  
+### Layout task 3 (on the **UserInput** view controller)  
 On this scene, we'll do a very typical and often-implemented UI task - working with user input into text fields (UITextField).  
 
 As an example, we'll use a typical "login screen" example, with two (correctly configured!) text fields and a button.  
 
-(TBA - more to come)  
 <br>
 
 ### Test your work
@@ -265,15 +248,20 @@ Screenshots can be taken:
 - using the Xcode Devices window (on the Window menu), you can use the "take screenshot" button, and it will be stored on the desktop.
 - in the Simulator, File>Screenshot, it will store the file on the desktop
 
+In this assignment, the simulator is the easiest method because of the number of different screens.
+
 Submit it with your project. Put it in the project folder, before doing the zip task.
 
 Please include a screenshot of:
 
-1. tab 1 portrait and landscape showing the layout changing (2 screenshots)
-1. tab 2 portrait
-1. tab 3 portrait
-1. tab 4 portrait
+1. tab 1 portrait on an iPhone
+1. tab 1 landscape on an iPhone non-Plus model
+1. tab 2 portrait 
+1. tab 2 portrait on an iPad
+1. tab 3 portrait on an iPhone
+1. tab 3 portrait on an iPhone non-Plus model
 
+Recall that the 'Plus' model iPhones in landscape have a special size class (vs. other iPhones in landscape), and this assignment doesn't require a solution for that.
 <br>
 
 ### Submitting your work
