@@ -83,7 +83,7 @@ Locate *Tab Bar Controller* in the lower-right Object Library. Drag it on to the
 
 If you wish, you can rearrange (drag) the boxes so that the tab bar controller is above the row of the two other scenes.  
 
-Then, from the Object Library, locate then drag a *View Controller* to the design surface. Put it beside the two scenes. Do this again, to add a fourth scene to the row. Here's how it may look now:  
+Then, from the Object Library, locate then drag a *View Controller* to the design surface. Put it beside the two scenes. Do this again, to add a ``fourth scene`` third scene to the row (we will only do three). Here's how it may look now:  
 
 ![Storyboard before](images/storyboard-tbc-before.png)  
 <br>
@@ -98,7 +98,7 @@ Make sure that the storyboard editor is showing these:
 * The document outline panel (on the left side)
 * The inspectors panel (on the right side)
 
-For each of the four scenes...  
+For each of the three scenes...  
 1. Select (click) its View Controller icon in the header  
 2. Then, show its Identity Inspector  
 3. In the Custom Class section (at the top), in the Class drop-down list/field, type or select its view controller  
@@ -116,7 +116,7 @@ Now, let's connect the other two new scenes. For each scene:
 3. In the popup, choose "view controllers" from the "Relationship Segue" section of the popup  
 4. Notice that a new line/connect is placed on the storyboard  
 
-Here's how the storyboard may look now:  
+Here's how the storyboard may look now (**ignore the fourth item, we will only do three**):  
 
 ![Storyboard after](images/storyboard-tbc-after.png)  
 <br>
