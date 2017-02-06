@@ -223,8 +223,10 @@ On this scene, we'll do a very typical and often-implemented UI task - working w
 
 As an example, we'll use a typical "login screen" example, with two (correctly configured!) text fields and a button.  
 
-<br>
 
+<br>
+![Login Form Example](images/login-form.png)
+<br>
 ### Test your work
 Run the app on the iOS Simulator, using different devices (that have different screen sizes):  
 1. iPhone SE or 5 (4-inch screen)  
@@ -259,7 +261,7 @@ Please include a screenshot of:
 1. tab 2 portrait 
 1. tab 2 portrait on an iPad
 1. tab 3 portrait on an iPhone
-1. tab 3 portrait on an iPhone non-Plus model
+1. tab 3 landscape on an iPhone non-Plus model
 
 Recall that the 'Plus' model iPhones in landscape have a special size class (vs. other iPhones in landscape), and this assignment doesn't require a solution for that.
 <br>
