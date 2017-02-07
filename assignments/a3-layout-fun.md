@@ -258,7 +258,7 @@ Please include a screenshot of:
 
 1. tab 1 portrait on an iPhone
 1. tab 1 landscape on an iPhone non-Plus model
-1. tab 2 portrait 
+1. tab 2 portrait on an iPhone
 1. tab 2 portrait on an iPad
 1. tab 3 portrait on an iPhone
 1. tab 3 landscape on an iPhone non-Plus model
