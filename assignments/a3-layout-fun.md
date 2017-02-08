@@ -215,7 +215,7 @@ You **don't need to make the UI functional** this is just a layout exercise. You
 
 You only need to get this working in portrait for this assignment.
 
-(Hint - stack views, view constraints and layout handles)  
+(Hint - stack views, view constraints)  
 <br>
 
 ### Layout task 3 (on the **UserInput** view controller)  
