@@ -14,7 +14,6 @@ class ProvinceEdit: UIViewController {
 
     var delegate: EditItemDelegate?
     var model: Model!
-    var detailItem: AnyObject?
     
     // MARK: - User interface
     

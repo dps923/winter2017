@@ -19,6 +19,7 @@
 		D0EBF39F1A7E89E800ABA631 /* StoreInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EBF39E1A7E89E800ABA631 /* StoreInitializer.swift */; };
 		D0EBF3A11A7E99C500ABA631 /* ExampleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EBF3A01A7E99C500ABA631 /* ExampleList.swift */; };
 		D0EBF3A31A7E99E200ABA631 /* ExampleDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EBF3A21A7E99E200ABA631 /* ExampleDetail.swift */; };
+		EBBD74831E4BF4DB005E88BB /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBD74821E4BF4DB005E88BB /* Example.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		D0EBF39E1A7E89E800ABA631 /* StoreInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreInitializer.swift; sourceTree = "<group>"; };
 		D0EBF3A01A7E99C500ABA631 /* ExampleList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleList.swift; sourceTree = "<group>"; };
 		D0EBF3A21A7E99E200ABA631 /* ExampleDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleDetail.swift; sourceTree = "<group>"; };
+		EBBD74821E4BF4DB005E88BB /* Example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Example.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,14 +92,14 @@
 		D0EBF3431A7E55E400ABA631 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D0EBF3A01A7E99C500ABA631 /* ExampleList.swift */,
+				D0EBF3A21A7E99E200ABA631 /* ExampleDetail.swift */,
 				D0EBF3681A7E56E700ABA631 /* Persistence */,
 				D0EBF3461A7E55E400ABA631 /* AppDelegate.swift */,
 				D0EBF34A1A7E55E400ABA631 /* Main.storyboard */,
 				D0EBF34D1A7E55E400ABA631 /* Images.xcassets */,
 				D0EBF34F1A7E55E400ABA631 /* LaunchScreen.xib */,
 				D0EBF3441A7E55E400ABA631 /* Supporting Files */,
-				D0EBF3A01A7E99C500ABA631 /* ExampleList.swift */,
-				D0EBF3A21A7E99E200ABA631 /* ExampleDetail.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -134,6 +136,7 @@
 				D0EBF36C1A7E573000ABA631 /* Model.swift */,
 				D0EBF36E1A7E57CA00ABA631 /* CDStack.swift */,
 				D0EBF39E1A7E89E800ABA631 /* StoreInitializer.swift */,
+				EBBD74821E4BF4DB005E88BB /* Example.swift */,
 			);
 			name = Persistence;
 			sourceTree = "<group>";
@@ -182,16 +185,16 @@
 		D0EBF3391A7E55E400ABA631 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "School of ICT, Seneca College";
 				TargetAttributes = {
 					D0EBF3401A7E55E400ABA631 = {
 						CreatedOnToolsVersion = 6.1.1;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0820;
 					};
 					D0EBF3551A7E55E400ABA631 = {
 						CreatedOnToolsVersion = 6.1.1;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0820;
 						TestTargetID = D0EBF3401A7E55E400ABA631;
 					};
 				};
@@ -245,6 +248,7 @@
 				D0EBF3471A7E55E400ABA631 /* AppDelegate.swift in Sources */,
 				D0EBF36B1A7E571400ABA631 /* ObjectModel.xcdatamodeld in Sources */,
 				D0EBF3A31A7E99E200ABA631 /* ExampleDetail.swift in Sources */,
+				EBBD74831E4BF4DB005E88BB /* Example.swift in Sources */,
 				D0EBF39F1A7E89E800ABA631 /* StoreInitializer.swift in Sources */,
 				D0EBF3A11A7E99C500ABA631 /* ExampleList.swift in Sources */,
 				D0EBF36D1A7E573000ABA631 /* Model.swift in Sources */,
@@ -378,12 +382,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Classes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.senecacollege.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Classes;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -392,7 +394,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Classes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.senecacollege.$(PRODUCT_NAME:rfc1034identifier)";

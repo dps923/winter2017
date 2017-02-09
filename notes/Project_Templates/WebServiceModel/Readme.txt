@@ -1,6 +1,11 @@
 
 This is Readme.txt
 
+############################################################
+"Draft" version of ClassesV2...
+This will be updated and reposted
+############################################################
+
 You can use this project as a 'template'. How?
 
 In Finder, select this project's folder.
