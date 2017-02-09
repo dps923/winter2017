@@ -8,12 +8,14 @@
 
 import CoreData
 
+// You can use this class without changes for your projects.
+// There is one instance of CDStack in your projects and it is owned by the Model class
+// for a CoreData-backed model.
+//
+// In order to keep this class simple, it doesn't have all the error-handling a production app should have,
+// it aborts the app if there are any errors during setup.
+
 class CDStack {
-    static let shared = CDStack()
-
-    var isReady = false
-
-    fileprivate init() {}
 
     // MARK: - Public property with lazy initializer
     lazy var managedObjectContext: NSManagedObjectContext! = {
@@ -26,7 +28,7 @@ class CDStack {
             return moc
         } else {
             // If this code block executes, there's a problem in the MOM or PSC
-            fatalError("Fatal error with setting up Core Data Stack")
+            fatalError("Fatal error with setting up Core Data Stack NSManagedObjectContext")
         }
     }()
     
@@ -52,9 +54,7 @@ class CDStack {
                 ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: options)
         } catch {
             // This code block will run if there is an error
-            print("Persistent store coordinator could not be created (CDStack)")
-            print("Error \(error)")
-            assert(false)
+            fatalError("Persistent store coordinator could not be created (CDStack). Error: \(error)")
         }
 
         return psc
@@ -69,8 +69,7 @@ class CDStack {
             return mom
         } else {
             // This code block will run if there is an error
-            assert(false, "Managed object model is nil")
-            print("Object model was not found (CDStack)")
+            fatalError("Managed object model is nil")
         }
     }()
 
@@ -86,7 +85,7 @@ class CDStack {
         }
     }
 
-    func frcForEntityNamed<T>(_ entityName: String, withPredicateFormat predicate: String?, predicateObject: [AnyObject]?, sortDescriptors: String?, andSectionNameKeyPath sectionName: String?) -> NSFetchedResultsController<T> {
+    func frcForEntityNamed<T>(_ entityName: String, withPredicateFormat predicate: String?, predicateObject: [AnyObject]?, sortDescriptors: [NSSortDescriptor]?, andSectionNameKeyPath sectionName: String?) -> NSFetchedResultsController<T> {
 
         // This method will create and return a fully-configured fetched results controller (frc)
         // Its arguments are simple strings, for entity name, predicate, and sort descriptors
@@ -105,32 +104,13 @@ class CDStack {
         fetchRequest.fetchBatchSize = 20
 
         // Configure the predicate
-        if predicate != nil {
-            fetchRequest.predicate = NSPredicate(format: predicate!, argumentArray: predicateObject!)
+        if let predicate = predicate, let predicateObject = predicateObject {
+            fetchRequest.predicate = NSPredicate(format: predicate, argumentArray: predicateObject)
         }
 
         // Configure the sort descriptors
-        if sortDescriptors != nil {
-
-            // Create an array to accumulate the sort descriptors
-            var sdArray: [NSSortDescriptor] = []
-
-            // Make an array from the passed-in string
-            // Examples include...
-            // nil
-            // attribute1,true
-            // attribute1,true,attribute2,false
-            // etc.
-            var sdStrings: [String] = sortDescriptors!.components(separatedBy: ",")
-
-            // Iterate through the sdStrings array, and make sort descriptor objects
-            for i in stride(from: 0, to: sdStrings.count, by: 2) { // swift 3 uses `stride` for performing loop steps greater than 1
-                let sd: NSSortDescriptor = NSSortDescriptor(key: sdStrings[i], ascending: NSString(string: sdStrings[i + 1]).boolValue)
-                // Add to the sort descriptors array
-                sdArray.append(sd)
-            }
-            
-            fetchRequest.sortDescriptors = sdArray
+        if let sortDescriptors = sortDescriptors {
+            fetchRequest.sortDescriptors = sortDescriptors
         }
         
         // Important note!

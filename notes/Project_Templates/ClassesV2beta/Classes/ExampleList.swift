@@ -12,73 +12,53 @@ import CoreData
 // Notice the protocol conformance
 class ExampleList: UITableViewController, NSFetchedResultsControllerDelegate {
 
-    // MARK: - Private properties
-    
-    var frc: NSFetchedResultsController<Example>!
-    
     // MARK: - Properties
 
     // Passed in by the app delegate during app initialization
     var model: Model!
-    
+
+    let frc: NSFetchedResultsController<Example> = Example.fetchedResultsController
+
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Configure and load the fetched results controller (frc)
-        
-        frc = model.frc_example
 
         // This controller will be the frc delegate
         frc.delegate = self;
+
         // No predicate (which means the results will NOT be filtered)
         frc.fetchRequest.predicate = nil;
 
-        // Perform fetch
-        performFetch()
-    }
-
-    func performFetch() {
-        // Configure and load the fetched results controller (frc)
-        frc = model.frc_example
-
-        // This controller will be the frc delegate
-        frc?.delegate = self;
-        // No predicate (which means the results will NOT be filtered)
-        frc?.fetchRequest.predicate = nil;
-
         // Perform fetch, and if there's an error, log it
         do {
-            try frc?.performFetch()
+            try frc.performFetch()
         } catch let error as NSError {
             print(error.description)
         }
-        let tableView = view as! UITableView
-        tableView.reloadData()
     }
-    
 
     // MARK: - Table view methods
 
+    // You can use this code as-is, it should handle most cases
     override func numberOfSections(in tableView: UITableView) -> Int {
         return self.frc.sections?.count ?? 0
     }
 
+    // You can use this code as-is, it should handle most cases
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = self.frc.sections![section] as NSFetchedResultsSectionInfo
-        return sectionInfo.numberOfObjects
+        return self.frc.sections?[section].numberOfObjects ?? 0
     }
 
+    // This code you will customize
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
-        self.configureCell(cell, atIndexPath: indexPath)
-        return cell
-    }
 
-    func configureCell(_ cell: UITableViewCell, atIndexPath indexPath: IndexPath) {
-        let item = frc.object(at: indexPath)
+        // Now customize the cell
+        let item: Example = frc.object(at: indexPath)
         cell.textLabel!.text = item.attribute1
+
+        return cell
     }
 
     // MARK: - Navigation
@@ -99,5 +79,4 @@ class ExampleList: UITableViewController, NSFetchedResultsControllerDelegate {
             vc.title = item.attribute1
         }
     }
-
 }

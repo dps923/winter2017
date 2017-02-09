@@ -17,9 +17,10 @@ class ExampleDetail: UIViewController {
         super.viewDidLoad()
 
         // Simply display some data in the debug console
-        let att1 = self.detailItem.attribute1
-        let att2 = self.detailItem.attribute2
-        print("Detail item: \(att1), \(att2)")
+        if let att1 = self.detailItem.attribute1 {
+            let att2 = self.detailItem.attribute2
+            print("Detail item: \(att1), \(att2)")
+        }
     }
 
 }

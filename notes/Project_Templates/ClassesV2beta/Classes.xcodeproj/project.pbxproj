@@ -22,6 +22,7 @@
 		D0EBF39F1A7E89E800ABA631 /* StoreInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EBF39E1A7E89E800ABA631 /* StoreInitializer.swift */; };
 		D0EBF3A11A7E99C500ABA631 /* ExampleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EBF3A01A7E99C500ABA631 /* ExampleList.swift */; };
 		D0EBF3A31A7E99E200ABA631 /* ExampleDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EBF3A21A7E99E200ABA631 /* ExampleDetail.swift */; };
+		EBBD74831E4BF4DB005E88BB /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBD74821E4BF4DB005E88BB /* Example.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		D0EBF39E1A7E89E800ABA631 /* StoreInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreInitializer.swift; sourceTree = "<group>"; };
 		D0EBF3A01A7E99C500ABA631 /* ExampleList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleList.swift; sourceTree = "<group>"; };
 		D0EBF3A21A7E99E200ABA631 /* ExampleDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleDetail.swift; sourceTree = "<group>"; };
+		EBBD74821E4BF4DB005E88BB /* Example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Example.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				D0EBF36C1A7E573000ABA631 /* Model.swift */,
 				D0EBF36E1A7E57CA00ABA631 /* CDStack.swift */,
 				D0EBF39E1A7E89E800ABA631 /* StoreInitializer.swift */,
+				EBBD74821E4BF4DB005E88BB /* Example.swift */,
 			);
 			name = Persistence;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				D0EBF3471A7E55E400ABA631 /* AppDelegate.swift in Sources */,
 				D0EBF36B1A7E571400ABA631 /* ObjectModel.xcdatamodeld in Sources */,
 				D0EBF3A31A7E99E200ABA631 /* ExampleDetail.swift in Sources */,
+				EBBD74831E4BF4DB005E88BB /* Example.swift in Sources */,
 				D0EBF39F1A7E89E800ABA631 /* StoreInitializer.swift in Sources */,
 				D0EBF3A11A7E99C500ABA631 /* ExampleList.swift in Sources */,
 				D0EBF36D1A7E573000ABA631 /* Model.swift in Sources */,

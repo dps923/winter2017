@@ -8,31 +8,21 @@
 
 import CoreData
 
+//
+// This model uses Core Data for storage.
+//
+
 class Model {
-
-    // MARK: - Private properties
-
-    fileprivate var cdStack: CDStack!
-
-    lazy fileprivate var applicationDocumentsDirectory: URL = {
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as URL
-    }()
-
-    // MARK: - Public properties
-
-    //Use this as a template to create other fetched results controllers. Replace `Example` with the entity type you are fetching
-    lazy var frc_example: NSFetchedResultsController<Example> = {
-        let fetchRequest: NSFetchRequest<Example> = Example.fetchRequest()
-        let sortDescriptors = [NSSortDescriptor(key: "attribute1", ascending: true)]
-        fetchRequest.sortDescriptors = sortDescriptors
-        let frc = NSFetchedResultsController<Example>(fetchRequest: fetchRequest, managedObjectContext: CDStack.shared.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        return frc
-    }()
+    static let cdStack = CDStack()
 
     // MARK: - Public methods
 
     init() {
+        // If you want your app to startup with no inital data, you can skip this step.
+        setupStarterData()
+    }
 
+    func setupStarterData() {
         // Check whether the app is being launched for the first time
         // If yes, check if there's an object store file in the app bundle
         // If yes, copy the object store file to the Documents directory
@@ -41,6 +31,8 @@ class Model {
         // URL to the object store file in the app bundle
         let storeFileInBundle = Bundle.main.url(forResource: "ObjectStore", withExtension: "sqlite")
 
+        let applicationDocumentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        
         // URL to the object store file in the Documents directory
         let storeFileInDocumentsDirectory = applicationDocumentsDirectory.appendingPathComponent("ObjectStore.sqlite")
 
@@ -59,16 +51,13 @@ class Model {
                 try! fs.copyItem(at: storeFileInBundle!, to: storeFileInDocumentsDirectory)
             } else {
                 // Create some new data
-                StoreInitializer.populateInitialData(CDStack.shared)
+                StoreInitializer.populateInitialData(coreDataStack: Model.cdStack)
             }
         }
-
-        // make sure CDStack is intitialized
-        let _ = CDStack.shared
     }
 
     func saveChanges() {
-        cdStack.save()
+        Model.cdStack.save()
     }
 
     // Add more methods here for data maintenance
