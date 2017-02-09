@@ -11,115 +11,68 @@ import CoreData
 class Model {
 
     // MARK: - Private properties
-    
-    private var cdStack: CDStack!
-    
-    lazy private var applicationDocumentsDirectory: NSURL = {
-        
-        return NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0] as NSURL
-        }()
-    
+
+    fileprivate var cdStack: CDStack!
+
+    lazy fileprivate var applicationDocumentsDirectory: URL = {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as URL
+    }()
+
     // MARK: - Public properties
-    
-    lazy var frc_example: NSFetchedResultsController = {
-        
-        // Use this as a template to create other fetched results controllers
-        let frc = self.cdStack.frcForEntityNamed("Example", withPredicateFormat: nil, predicateObject: nil, sortDescriptors: "attribute1,true", andSectionNameKeyPath: nil)
-        
+
+    //Use this as a template to create other fetched results controllers. Replace `Example` with the entity type you are fetching
+    lazy var frc_example: NSFetchedResultsController<Example> = {
+        let fetchRequest: NSFetchRequest<Example> = Example.fetchRequest()
+        let sortDescriptors = [NSSortDescriptor(key: "attribute1", ascending: true)]
+        fetchRequest.sortDescriptors = sortDescriptors
+        let frc = NSFetchedResultsController<Example>(fetchRequest: fetchRequest, managedObjectContext: CDStack.shared.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         return frc
     }()
 
-    // MARK: - Data from the network
-    
-    // Property to hold/store the fetched collection
-    var programs = [AnyObject]()
-    
-    // Method to fetch the collection
-    func programsGet() -> [AnyObject] {
-        
-        let request = WebServiceRequest()
-        request.sendRequestToUrlPath("/programs", forDataKeyName: "Collection", from: self, propertyNamed: "programs")
-        
-        // Return an empty array; when the request completes,
-        // the WebServiceRequest object will replace the value of 'programs'
-        // with the fetched results, and will send a notification
-        return [AnyObject]()
-    }
-
-    // The next two properties may - or may not - survive the final version of the
-    
-    // Interim; may be changed
-    lazy var networkCollection: [AnyObject] = {
-        
-        // Placeholder
-        return ["hello", "world"]
-    }()
-    
-    // Interim; may be changed
-    lazy var networkObject: AnyObject = {
-        
-        // Placeholder
-        return "hello"
-    }()
-    
     // MARK: - Public methods
-    
+
     init() {
-        
+
         // Check whether the app is being launched for the first time
         // If yes, check if there's an object store file in the app bundle
         // If yes, copy the object store file to the Documents directory
         // If no, create some new data if you need to
 
         // URL to the object store file in the app bundle
-        let storeFileInBundle: NSURL? = NSBundle.mainBundle().URLForResource("ObjectStore", withExtension: "sqlite")
+        let storeFileInBundle = Bundle.main.url(forResource: "ObjectStore", withExtension: "sqlite")
 
         // URL to the object store file in the Documents directory
-        let storeFileInDocumentsDirectory: NSURL = applicationDocumentsDirectory.URLByAppendingPathComponent("ObjectStore.sqlite")
+        let storeFileInDocumentsDirectory = applicationDocumentsDirectory.appendingPathComponent("ObjectStore.sqlite")
 
         // System file manager
-        let fs: NSFileManager = NSFileManager()
-        
+        let fs = FileManager()
+
         // Check whether this is the first launch of the app
-        let isFirstLaunch: Bool = !fs.fileExistsAtPath(storeFileInDocumentsDirectory.path!)
-        
+        let isFirstLaunch = !fs.fileExists(atPath: storeFileInDocumentsDirectory.path)
+
         // Check whether the app is supplied with starter data in the app bundle
-        let hasStarterData: Bool = storeFileInBundle != nil
-        
+        let hasStarterData = storeFileInBundle != nil
+
         if isFirstLaunch {
-            
             if hasStarterData {
-                
-                // Use the supplied starter data
-                fs.copyItemAtURL(storeFileInBundle!, toURL: storeFileInDocumentsDirectory, error: nil)
-                // Initialize the Core Data stack
-                cdStack = CDStack()
-                
+                // Use the supplied starter data, abort if error copying
+                try! fs.copyItem(at: storeFileInBundle!, to: storeFileInDocumentsDirectory)
             } else {
-                
-                // Initialize the Core Data stack before creating new data
-                cdStack = CDStack()
                 // Create some new data
-                StoreInitializer.create(cdStack)
+                StoreInitializer.populateInitialData(CDStack.shared)
             }
-            
-        } else {
-            
-            // This app has been used/started before, so initialize the Core Data stack
-            cdStack = CDStack()
         }
-    }
-    
-    // Generic 'add new' method
-    func addNew(entityName: String) -> AnyObject {
-        
-        return NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: cdStack.managedObjectContext!) as NSManagedObject
+
+        // make sure CDStack is intitialized
+        let _ = CDStack.shared
     }
 
-    func saveChanges() { cdStack.saveContext() }
-    
+    func saveChanges() {
+        cdStack.save()
+    }
+
     // Add more methods here for data maintenance
     // For example, get-all, get-some, get-one, add, update, delete
     // And other command-oriented operations
-
+    
 }

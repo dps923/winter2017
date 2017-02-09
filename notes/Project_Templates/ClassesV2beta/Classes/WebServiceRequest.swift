@@ -8,6 +8,8 @@
 
 import UIKit
 
+#if ADDITIONAL_NETWORK_FUNCTIONS
+
 class WebServiceRequest {
     
     // MARK: - Properties
@@ -18,72 +20,63 @@ class WebServiceRequest {
     var headerAccept: String?
     var headerContentType: String?
     var headerAuthorization: String?
-    
     var messageBody: AnyObject?
     
     // MARK: - Public methods
     
-    func sendRequestToUrlPath(urlPath: String, forDataKeyName dataKeyName: String, from sender: AnyObject, propertyNamed propertyName: String) {
+    func sendRequestToUrlPath(_ urlPath: String, forDataKeyName dataKeyName: String, from sender: AnyObject, propertyNamed propertyName: String) {
         
         // Assemble the URL
-        let url = NSURL(string: "\(urlBase!)\(urlPath)")
+        let url = URL(string: "\(urlBase!)\(urlPath)")
         
         // Diagnostic
         print(url?.description)
 
         // Create a session configuration object
-        let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let sessionConfig = URLSessionConfiguration.default
         
         // Create a session object
-        let session = NSURLSession(configuration: sessionConfig, delegate: nil, delegateQueue: NSOperationQueue.mainQueue())
+        let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: OperationQueue.main)
         
         // Create a request object
-        let request = NSMutableURLRequest(URL: url!)
+        let request = NSMutableURLRequest(url: url!)
 
         // Set its important properties
-        request.HTTPMethod = httpMethod!
+        request.httpMethod = httpMethod!
         request.setValue(headerAccept, forHTTPHeaderField: "Accept")
 
         // If a message body was configured...
         if let mb: AnyObject = messageBody {
-            
             var error: NSError? = nil
-            let message = NSJSONSerialization.dataWithJSONObject(mb, options: nil, error: &error)
+            let message = JSONSerialization.dataWithJSONObject(mb, options: nil, error: &error)
             
             if error != nil {
-                
                 print("Error creating message body: \(error?.description)")
             }
             request.HTTPBody = message
         }
 
         // Reference the app's network activity indicator in the status bar
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         // Define a network task; after it's created, it's in a "suspended" state
-        let task: NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
+        let task: URLSessionDataTask = session.dataTask(with: request, completionHandler: {(data, response, error) in
             
-            if error != nil {
-                
-                print("Task request error: \(error?.description)")
-
+            if let error = error {
+                print("Task request error: \(error.description)")
             } else {
-                
                 // FYI, show some details about the response
                 // This code is interesting during development, but you would not leave it in production/deployed code
-                let r: NSHTTPURLResponse = response as NSHTTPURLResponse
+                let r: HTTPURLResponse = response as HTTPURLResponse
                 print("Response data...\nStatus code: \(r.statusCode)\nHeaders:\n\(r.allHeaderFields.description)")
                 
                 // Attempt to deserialize the data from the response
                 var jsonError: NSError? = nil
-                let results: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &jsonError)
+                let results: AnyObject? = JSONSerialization.JSONObjectWithData(data, options: nil, error: &jsonError)
                 
-                if jsonError != nil {
-                    
-                    print("Task request error: \(jsonError?.description)")
-
+                if let jsonError = jsonError {
+                    print("Task request error: \(jsonError.description)")
                 } else {
-                    
                     // The request was successful, and deserialization was successful
                     // Therefore, extract the data we want from the dictionary
                     // and assign it to the passed-in property
@@ -98,11 +91,11 @@ class WebServiceRequest {
                 // Diagnostic
                 print(completed)
                 
-                NSNotificationCenter.defaultCenter().postNotificationName(completed, object: nil)
+                NotificationCenter.defaultCenter().postNotificationName(completed, object: nil)
             }
             
             // Finally, reference the app's network activity indicator in the status bar
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
         })
 
@@ -112,7 +105,6 @@ class WebServiceRequest {
     
     
     init() {
-        
         // Initial values
         urlBase = "http://dps907fall2013.azurewebsites.net/api"
         httpMethod = "GET"
@@ -120,3 +112,5 @@ class WebServiceRequest {
         headerContentType = headerAccept
     }
 }
+
+#endif

@@ -10,9 +10,8 @@ import CoreData
 
 class StoreInitializer {
     
-    class func create(cdStack: CDStack) {
-        
-        // Add code to create data
+    class func populateInitialData(_ cdStack: CDStack) {
+        // Add code to populate the data store with initial data
         
         // For each object that you want to create...
         // Initialize an object
@@ -25,42 +24,20 @@ class StoreInitializer {
         // and you want to create your own object model, you can...
         // Comment out (or delete) the 'create data' code below
         // Delete the entity in the object model
-        // Edit the Model class, and its fetched results controller
+        // Edit the Model class, and its fetched results controller (uses of 'Example' class need to change)
         // Comment out, delete, or edit the data access statements in the '...List' and '...Detail' controllers
 
         // If you have did run the app (in the simulator),
         // you will have to do the above, AND delete the app from the simulator
+
+        let obj = Example(context: cdStack.managedObjectContext)
+        obj.attribute1 = "Peter"
+        obj.attribute2 = 33
         
-        let object1 = NSEntityDescription.insertNewObjectForEntityForName("Example", inManagedObjectContext: cdStack.managedObjectContext!) as NSManagedObject
+        let object2 = Example(context: cdStack.managedObjectContext)
+        object2.attribute1 = "Danny"
+        object2.attribute2 = 29
         
-        object1.setValue("Peter", forKey: "attribute1")
-        object1.setValue(33, forKey: "attribute2")
-        
-        let object2 = NSEntityDescription.insertNewObjectForEntityForName("Example", inManagedObjectContext: cdStack.managedObjectContext!) as NSManagedObject
-        
-        object2.setValue("Danny", forKey: "attribute1")
-        object2.setValue(29, forKey: "attribute2")
-        
-        cdStack.saveContext()
+        cdStack.save()
     }
-    
-    // Create a new date object
-    class func newDate(year: Int, month: Int, day: Int) -> NSDate {
-        
-        // Configure the objects we need to create the date
-        var cal = NSCalendar(identifier: NSGregorianCalendar)!
-        cal.timeZone = NSTimeZone(abbreviation: "GMT")!
-        var dc = NSDateComponents()
-        
-        // Set the values of the date components
-        dc.year = year
-        dc.month = month
-        dc.day = day
-        dc.hour = 12
-        dc.minute = 0
-        dc.second = 0
-        
-        return cal.dateFromComponents(dc)!
-    }
-    
 }

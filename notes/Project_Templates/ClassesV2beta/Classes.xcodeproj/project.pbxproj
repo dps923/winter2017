@@ -10,7 +10,6 @@
 		D00E112E1A9275330029145D /* list-core-data-add in Resources */ = {isa = PBXBuildFile; fileRef = D00E112D1A9275330029145D /* list-core-data-add */; };
 		D00E11301A9275790029145D /* detail-core-data-edit in Resources */ = {isa = PBXBuildFile; fileRef = D00E112F1A9275790029145D /* detail-core-data-edit */; };
 		D00E11321A9275C10029145D /* standard-core-data-add-edit-item in Resources */ = {isa = PBXBuildFile; fileRef = D00E11311A9275C10029145D /* standard-core-data-add-edit-item */; };
-		D00E11341A92798E0029145D /* WebServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00E11331A92798E0029145D /* WebServiceRequest.swift */; };
 		D078C9B41A7EBAC9007420C3 /* Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = D078C9B31A7EBAC9007420C3 /* Readme.txt */; };
 		D0EBF3471A7E55E400ABA631 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EBF3461A7E55E400ABA631 /* AppDelegate.swift */; };
 		D0EBF34C1A7E55E400ABA631 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0EBF34A1A7E55E400ABA631 /* Main.storyboard */; };
@@ -39,7 +38,6 @@
 		D00E112D1A9275330029145D /* list-core-data-add */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "list-core-data-add"; sourceTree = "<group>"; };
 		D00E112F1A9275790029145D /* detail-core-data-edit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "detail-core-data-edit"; sourceTree = "<group>"; };
 		D00E11311A9275C10029145D /* standard-core-data-add-edit-item */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "standard-core-data-add-edit-item"; sourceTree = "<group>"; };
-		D00E11331A92798E0029145D /* WebServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceRequest.swift; sourceTree = "<group>"; };
 		D078C9B31A7EBAC9007420C3 /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
 		D0EBF3411A7E55E400ABA631 /* Classes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Classes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0EBF3451A7E55E400ABA631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -108,6 +106,8 @@
 		D0EBF3431A7E55E400ABA631 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D0EBF3A01A7E99C500ABA631 /* ExampleList.swift */,
+				D0EBF3A21A7E99E200ABA631 /* ExampleDetail.swift */,
 				D00E112C1A9274CB0029145D /* Templates */,
 				D0EBF3681A7E56E700ABA631 /* Persistence */,
 				D0EBF3461A7E55E400ABA631 /* AppDelegate.swift */,
@@ -115,8 +115,6 @@
 				D0EBF34D1A7E55E400ABA631 /* Images.xcassets */,
 				D0EBF34F1A7E55E400ABA631 /* LaunchScreen.xib */,
 				D0EBF3441A7E55E400ABA631 /* Supporting Files */,
-				D0EBF3A01A7E99C500ABA631 /* ExampleList.swift */,
-				D0EBF3A21A7E99E200ABA631 /* ExampleDetail.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -153,7 +151,6 @@
 				D0EBF36C1A7E573000ABA631 /* Model.swift */,
 				D0EBF36E1A7E57CA00ABA631 /* CDStack.swift */,
 				D0EBF39E1A7E89E800ABA631 /* StoreInitializer.swift */,
-				D00E11331A92798E0029145D /* WebServiceRequest.swift */,
 			);
 			name = Persistence;
 			sourceTree = "<group>";
@@ -202,14 +199,16 @@
 		D0EBF3391A7E55E400ABA631 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "School of ICT, Seneca College";
 				TargetAttributes = {
 					D0EBF3401A7E55E400ABA631 = {
 						CreatedOnToolsVersion = 6.1.1;
+						LastSwiftMigration = 0820;
 					};
 					D0EBF3551A7E55E400ABA631 = {
 						CreatedOnToolsVersion = 6.1.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = D0EBF3401A7E55E400ABA631;
 					};
 				};
@@ -264,7 +263,6 @@
 			files = (
 				D0EBF36F1A7E57CA00ABA631 /* CDStack.swift in Sources */,
 				D0EBF3471A7E55E400ABA631 /* AppDelegate.swift in Sources */,
-				D00E11341A92798E0029145D /* WebServiceRequest.swift in Sources */,
 				D0EBF36B1A7E571400ABA631 /* ObjectModel.xcdatamodeld in Sources */,
 				D0EBF3A31A7E99E200ABA631 /* ExampleDetail.swift in Sources */,
 				D0EBF39F1A7E89E800ABA631 /* StoreInitializer.swift in Sources */,
@@ -324,15 +322,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -345,7 +347,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -366,8 +368,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -375,15 +379,17 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -394,7 +400,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Classes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.senecacollege.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Classes;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -404,7 +412,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Classes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.senecacollege.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Classes;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -422,7 +432,9 @@
 				);
 				INFOPLIST_FILE = ClassesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.senecacollege.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ClassesTests;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -436,7 +448,9 @@
 				);
 				INFOPLIST_FILE = ClassesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.senecacollege.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ClassesTests;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
