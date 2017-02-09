@@ -9,8 +9,24 @@ Agenda for today:
 
 ### Review of this week's topics  
 
-> More to come... patterns... table view controller, model class, app initialization  
+> More detail to come... patterns... table view controller, model class, app initialization  
+> Preview of the content...  
 
+<br>
+A table view controller is a *listener*.  
+
+Its initialization has three "phases":
+1. Initialization  
+2. Table-building  
+3. Responding to user interaction  
+
+A table view controller adopts (conforms to) delegate and data source protocols. So, it must have a *data source* available.  
+
+The Model class is that source of data. It has public properties and functions. It is responsible for materializing its data, which could come from device storage, or the network.  
+
+Pattern for using the model class:  
+1. Create an instance in the app delegate  
+2. Pass it on to the app's root view controller  
 <br>
 
 ### Introduce and begin work on Assignment 4  
