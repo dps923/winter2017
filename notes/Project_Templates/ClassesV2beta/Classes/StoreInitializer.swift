@@ -10,7 +10,7 @@ import CoreData
 
 class StoreInitializer {
     
-    class func populateInitialData(coreDataStack: CDStack) {
+    class func populateInitialData(cdStack: CDStack) {
         // Add code to populate the data store with initial data
         
         // For each object that you want to create...
@@ -30,14 +30,14 @@ class StoreInitializer {
         // If you have run the app in the simulator,
         // you will have to do the above, AND delete the app from the simulator
 
-        let obj = Example(context: coreDataStack.managedObjectContext)
+        let obj = Example(context: cdStack.managedObjectContext)
         obj.attribute1 = "Peter"
         obj.attribute2 = 33
         
-        let object2 = Example(context: coreDataStack.managedObjectContext)
+        let object2 = Example(context: cdStack.managedObjectContext)
         object2.attribute1 = "Danny"
         object2.attribute2 = 29
         
-        coreDataStack.save()
+        cdStack.save()
     }
 }

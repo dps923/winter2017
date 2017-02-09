@@ -16,8 +16,4 @@ import CoreData
 @objc(Example)
 class Example : NSManagedObject {
 
-    // For a table view, you will want a NSFetchedResultsController for your class.
-    //Use this as a template to create other fetched results controllers. Replace `Example` with the entity type you are fetching.
-    // Note you must specify a sort attribute.
-    static let fetchedResultsController: NSFetchedResultsController<Example> = Model.cdStack.frcForEntityNamed("Example", withPredicateFormat: nil, predicateObject: nil, sortDescriptors: [NSSortDescriptor(key: "attribute1", ascending: true)], andSectionNameKeyPath: nil)
 }

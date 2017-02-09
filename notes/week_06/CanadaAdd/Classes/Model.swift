@@ -8,13 +8,18 @@
 
 import CoreData
 
+// Needed for CoreData code generation
+@objc(Province)
+class Province : NSManagedObject {}
+
+
 //
 // This model uses Core Data for storage.
 //
 
 class Model {
     let cdStack: CDStack
-    let frc_example: NSFetchedResultsController<Example>
+    let frc_province: NSFetchedResultsController<Province>
 
     // MARK: - Public methods
 
@@ -39,7 +44,7 @@ class Model {
             cdStack = CDStack()
         }
 
-        frc_example = cdStack.frcForEntityNamed("Example", withPredicateFormat: nil, predicateObject: nil, sortDescriptors: [NSSortDescriptor(key: "attribute1", ascending: true)], andSectionNameKeyPath: nil)
+        frc_province = cdStack.frcForEntityNamed("Province", withPredicateFormat: nil, predicateObject: nil, sortDescriptors: [NSSortDescriptor(key: "provinceName", ascending: true)], andSectionNameKeyPath: nil)
     }
 
     static func pathToStoreFileInDocumentsDir() -> URL {
@@ -59,5 +64,18 @@ class Model {
     // Add more methods here for data maintenance
     // For example, get-all, get-some, get-one, add, update, delete
     // And other command-oriented operations
+
+
+    // Even more specific 'add new province' method
+    func addNewProvince(provinceName: String, premierName: String, areaInKm: Int32, dateCreated: NSDate) -> Province {
+
+        let newProvince = Province(context: cdStack.managedObjectContext)
+        newProvince.provinceName = provinceName
+        newProvince.premierName = premierName
+        newProvince.areaInKm = areaInKm
+        newProvince.dateCreated = dateCreated
+
+        return newProvince
+    }
 
 }

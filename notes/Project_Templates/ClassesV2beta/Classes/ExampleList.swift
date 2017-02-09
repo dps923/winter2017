@@ -17,12 +17,14 @@ class ExampleList: UITableViewController, NSFetchedResultsControllerDelegate {
     // Passed in by the app delegate during app initialization
     var model: Model!
 
-    let frc: NSFetchedResultsController<Example> = Example.fetchedResultsController
+    var frc: NSFetchedResultsController<Example>!
 
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        frc = model.frc_example
 
         // This controller will be the frc delegate
         frc.delegate = self;

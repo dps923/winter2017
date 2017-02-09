@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="b7w-Px-J7a">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Provinces-->
+        <scene sceneID="q0i-Cz-CF7">
+            <objects>
+                <tableViewController id="EHl-UH-ddW" customClass="ProvinceList" customModule="CanadaAdd" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="aau-yv-MrA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="Aku-KO-sbv" style="IBUITableViewCellStyleDefault" id="yam-wh-gr0">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yam-wh-gr0" id="w0s-7w-Im8">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Aku-KO-sbv">
+                                            <rect key="frame" x="15" y="0.0" width="270" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="pgs-Ec-HgA" kind="show" identifier="toProvinceDetail" id="Ntt-yK-Jgd"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="EHl-UH-ddW" id="Ykh-nU-n1T"/>
+                            <outlet property="delegate" destination="EHl-UH-ddW" id="W0x-Zz-T6y"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Provinces" id="CGS-0o-pzG">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="nXb-qS-WcT">
+                            <connections>
+                                <segue destination="AJA-hQ-2Zl" kind="presentation" identifier="toProvinceEdit" id="buQ-dH-AVF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wR1-tP-k1e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="880" y="409"/>
+        </scene>
+        <!--Add/Edit Province-->
+        <scene sceneID="LFq-LC-iwS">
+            <objects>
+                <viewController id="Tzg-3k-Qga" customClass="ProvinceEdit" customModule="CanadaAdd" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bO6-Cz-azf"/>
+                        <viewControllerLayoutGuide type="bottom" id="lHB-gb-ao9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qtz-Ih-njo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Province name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JuE-ib-xBv">
+                                <rect key="frame" x="16" y="91" width="288" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Premier name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XPk-MD-u5D">
+                                <rect key="frame" x="16" y="129" width="288" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Area in square km" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="13R-qv-i4I">
+                                <rect key="frame" x="16" y="167" width="288" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fey-WK-h6l">
+                                <rect key="frame" x="0.0" y="205" width="320" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="-4212977950.7310109">
+                                    <!--1867-07-01 16:20:49 +0000-->
+                                </date>
+                                <date key="minimumDate" timeIntervalSinceReferenceDate="-4212996148">
+                                    <!--1867-07-01 11:17:32 +0000-->
+                                </date>
+                                <date key="maximumDate" timeIntervalSinceReferenceDate="441716400">
+                                    <!--2014-12-31 11:00:00 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="13R-qv-i4I" firstAttribute="leading" secondItem="XPk-MD-u5D" secondAttribute="leading" id="1eD-4i-TZS"/>
+                            <constraint firstItem="13R-qv-i4I" firstAttribute="top" secondItem="XPk-MD-u5D" secondAttribute="bottom" constant="8" symbolic="YES" id="50r-5b-LNf"/>
+                            <constraint firstAttribute="trailing" secondItem="fey-WK-h6l" secondAttribute="trailing" id="HZw-ed-yfi"/>
+                            <constraint firstItem="13R-qv-i4I" firstAttribute="centerX" secondItem="fey-WK-h6l" secondAttribute="centerX" id="M5p-1R-Uhe"/>
+                            <constraint firstItem="fey-WK-h6l" firstAttribute="top" secondItem="13R-qv-i4I" secondAttribute="bottom" constant="8" symbolic="YES" id="MaH-2S-PDO"/>
+                            <constraint firstItem="XPk-MD-u5D" firstAttribute="top" secondItem="JuE-ib-xBv" secondAttribute="bottom" constant="8" symbolic="YES" id="Qwk-ns-myU"/>
+                            <constraint firstItem="XPk-MD-u5D" firstAttribute="trailing" secondItem="JuE-ib-xBv" secondAttribute="trailing" id="XFo-V7-6iH"/>
+                            <constraint firstItem="XPk-MD-u5D" firstAttribute="leading" secondItem="JuE-ib-xBv" secondAttribute="leading" id="YN5-rU-jx6"/>
+                            <constraint firstItem="JuE-ib-xBv" firstAttribute="top" secondItem="bO6-Cz-azf" secondAttribute="bottom" constant="27" id="dBa-Xu-oKx"/>
+                            <constraint firstItem="JuE-ib-xBv" firstAttribute="leading" secondItem="qtz-Ih-njo" secondAttribute="leadingMargin" id="kiU-HW-ID7"/>
+                            <constraint firstItem="XPk-MD-u5D" firstAttribute="trailing" secondItem="13R-qv-i4I" secondAttribute="trailing" id="m3c-zY-b4A"/>
+                            <constraint firstItem="fey-WK-h6l" firstAttribute="leading" secondItem="qtz-Ih-njo" secondAttribute="leading" id="wDO-ec-Xka"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add/Edit Province" id="dT1-fV-F5Q">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="6TX-zO-31S">
+                            <connections>
+                                <action selector="cancel:" destination="Tzg-3k-Qga" id="yiL-QC-5yv"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="DpQ-Ux-Jez">
+                            <connections>
+                                <action selector="save:" destination="Tzg-3k-Qga" id="d1Z-1m-NWU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="areaInKm" destination="13R-qv-i4I" id="bAw-fy-dly"/>
+                        <outlet property="dateCreated" destination="fey-WK-h6l" id="ft4-77-f8u"/>
+                        <outlet property="premierName" destination="XPk-MD-u5D" id="srI-cY-XpP"/>
+                        <outlet property="provinceName" destination="JuE-ib-xBv" id="Do9-aw-EeU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5KL-h5-OnV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1703" y="1209"/>
+        </scene>
+        <!--Province Detail-->
+        <scene sceneID="d5O-tP-aun">
+            <objects>
+                <viewController id="pgs-Ec-HgA" customClass="ProvinceDetail" customModule="CanadaAdd" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wKA-YX-8Qh"/>
+                        <viewControllerLayoutGuide type="bottom" id="fCf-bX-ipq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NFq-iB-wRI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="PnZ-um-HcU">
+                                <rect key="frame" x="16" y="64" width="288" height="135"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="province name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9q-Se-xhe">
+                                        <rect key="frame" x="46.5" y="0.0" width="195.5" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2Ue-yC-bGT">
+                                        <rect key="frame" x="48.5" y="52" width="191.5" height="83"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="premier name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnp-bN-h5E">
+                                                <rect key="frame" x="43" y="0.0" width="105.5" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="lfR-yn-beU"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="area in square kilometres" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5m-s9-Obo">
+                                                <rect key="frame" x="0.0" y="31" width="191.5" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="LDW-Xz-ecl"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="confederation date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBd-P6-F5i">
+                                                <rect key="frame" x="23" y="62" width="145" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="6bH-7X-g7k"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="PnZ-um-HcU" firstAttribute="top" secondItem="wKA-YX-8Qh" secondAttribute="bottom" id="9wB-Ay-0OC"/>
+                            <constraint firstItem="PnZ-um-HcU" firstAttribute="leading" secondItem="NFq-iB-wRI" secondAttribute="leadingMargin" id="GHS-J1-ylJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PnZ-um-HcU" secondAttribute="trailing" id="glL-hI-vyQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="areaInKm" destination="k5m-s9-Obo" id="fcL-xd-wag"/>
+                        <outlet property="dateCreated" destination="xBd-P6-F5i" id="cPC-z3-WH1"/>
+                        <outlet property="premierName" destination="cnp-bN-h5E" id="3rX-1K-uYz"/>
+                        <outlet property="provinceName" destination="x9q-Se-xhe" id="s0N-rG-DYR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9sZ-nw-j8A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1703" y="409"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qXZ-aq-3Z1">
+            <objects>
+                <navigationController id="b7w-Px-J7a" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zz4-5o-DvW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="EHl-UH-ddW" kind="relationship" relationship="rootViewController" id="xFg-Vf-CJC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fPT-f7-mef" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="60" y="409"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bHR-1e-VxT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AJA-hQ-2Zl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xRA-09-ihX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Tzg-3k-Qga" kind="relationship" relationship="rootViewController" id="w4X-Kc-A7f"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6AF-Oa-E0G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="880" y="1209"/>
+        </scene>
+    </scenes>
+</document>
