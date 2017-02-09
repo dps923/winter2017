@@ -18,6 +18,8 @@ class ColorsViewController: UIViewController {
         let detail = segue.destination as! ColorDetailViewController
         detail.model = model
         detail.colorName = colorName
+
+        detail.title = "A title"
      }
 }
 
