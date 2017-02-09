@@ -3,11 +3,6 @@
 Assignment 4 enables you to create a navigation-style app, with two levels of navigation (list and detail). Also enables you to get hands-on experience with the iOS table view infrastructure, and a model object.  
 <br>
 
-> This is a *draft* document, and is still being edited.  
-> This notice will be removed when the edits are complete.
-
-<br>
-
 ### Due date
 Wednesday, February 15, 2017, at 11:00pm ET  
 Grade value: 5% of your final course grade  
@@ -126,7 +121,7 @@ On the Identity Inspector, select the “PlayerList” item in the Class dropdow
 
 Select the white-and-empty rectangle just below the “Prototype Cells” prompt. We need to configure its behaviour:
 
-1. On the Identity Inspector, set its Style to “Basic”  
+1. On the Attributes Inspector, set its Style to “Basic”  
 2. Set its Identifier to the string “cell”  
 3. Set its Accessory to “Disclosure Indicator”
 Now, change the scene’s visible title (on its ‘navigation bar’ area). Double-click the “Root View Controller” string, and replace it with something better (like “Player List”).
