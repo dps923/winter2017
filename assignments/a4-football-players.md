@@ -40,7 +40,7 @@ It should target *iPhone* devices. Do not use source control.
 Show the "projects and targets list", and select the project. Configure the iOS Deployment Target to version 9.0, so that the app will work with all modern/typical devices.  
 
 #### App cleanup
-As you have seen before, the project creator process creates a "ViewController.swift" source code file. We do not need that, as we will be creating our own view controllers. Therefore, you can delete it. If a dialog asks the following, choose "Move to Trash". 
+As you have seen before, the project creator process creates a "ViewController.swift" source code file. We do not need that, as we will be creating our own view controllers. Therefore, you can delete it. If a dialog asks, choose "Move to Trash". 
 
 The project creator also creates a "Main.storyboard" source code file. Show the storyboard in the editor. 
 
@@ -66,21 +66,36 @@ Do this again to add the 'detail' controller:
 * Class (name) is `PlayerDetail`
 
 #### Add data
-Your professors have extracted the data you need from NFL.com. Its data format is known as a "[property list](https://en.wikipedia.org/wiki/Property_list)", which is a plain-text XML data format that’s widely used in iOS and macOS apps. Download it from the "a4-assets" area in this "assignments" folder on GitHub. 
+Your professors have extracted the data you need from NFL.com. Its data format is known as a "[property list](https://en.wikipedia.org/wiki/Property_list)", which is a plain-text XML data format that’s widely used in iOS and macOS apps. 
 
-It is in a zip file with some player photos (in a folder named "Photos") and team logos (in a folder named "Logos"). After downloading, unzip the contents of the zip file.
+The property list, named "stats2016qb.plist", is inside a "Assignment4Data.zip" file that you can find in the "assignment-assets" folder on GitHub. Download the zip file, and double-click to enable Finder to open it. 
 
-Then, add the assets to the project: Right-click the "QB Stats" group (folder icon), and choose "Add Files to QBStats...". Make sure that you "copy" the items by checking/marking the checkbox.
+Next, add the property list file to the project: Right-click the "QBStats" group (folder icon), and choose "Add Files to QBStats...". Make sure that you "copy" the items by checking/marking the checkbox (click the Options button to reveal the checkbox).
 
-If you wish, you can look at the data file. Xcode will show it as an ‘array’ of ‘dictionaries’. if you open one of the dictionaries (e.g. "Item 0"), you will see some key-value pairs with player data.
+If you wish, you can look at the data file. Xcode will show it as an ‘array’ of ‘dictionaries’. if you open one of the dictionaries (e.g. "Item 2"), you will see some key-value pairs with player data.
 
 <kbd>![plist](images/qb-stats-plist.png)</kbd>
 
 <br>
 
-> More to come...
-> We will use the asset catalog to add player photos and team logos
+#### Add player photos and team logos
+The "Assignment4Data" file also contains a folder of player photos, and team logos. 
 
+Player photos are 200px square, so make sure that this size is used for the UIImageView object that you add to a scene later (described below). 
+
+Team logos are 27px wide and 29px tall, so again, make sure that this size is used for the UIImageView object that you will add to a scene.
+
+How do you add these assets to your project? By using the *asset catalog*. Then:  
+1. In the project navigator, select (click) the *Assets.xcassets* item. The center editor panel will show an organizer panel, and an item preview panel.  
+2. Then, at the bottom of the organizer panel, select (click) the plus sign, and choose "Add Folder". The first folder name can/should be "photos".  
+3. Do this again, and add another folder named "logos".  
+
+Now, we're ready to add the photos:  
+1. At the bottom of the organizer panel, select (click) the plus sign, and choose "Import...".  
+2. Navigate to the file system location that holds the player photos.  
+3. Select all of the photos, and then complete the import task. 
+
+Do the same for the team logos.  
 <br>
 
 ### Add the "list" scene on the storyboard
@@ -120,9 +135,9 @@ Now, change the scene’s visible title (on its ‘navigation bar’ area). Doub
 #### Test your work
 Edit the PlayerList controller:
 
-From numberOfSections(in tableView:), return 1.
+From numberOfSections(in tableView:), `return 1`.
 
-From tableView(numberOfRowsInSection:), return 5.
+From tableView(numberOfRowsInSection:), `return 5`.
 
 Uncomment the tableView(cellForRowAt indexPath: ) function. Then. set the cell’s textlabel?.text property to something, as suggested below (click for full size):  
 
@@ -163,7 +178,8 @@ At this point, you can add four labels and an ‘image view’ to the scene. Her
 
 While you’re here, you could also add outlets for each of these five user interface objects.
 
-Also, at some point in time, you will have to configure the layout so that it works well on different screen sizes. 
+Also, at some point in time, you will have to configure the layout so that it works well on different screen sizes.  
+<br>
 
 #### Test your work
 
@@ -269,26 +285,30 @@ Add a property for the passed-in player object. After you add it, the project wi
 
 In viewDidLoad, you will extract string and number data from the player object, and make strings for the labels on the scene.
 
+> Need to know or learn about quarterback statistics?  
+> Use a search engine, and enter a string similar to...  
+> how to read a quarterback's statistics
+
+> In class, your professor will show you a best practice technique for planning and coding.  
+>  
+> The incoming data object is a Dictionary, which has a easy-to-use but awkward syntax for dereferencing (accessing) values. The important part of the technique is to create constants for the values. Then, the *string interpolation* syntax is MUCH easier and more readable. 
+
+<br>
 For the photo, the player’s name will be used to match up to a photo that's in the asset catalog.
 
-Here’s some guidance, showing how to configure the image view and the first label:
-
-![App delegate config](images/detail-scene-config.png)  
+For the team logo, the player's team will be used to match up to a logo that's in the asset catalog.
 <br>
 
-<br><br>
-
-> More to come
-
-<br><br>
+### Layout considerations
+The app should work on different iPhone screen sizes. When coding the "details" scene, use layout features to *center* the content left-to-right. 
 
 ### Test your work
 Run the app on the iOS Simulator, using different devices (that have different screen sizes):  
 1. iPhone SE or 5 (4-inch screen)  
 2. iPhone 7 (4.7-inch screen)  
-3. iPad Pro (9.7-inch screen)  
+3. iPhone 7 Plus (5.5-inch screen)  
 
-Make sure that the content lays out nicely, in portrait mode, on all of these screen sizes.
+Make sure that the content lays out nicely, in portrait mode, on all of these screen sizes.  
 <br>
 
 #### Borrowing a device
@@ -298,27 +318,19 @@ If you do not have an iOS device, the School of ICT has a limited supply of iPod
 <br>
 
 #### Show / prove that your app works
-Final testing of your app must be on a device. Then, take a screenshot. 
+Final testing of your app must be on a device. Then, take a screenshot of **each** scene (list and detail). 
 
 Screenshots can be taken:
 - on the device itself
 - using the Xcode Devices window (on the Window menu), you can use the "take screenshot" button, and it will be stored on the desktop.
 - in the Simulator, File>Screenshot, it will store the file on the desktop
 
-Submit it with your project. Put it in the project folder, before doing the zip task.
-
-Please include a screenshot of:
-
-1. tab 1 portrait and landscape showing the layout changing (2 screenshots)
-1. tab 2 portrait
-1. tab 3 portrait
-1. tab 4 portrait
-
+Submit **both** screenshots with your project. Put them in the project folder, before doing the zip task.  
 <br>
 
 ### Submitting your work
 Follow these instructions to submit your work:  
 1. Make sure your project works correctly  
 2. Locate your project folder in Finder  
-3. Right-click the folder, and choose **Compress "(project-name)"**, which creates a zip file (make sure the zip file is fairly small, around 500KB or less)  
+3. Right-click the folder, and choose **Compress "(project-name)"**, which creates a zip file (make sure the zip file is fairly small, around 1MB or less)  
 4. Login to Blackboard/My.Seneca, and in this course's Assignments area, look for the upload link, and submit your work there  
