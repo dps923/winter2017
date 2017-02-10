@@ -10,7 +10,7 @@ import UIKit
 
 class ProvinceDetail: UIViewController {
     
-    // MARK: - User interface
+    // MARK: - User interface 
     
     @IBOutlet weak var provinceName: UILabel!
     @IBOutlet weak var premierName: UILabel!
