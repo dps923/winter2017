@@ -9,7 +9,8 @@ Read the introduction to the [UIApplicationDelegate protocol](https://developer.
 in the reference documentation, up to the end of **Starting Up Your App**.
 
 In the app delegate, the most important method to use during app initialization is:
-_application(didFinishLaunchingWithOptions: )_
+_application(didFinishLaunchingWithOptions: )_  
+<br>
 
 #### Application bundle
 

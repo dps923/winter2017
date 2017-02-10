@@ -34,4 +34,4 @@ Assignment 4 has been published to the usual location.
 
 We will look at a sample app, and the app's workflow.  
 
-Then, we'll begin work on Assignment 3.  
+Then, we'll begin work on Assignment 4.  
