@@ -31,32 +31,36 @@ class StoreInitializer {
         // you will have to do the above, AND delete the app from the simulator
 
 
-        let on = Province(context: cdStack.managedObjectContext)
+        guard let entity = NSEntityDescription.entity(forEntityName: "Province", in: cdStack.managedObjectContext) else {
+            fatalError("Can't create entity named Province")
+        }
+
+        let on = Province(entity: entity, insertInto: cdStack.managedObjectContext)
         on.provinceName = "Ontario"
         on.premierName = "Kathleen Wynne"
         on.areaInKm = 1076395
         on.dateCreated = newDate(year: 1867, month: 7, day: 1)
 
-        let bc = Province(context: cdStack.managedObjectContext)
+        let bc = Province(entity: entity, insertInto: cdStack.managedObjectContext)
         bc.provinceName = "British Columbia"
         bc.premierName = "Christy Clark"
         bc.areaInKm = 944735
         bc.dateCreated = newDate(year: 1871, month: 7, day: 20)
 
-        let nb = Province(context: cdStack.managedObjectContext)
+        let nb = Province(entity: entity, insertInto: cdStack.managedObjectContext)
         nb.provinceName = "New Brunswick"
         nb.premierName = "Brian Gallant"
         nb.areaInKm = 72908
         nb.dateCreated = newDate(year: 1867, month: 7, day: 1)
 
         /*
-         var mb = Province(context: cdStack.managedObjectContext)
+         let mb = Province(entity: entity, insertInto: cdStack.managedObjectContext)
          mb.provinceName = "Manitoba"
          mb.premierName = "Gary Selinger"
          mb.areaInKm = 649950
          mb.dateCreated = newDate(year: 1870, month: 7, day: 15)
 
-         var nl = Province(context: cdStack.managedObjectContext)
+         let nl = Province(entity: entity, insertInto: cdStack.managedObjectContext)
          nl.provinceName = "Newfoundland and Labrador"
          nl.premierName = "Paul Davis"
          nl.areaInKm = 405212

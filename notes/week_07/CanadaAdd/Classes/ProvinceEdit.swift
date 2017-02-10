@@ -44,7 +44,7 @@ class ProvinceEdit: UIViewController {
         // or app/business logic checks - we would add those in the future 
 
         // Add a new object to the (managed object) context, and configure it
-        let newItem = Province(context: model.cdStack.managedObjectContext)
+        let newItem = model.addNewProvince()
         newItem.provinceName = provinceName.text
         newItem.premierName = premierName.text
         newItem.dateCreated = dateCreated.date as NSDate

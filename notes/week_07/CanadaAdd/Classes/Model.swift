@@ -65,16 +65,21 @@ class Model {
     // For example, get-all, get-some, get-one, add, update, delete
     // And other command-oriented operations
 
+    func addNewProvince() -> Province {
+        guard let entity = NSEntityDescription.entity(forEntityName: "Province", in: cdStack.managedObjectContext) else {
+            fatalError("Can't create entity named Province")
+        }
+        return Province(entity: entity, insertInto: cdStack.managedObjectContext)
+    }
+
 
     // Even more specific 'add new province' method
     func addNewProvince(provinceName: String, premierName: String, areaInKm: Int32, dateCreated: NSDate) -> Province {
-
-        let newProvince = Province(context: cdStack.managedObjectContext)
+        let newProvince = addNewProvince()
         newProvince.provinceName = provinceName
         newProvince.premierName = premierName
         newProvince.areaInKm = areaInKm
         newProvince.dateCreated = dateCreated
-
         return newProvince
     }
 
