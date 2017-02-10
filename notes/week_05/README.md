@@ -1,15 +1,15 @@
-## Week 5, Mon Feb 6 and Thu Feb 9  
+## Week 6, Mon Feb 13 and Thu Feb 16  
 <br>
 
 ### Monday notes  
-Understanding app startup (app delegate), navigation-style app, table view for lists, and model class for the app.  
+Storing app data on an iOS device, and an introduction to Core Data.  
 <br>
 
 ### Thursday notes  
 Hands-on with this week's topics. Tips and best practices.  
-Begin work on Assignment 4.  
+Begin work on Assignment 5.  
 <br>
 
 ### Code examples  
-Navigation  
-Table view  
+Core Data  
+New project template    
