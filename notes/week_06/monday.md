@@ -4,15 +4,26 @@ Core Data is an object design, management, and persistence framework.
 
 It helps you manage the lifecycle of objects and [object graphs](https://developer.apple.com/library/ios/Documentation/General/Conceptual/DevPedia-CocoaCore/ObjectGraph.html).
 
-It can support different storage systems, but we will only use SQL database storage.
+It can support different storage formats, but we will use the long-established (since 1994!) and default "SQLite" storage.
 
 Uh oh, SQL you say? Will I be writing SQL code like the following?
 ```
 var person = database.perform("SELECT * FROM person where id = ?", personId)
 ```
-**No**, Core Data has the features of an Object Relational Mapper (ORM) –which is a fancy way of saying you will access the SQL database
-using Swift classes and properties. In other courses, if you were using an SQL database but accessing it using native code and not SQL statements,
-you were using an API that had ORM features.
+**No**, Core Data has the features of an Object Relational Mapper (ORM) - which is a fancy way of saying you will access the data store
+using Swift classes and properties. In other courses, if you were using an SQL database but accessing it using native code and not SQL statements (for example ASP.NET MVC apps that use Entity Framework), then you were using an API that had ORM features.
+
+> **Warning...**  
+>
+> Now that you know that the backing store format of Core Data is SQLite, please *forget this immediately!*.  
+>
+> Some authors and reference resources like to compare Core Data concepts and operations with traditional database concepts and operations. We will *NOT* do that here.
+>
+> Your professors insist that you *MUST NOT* strongly link and/or compare the two technologies, even though you are tempted to do so. Instead, you should learn the fundamental Core Data concepts, and if you have to make comparisons to aid your understanding, then you can do so on your own.
+>
+> Comparing and/or equating Core Data and relational database management system technologies *is a mistake*.
+
+<br>
 
 Designing a class in Swift, and designing an **entity** in Core Data model editor, are very similar.
 
@@ -311,7 +322,7 @@ Always “save changes”.
 
 Yes.
 
-The **CoreDataModel* code example (in the GitHub repository) is a good example
+The *CoreDataModel* code example (in the GitHub repository) is a good example
  of an app that works with one entity.
 
 You _should attempt_ to re-create this example, using your own copy of the CodeDataModel template. Strongly recommended.
