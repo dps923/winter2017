@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Classes
 //
-//  Created by Peter McIntyre on 2015-02-01.
-//  Copyright (c) 2015 School of ICT, Seneca College. All rights reserved.
+//  Created by Peter McIntyre on 201502-01.
+//  Copyright (c) 2017 School of ICT, Seneca College. All rights reserved.
 //
 
 import UIKit

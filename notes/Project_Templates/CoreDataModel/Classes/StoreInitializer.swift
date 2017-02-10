@@ -3,7 +3,7 @@
 //  Classes
 //
 //  Created by Peter McIntyre on 2015-02-01.
-//  Copyright (c) 2015 School of ICT, Seneca College. All rights reserved.
+//  Copyright (c) 2017 School of ICT, Seneca College. All rights reserved.
 //
 
 import CoreData
@@ -30,13 +30,23 @@ class StoreInitializer {
         // If you have run the app in the simulator,
         // you will have to do the above, AND delete the app from the simulator
 
-        let obj = Example(context: cdStack.managedObjectContext)
+        guard let entity = NSEntityDescription.entity(forEntityName: "Example", in: cdStack.managedObjectContext) else {
+            fatalError("Can't create entity named Example")
+        }
+        
+        let obj: Example
+        if #available(iOS 10.0, *) {
+            // Once you switch to iOS 10-only, the API looks nicer. I just put this here for reference.
+            obj = Example(context: cdStack.managedObjectContext)
+        } else {
+            obj = Example(entity: entity, insertInto: cdStack.managedObjectContext)
+        }
         obj.attribute1 = "Peter"
         obj.attribute2 = 33
-        
-        let object2 = Example(context: cdStack.managedObjectContext)
-        object2.attribute1 = "Danny"
-        object2.attribute2 = 29
+
+        let obj2 = Example(entity: entity, insertInto: cdStack.managedObjectContext)
+        obj2.attribute1 = "Garvan"
+        obj2.attribute2 = 29
         
         cdStack.save()
     }
