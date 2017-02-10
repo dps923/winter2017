@@ -278,7 +278,7 @@ Here’s some guidance. Please note that the ‘player’ property does not yet 
 ### Edit the PlayerDetail controller
 Add a property for the passed-in player object. After you add it, the project will build/compile without errors.
 
-In viewDidLoad, you will extract string and number data from the player object, and make strings for the labels on the scene.
+In viewDidLoad, you will extract string and number data from the player object, and make strings for the labels on the scene. Try to match the data formatting that you see in the sample screen capture near the top of this document. 
 
 > Need to know or learn about quarterback statistics?  
 > Use a search engine, and enter a string similar to...  
