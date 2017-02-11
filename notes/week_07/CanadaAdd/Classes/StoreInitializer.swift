@@ -10,7 +10,7 @@ import CoreData
 
 class StoreInitializer {
     
-    class func populateInitialData(cdStack: CDStack) {
+    class func populateInitialData(model: Model) {
         // Add code to populate the data store with initial data
         
         // For each object that you want to create...
@@ -31,43 +31,39 @@ class StoreInitializer {
         // you will have to do the above, AND delete the app from the simulator
 
 
-        guard let entity = NSEntityDescription.entity(forEntityName: "Province", in: cdStack.managedObjectContext) else {
-            fatalError("Can't create entity named Province")
-        }
-
-        let on = Province(entity: entity, insertInto: cdStack.managedObjectContext)
+        let on = model.addNewProvince()
         on.provinceName = "Ontario"
         on.premierName = "Kathleen Wynne"
         on.areaInKm = 1076395
         on.dateCreated = newDate(year: 1867, month: 7, day: 1)
 
-        let bc = Province(entity: entity, insertInto: cdStack.managedObjectContext)
+        let bc = model.addNewProvince()
         bc.provinceName = "British Columbia"
         bc.premierName = "Christy Clark"
         bc.areaInKm = 944735
         bc.dateCreated = newDate(year: 1871, month: 7, day: 20)
 
-        let nb = Province(entity: entity, insertInto: cdStack.managedObjectContext)
+        let nb = model.addNewProvince()
         nb.provinceName = "New Brunswick"
         nb.premierName = "Brian Gallant"
         nb.areaInKm = 72908
         nb.dateCreated = newDate(year: 1867, month: 7, day: 1)
 
         /*
-         let mb = Province(entity: entity, insertInto: cdStack.managedObjectContext)
+         let mb = model.addNewProvince()
          mb.provinceName = "Manitoba"
          mb.premierName = "Gary Selinger"
          mb.areaInKm = 649950
          mb.dateCreated = newDate(year: 1870, month: 7, day: 15)
 
-         let nl = Province(entity: entity, insertInto: cdStack.managedObjectContext)
+         let nl = model.addNewProvince()
          nl.provinceName = "Newfoundland and Labrador"
          nl.premierName = "Paul Davis"
          nl.areaInKm = 405212
          nl.dateCreated = newDate(year:1949, month: 3, day: 31)
          */
         
-        cdStack.save()
+        model.saveChanges()
     }
 
 
