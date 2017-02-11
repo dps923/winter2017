@@ -24,6 +24,7 @@ class Model {
     // MARK: - Public methods
 
     init() {
+        var useStoreInitializer = false
         if Model.isFirstLaunch() {
             // URL to the object store file in the app bundle
             let storeFileInBundle = Bundle.main.url(forResource: "ObjectStore", withExtension: "sqlite")
@@ -34,17 +35,18 @@ class Model {
             if hasStarterData {
                 // Use the supplied starter data, abort if error copying
                 try! FileManager.default.copyItem(at: storeFileInBundle!, to: Model.pathToStoreFileInDocumentsDir())
-                cdStack = CDStack()
             } else {
-                // Create some new data
-                cdStack = CDStack()
-                StoreInitializer.populateInitialData(cdStack: cdStack)
+                useStoreInitializer = true
             }
-        } else {
-            cdStack = CDStack()
         }
 
+        cdStack = CDStack()
+
         frc_province = cdStack.frcForEntityNamed("Province", withPredicateFormat: nil, predicateObject: nil, sortDescriptors: [NSSortDescriptor(key: "provinceName", ascending: true)], andSectionNameKeyPath: nil)
+
+        if useStoreInitializer {
+            StoreInitializer.populateInitialData(model: self)
+        }
     }
 
     static func pathToStoreFileInDocumentsDir() -> URL {

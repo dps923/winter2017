@@ -10,7 +10,7 @@ import CoreData
 
 class StoreInitializer {
     
-    class func populateInitialData(cdStack: CDStack) {
+    class func populateInitialData(model: Model) {
         // Add code to populate the data store with initial data
         
         // For each object that you want to create...
@@ -30,24 +30,24 @@ class StoreInitializer {
         // If you have run the app in the simulator,
         // you will have to do the above, AND delete the app from the simulator
 
-        guard let entity = NSEntityDescription.entity(forEntityName: "Example", in: cdStack.managedObjectContext) else {
+        guard let entity = NSEntityDescription.entity(forEntityName: "Example", in: model.cdStack.managedObjectContext) else {
             fatalError("Can't create entity named Example")
         }
         
         let obj: Example
         if #available(iOS 10.0, *) {
             // Once you switch to iOS 10-only, the API looks nicer. I just put this here for reference.
-            obj = Example(context: cdStack.managedObjectContext)
+            obj = Example(context: model.cdStack.managedObjectContext)
         } else {
-            obj = Example(entity: entity, insertInto: cdStack.managedObjectContext)
+            obj = Example(entity: entity, insertInto: model.cdStack.managedObjectContext)
         }
         obj.attribute1 = "Peter"
         obj.attribute2 = 33
 
-        let obj2 = Example(entity: entity, insertInto: cdStack.managedObjectContext)
+        let obj2 = Example(entity: entity, insertInto: model.cdStack.managedObjectContext)
         obj2.attribute1 = "Garvan"
         obj2.attribute2 = 29
         
-        cdStack.save()
+        model.saveChanges()
     }
 }
