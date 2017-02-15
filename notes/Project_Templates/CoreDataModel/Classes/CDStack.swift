@@ -80,6 +80,18 @@ class CDStack {
             do {
                 try managedObjectContext.save()
             } catch let error as NSError {
+                if let details = error.userInfo["NSDetailedErrors"] as? [NSError] {
+                    for detail in details {
+                        if let badKey = detail.userInfo["NSValidationErrorKey"], let badObject = detail.userInfo["NSValidationErrorObject"] {
+                            let msg = "Error on save, check Core Data constraints on '\(badKey)'.\n" +
+                                "(A non-optional attribute/relationship in core data can cause this.)\n" +
+                            "Attempted to save object: \(badObject)"
+                            print(msg)
+                        }
+                    }
+                }
+                // In a production app, you may not want a fatal error here. Is this something you should
+                // warn the user about instead? Perhaps there is a way to recover from a problem saving.
                 fatalError("CDStack save error \(error), \(error.userInfo)")
             }
         }
