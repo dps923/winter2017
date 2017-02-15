@@ -18,6 +18,13 @@ class Model {
 
     // MARK: - Public methods
 
+    // Shortcut to get the managed object context.
+    // This uses a Swift 'calculated property', and is the same as writing a getter-type function:
+    // `func context() -> NSManagedObjectContext { return cdStack.managedObjectContext }`
+    var context: NSManagedObjectContext {
+        return cdStack.managedObjectContext
+    }
+
     init() {
         var useStoreInitializer = false
         if Model.isFirstLaunch() {
