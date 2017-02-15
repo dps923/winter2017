@@ -30,21 +30,21 @@ class StoreInitializer {
         // If you have run the app in the simulator,
         // you will have to do the above, AND delete the app from the simulator
 
-        guard let entity = NSEntityDescription.entity(forEntityName: "Example", in: model.cdStack.managedObjectContext) else {
+        guard let entity = NSEntityDescription.entity(forEntityName: "Example", in: model.context) else {
             fatalError("Can't create entity named Example")
         }
         
         let obj: Example
         if #available(iOS 10.0, *) {
             // Once you switch to iOS 10-only, the API looks nicer. I just put this here for reference.
-            obj = Example(context: model.cdStack.managedObjectContext)
+            obj = Example(context: model.context)
         } else {
-            obj = Example(entity: entity, insertInto: model.cdStack.managedObjectContext)
+            obj = Example(entity: entity, insertInto: model.context)
         }
         obj.attribute1 = "Peter"
         obj.attribute2 = 33
 
-        let obj2 = Example(entity: entity, insertInto: model.cdStack.managedObjectContext)
+        let obj2 = Example(entity: entity, insertInto: model.context)
         obj2.attribute1 = "Garvan"
         obj2.attribute2 = 29
         
