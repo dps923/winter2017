@@ -137,21 +137,28 @@ Then, select the Program entity, and then its "courses" relationship:
 * Change the Type setting to "To Many"  
 * Leave other settings as-is (including the Optional setting, on/marked/checked)  
 
-At this point in time, your app should build correctly, without errors. 
+At this point in time, your app should build correctly, without errors.  
 <br>
 
-### Write code in the store initializer to create startup data for the app 
-(this section is still being edited)  
-Store initializer class  
-Add code  
-Follow best practices  
-We will supply an Excel workbook with program and course data  
-Copy-paste from that  
-Add academic program data for ALL programs  
-Then, if you are in the BSD program, add the five (5) courses that are in the program's level 4  
-Alternatively, if you are in the CPA program, add the five (5) courses that are in the program's level 4  
+### Write code in the store initializer to create startup data for the app  
+Recently, you learned that the store initializer class has a function that will enable you to programmatically create initial data for your app. We will edit this function, to add program and course data (which you can copy from the Excel workbook, mentioned above).  
 
-The following image shows how you would add data for an academic program, and some of its courses:  
+Here are a few best practices when adding data that has relationships:  
+* Use meaningful constant/variable names for all objects  
+* Add the dependent (to-one) object first, and save it  
+* Then, add its collection of objects - make sure that you set/configure the value of the relationship property  
+
+When you set/configure the value of one end of a relationship, the Core Data framework automatically sets/configures the other end of the relationship.  
+
+What startup data must be created?  
+
+Add academic program data for ALL programs.  
+
+Then, if you are in the BSD program, add the five (5) courses that are in the program's level 4.  
+
+Alternatively, if you are in the CPA program, add the five (5) courses that are in the program's level 4.  
+
+The following image shows how you would add data for an academic program, and some of its courses. This technique can be used for any similar situation in the future:  
 
 ![Store initializer - add data](images/a5-store-init.png)  
 <br>
