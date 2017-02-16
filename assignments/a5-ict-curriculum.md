@@ -3,6 +3,11 @@
 Assignment 5 enables you to begin working with on-device storage, using Core Data. You will create a navigation-style app, with three levels of navigation (list, list, and detail).  
 <br>
 
+> This document is still being edited.  
+> This notice will be removed when the edits are complete.
+
+<br>
+
 ### Due date
 Wednesday, February 22, 2017, at 11:00pm ET  
 Grade value: 5% of your final course grade  
@@ -33,7 +38,9 @@ When the app user taps/selects an item on the list, a details screen (managed by
 <br>
 
 ### Getting started
-Get (download) the CoreDataModel app, which is in the GitHub repo. (It's path is notes/Project_Templates.) 
+Get (download) the Assignment5Data.zip file, which is in the GitHub repo. (Its path is assignments/assignment-assets.)  It has some data and images (icons) that you will use in your app.
+
+Get (download) the CoreDataModel app, which is in the GitHub repo. (Its path is notes/Project_Templates.) 
 
 Follow the instructions in its [Readme.txt](https://github.com/dps923/winter2017/blob/master/notes/Project_Templates/CoreDataModel/Readme.txt), to create an iOS app named **ICTCurric**.  
 
@@ -41,7 +48,7 @@ Show the "projects and targets list", and select the project. Verify that the iO
 <br>
 
 #### Verify that the app runs  
-First, run the app in the iOS Simulator, so that you know that it does successfully run. It will display a list of your professors' names, and enable you to tap/select a name to show a details view (that has a title that matches the tapped/selected professor name).  
+First, run the app in the iOS Simulator, so that you know that it does successfully run. It will display a list of your professors' names, and enable you to tap/select a name to show a details view (which has a title that matches the tapped/selected professor name).  
 
 Next, return to the iOS Simulator's home screen. Delete the app. How? Tap (click) and hold, until all the icons show an "X" badge and begin wiggling. Tap/click the "X" badge, and confirm that you want to delete the app. 
 
@@ -52,7 +59,7 @@ Next, return to the iOS Simulator's home screen. Delete the app. How? Tap (click
 <br>
 
 #### App cleanup
-There will be several cleanup tasks, but we'll do them later. Why? We want to leave the "Example" code bits in the project, until we have added replacements.  
+There will be several cleanup tasks, but we'll do them later. Why? We want to leave the "Example" code bits in the project, until we have added replacements. That way, your app can be built incrementally, and it will still run successfully.  
 <br>
 
 #### Task preview
@@ -98,7 +105,7 @@ Next, write entity classes. Here, we will use a single source code file to hold 
 
 #### Create the relationships
 For this assignment, we will assume a one-to-many relationship:  
-* A Program object has a collection of zero or more Course objects  
+* A Program object has a collection of zero or more Course objects, or...  
 * A Course object is always related to exactly one Program object  
 
 Start by selecting the Course object in the editor.  Add a relationship:  
@@ -110,7 +117,7 @@ Next, select the Program object in the edtor. Add a relationship:
 * The *destination* will be the Course entity class  
 * Choose "program" as the *inverse* relationship  
 
-Now, re-select the Course entity. Notice that the editor has already set the relationship's inverse value. Here's what your entity configurations should look like. First, Course:  
+Now, re-select the Course entity. Notice that the editor has already configured/updated the relationship's inverse value. Here's what your entity configurations should look like. First, Course:  
 
 ![Course entity](images/a5-entity-course.png)  
 <br>
@@ -120,7 +127,7 @@ Then, Program:
 ![Program entity](images/a5-entity-program.png)  
 <br>
 
-Let's edit the relationships in the right-side Data Model Inspector.  
+Now, we need to edit the relationships, in the right-side Data Model Inspector.  
 
 First, select the Course entity, and then its "program" relationship:  
 * Un-check (clear) the "Optional" checkbox (in other words, a course MUST be related to an existing program)  
@@ -130,15 +137,29 @@ Then, select the Program entity, and then its "courses" relationship:
 * Change the Type setting to "To Many"  
 * Leave other settings as-is (including the Optional setting, on/marked/checked)  
 
-At this point in time, your app should build correctly, without errors.  
+At this point in time, your app should build correctly, without errors. 
 <br>
 
 ### Write code in the store initializer to create startup data for the app 
+(this section is still being edited)  
+Store initializer class  
 Add code  
-Best practices  
-We will supply a plain-text file with program and course data  
-Will also supply icons that can be used on the list  
+Follow best practices  
+We will supply an Excel workbook with program and course data  
+Copy-paste from that  
+Add academic program data for ALL programs  
+Then, if you are in the BSD program, add the five (5) courses that are in the program's level 4  
+Alternatively, if you are in the CPA program, add the five (5) courses that are in the program's level 4  
+
+The following image shows how you would add data for an academic program, and some of its courses:  
+
+![Store initializer - add data](images/a5-store-init.png)  
 <br>
+
+<br><br><br>
+> (more to come)
+
+<br><br><br>
 
 ### Create a fetched results controller for the Program collection  
 Property, and initializer code  
@@ -152,6 +173,7 @@ Follow the Example code
 
 ### Create a controller for the Program list view  
 Follow the ExampleList view controller  
+Will also supply icons that can be used on the list  
 <br>
 
 ### Create a controller for the Course list view  
@@ -166,7 +188,7 @@ It will use a fetch request
 ### Update the code in the app delegate and new controllers  
 
 ### Clean up the project  
-(partial information)  
+(partial information, to be updated)  
 
 In the project navigator, locate the Example.swift class, and delete it.  
 
@@ -175,16 +197,7 @@ Next, in the project navigator, locate and choose/select the *ObjectModel.xcdata
 Choose/select the existing "Example" entity, and delete it.  
 
 In the project navigator, locate the Model class. Comment out the fetched results controller (frc) declaration near line 17. Then, comment out the frc configuration statement near line 40. 
-
-
-
-
-
-<br><br><br>
-> (more to come)
-
-<br><br><br>
-
+<br>
 
 ### Test your work
 Run the app on the iOS Simulator, using different devices (that have different screen sizes):  
