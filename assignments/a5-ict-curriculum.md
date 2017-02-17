@@ -67,13 +67,12 @@ In the sections that follow, you will perform these tasks:
 1. Design the entity classes for Program and Course, and generate custom subclasses for the entities  
 2. Write code in the store initializer to create startup data for the app  
 3. Create a fetched results controller for the Program collection  
-4. Create a fetched results controller for the Course collection  
-5. Create a controller for the Program list view  
-6. Create a controller for the Course list view  
-7. Create a controller for the Course detail view  
-8. Update and design the storyboard scenes/views  
-9. Update the code in the app delegate and new controllers  
-10. Clean up the project  
+4. Create a controller for the Program list view  
+5. Create a controller for the Course list view  
+6. Create a controller for the Course detail view  
+7. Update and design the storyboard scenes/views  
+8. Update the code in the app delegate and new controllers  
+9. Clean up the project  
 <br>
 
 ### Design the entity classes for Program and Course  
@@ -173,10 +172,6 @@ We will follow its coding pattern to create an frc for the "Program" entity:
 2. Initialize its value in the `init()` function; choose one of the Program attributes as the sort descriptor key  
 <br>
 
-### Create a fetched results controller for the Course collection  
-Similar to the previous task, create and initialize an frc for the "Course" entity.  
-<br>
-
 ### Create a controller for the Program list view  
 In this section, you will create a *new* view controller, which will display a list of Program objects. The contents and layout of the new controller will be similar to the ExampleList controller that's included in the project template.  
 
@@ -212,7 +207,7 @@ In a table view controller that uses our app architecture, we typically use four
 
 You will learn that the code for the first three functions is the same for all table view controllers. Only the function that actually configures the cell contents differs as different entity objects are rendered.  
 
-For this assignment, we will be using a new-to-you table view cell style, so the cell configuration function will do *three* tasks (not just two):  
+For this assignment, we will be using a new-to-you table view cell style (named "Subtitle"), so the cell configuration function will do *three* tasks (not just two):  
 
 ```swift
 // from the frc, extract the item that we want at the current index path
@@ -226,7 +221,92 @@ As you can see, you will configure the cell's image view. Use the technique that
 At this point in time, you can remove code or comments that will not be needed. However, maybe keep the `prepare(for segue: sender:)` function, because we'll code that later (but soon).  
 <br>
 
+### Update and design the storyboard scenes/views  
+Also at this point in time, you can test your work. Before you do, think.  
+
+Before you added the new ProgramList controller, which screen appeared when the app was loaded? Right, the screen managed by the ExampleList controller.  
+
+Now, we want the screen managed by the ProgramList controller to appear. We need to change the storyboard, and then (in the next section) the app delegate.  
+<br>
+
+#### Storyboard updates
+Show the main storyboard.  Select the table view controller, and look at its Identity Inspector. What is the Custom Class value? Ah, that must be changed.  
+
+Also, mentioned above, we will be using a new-to-you table view cell style. Therefore, select the prototype cell, and show its Attributes Inspector. Change the Table View Cell Style value to "Subtitle". This change will enable a cell to include a main title (in the standard-size font) and a subtitle below it (in a smaller-size font).  
+<br>
+
+### Update the code in the app delegate    
+Study the app delegate class. What is the name of the "tvc" controller class? Ah, that must be changed, to ProgramList. 
+<br>
+
+#### Test your work
+Here's what you've done so far:  
+1. Created a data model, startup data, and modified the Model class  
+2. Created and configured a new table view controller  
+3. Edited the storyboard and app delegate  
+
+Are you ready to test your work? Yes. Remember, if you must, delete a previous version of the app from the iOS Simulator, or device, before you run/test your work. If successful, your screen should slow a list of academic programs in the school of ICT, with program code and name info, and an icon for its credential.  
+<br>
+
 ### Create a controller for the Course list view  
+In this section, you will learn many new topics. So, be careful, and think about what's happening along the way.  
+
+The previous code examples, and in the previous assignment, showed a two-level navigation flow:  
+1. First/top level was a list (table view controler)  
+2. Second/next level was detail (standard view controller) for the item selected in the first level  
+
+In this app, a *three-level* navigation style will be implemented:  
+1. First level is a list of Program objects  
+2. Second level is *another* list, of Course objects for the Program object selected in the first level  
+3. Third level is detail for the Course object selected in the second level  
+
+Uh oh - how do we do this?  
+
+Well, it turns out that there are two strategies. We'll recommend one of them here, and leave the other until a later date. Our strategy is to simply pass on the Program object that's selected in the first level, to the second-level CourseList controller. Then, the CourseList controller will extract the collection of Course objects from the Program object, and render them in the list. Interesting.  
+
+> What's the other strategy?  
+> Creating then performing a *fetch request*, where we query the Course entity collection for all objects that match a specific course code or name.  
+> As noted above, we'll do that later in the course, when we spend more time on fetch requests.  
+
+<br>
+
+#### Create the new controller class
+In/under the Classes group, create a new Cocoa Touch Class. It will be a subclass of UITableViewController (right?). Name it "CourseList" (for consistency).
+<br>
+
+#### Configure it for use
+Before the class declaration, add another import statement, import CoreData.  
+
+Next, it needs a property to hold a reference to the model.  
+
+In contrast to the ProgramList controller, it does *not* need a reference to an frc.  
+
+Instead, create an array property to hold the collection of Course objects. As you saw in the Model class of the [Basic TableView](https://github.com/dps923/winter2017/blob/master/notes/week_05/sample-code/tableview-demo/1-basic-tableview-no-nav/basic-tableview/Model.swift) code example, an array property was declared this way:
+
+```swift
+let colorNames = [String]
+```
+
+In other words:  
+* It was declared as a constant, and assumed that the class initializer would set its value  
+* Its data type was an array-of-String, and without optional (?) or forced unwrapping (!) operators  
+
+Well, we *cannot* use that same syntax here, in a view controller. Why? Well, we do not have an initializer (and do not want to override the base class initializer).  
+
+Therefore, we must declare it as a variable, and use the *implicitly unwrapped optional* syntax, which you have seen many times in the declarations of outlet variables. So, the statement above would become:  
+```swift
+var colorNames: [String]!
+```
+
+Now, write the statement that will declare a "courses" variable to hold an array of Course objects. 
+
+
+
+
+study the ExampleList controller code. Use its code and organization as an example of how you should write code for ProgramList. It will need properties to hold a reference 1) to the model, and 2) to its frc.
+
+
+
 Follow the ExampleList view controller  
 It will use a fetch request  
 <br>
@@ -239,8 +319,6 @@ It will use a fetch request
 ### Create a controller for the Course detail view  
 
 ### Update and design the storyboard scenes/views  
-
-### Update the code in the app delegate and new controllers  
 
 ### Clean up the project  
 (partial information, to be updated)  
