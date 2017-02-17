@@ -24,12 +24,9 @@ The app's start screen is a list, and will be managed by a table view controller
 When the app user taps/selects an item on the list, another list (managed by a table view controller) will slide in, and display a list of courses in that academic program.  
 
 When the app user taps/selects an item on the list, a details screen (managed by a standard view controller) will slide in, and display some information about that academic program. 
-
-> screen captures will be pasted here  
-
 <br>
 
-<kbd>![Program list](images/a5-list-program.png)</kbd>  
+<kbd>![Program list](images/a5-list-program.png)</kbd>&nbsp;&nbsp;<kbd>![Program list](images/a5-list-course.png)</kbd>&nbsp;&nbsp;<kbd>![Program list](images/a5-detail-course.png)</kbd>  
 <br>
 
 ### Getting started
