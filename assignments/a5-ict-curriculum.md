@@ -205,7 +205,13 @@ In a table view controller that uses our app architecture, we typically use four
 3. Define the cell for the row at an index path  
 4. Configure cell contents  
 
-You will learn that the code for the first three functions is the same for all table view controllers. Only the function that actually configures the cell contents differs as different entity objects are rendered.  
+You will learn that the code for the first three functions is the same for all table view controllers. 
+
+> Well, *almost* all.  
+> When used with an frc, the first two will get their return values from the frc.  
+> Alternatively - as you have seen before - when used with a collection (like an array), they get their return values from hand-coded values and the size (item count) of the collection (array).  
+
+Only the function that actually configures the cell contents differs as different entity objects are rendered.  
 
 For this assignment, we will be using a new-to-you table view cell style (named "Subtitle"), so the cell configuration function will do *three* tasks (not just two):  
 
@@ -221,8 +227,8 @@ As you can see, you will configure the cell's image view. Use the technique that
 At this point in time, you can remove code or comments that will not be needed. However, maybe keep the `prepare(for segue: sender:)` function, because we'll code that later (but soon).  
 <br>
 
-### Update and design the storyboard scenes/views  
-Also at this point in time, you can test your work. Before you do, think.  
+### Update and design the storyboard scene/view  
+Also at this point in time, you may want to test your work. Before you do, think...  
 
 Before you added the new ProgramList controller, which screen appeared when the app was loaded? Right, the screen managed by the ExampleList controller.  
 
@@ -245,7 +251,7 @@ Here's what you've done so far:
 2. Created and configured a new table view controller  
 3. Edited the storyboard and app delegate  
 
-Are you ready to test your work? Yes. Remember, if you must, delete a previous version of the app from the iOS Simulator, or device, before you run/test your work. If successful, your screen should slow a list of academic programs in the school of ICT, with program code and name info, and an icon for its credential.  
+Are you ready to test your work? Yes. Remember, if you must, delete a previous version of the app from the iOS Simulator, or device, before you run/test your work. If successful, your screen should show a list of academic programs in the school of ICT, with program code and name info, and an icon for its credential.  
 <br>
 
 ### Create a controller for the Course list view  
@@ -299,26 +305,115 @@ var colorNames: [String]!
 ```
 
 Now, write the statement that will declare a "courses" variable to hold an array of Course objects. 
-
-
-
-
-study the ExampleList controller code. Use its code and organization as an example of how you should write code for ProgramList. It will need properties to hold a reference 1) to the model, and 2) to its frc.
-
-
-
-Follow the ExampleList view controller  
-It will use a fetch request  
 <br>
+
+#### Write the initialization code
+In this controller, we do not have an frc. Therefore, we do not need any more initialization code. (The title will be set/configured by the ProgramList controller.)  
+<br>
+
+#### Write the table view rendering code
+Above, you were reminded that there are four functions that render data in a table view. Here's what you need to know for the CourseList table view.  
+
+There will be one section.  
+
+The number of rows in a section will be the number of items in the courses variable (collection).  
+
+The cell content configuration function will extract the collection object (at a specific indexPath.row value), and render the text label and detail text label properties.  
+
+Will this work now? No. We need to do a bit of work in the ProgramList controller (in `prepare(for segue: sender:)`), and in the storyboard. It probably does not matter which one is done first. Let's start with the ProgramList controller.  
+<br>
+
+### Add segue code to the ProgramList controller
+Study the `prepare(for segue: sender:)` function in the ExampleList controller. As is, you can copy it to the ProgramList controller. There will be one or more compiler errors, but we'll fix these now.  
+
+First, the segue identifier string should be "toCourseList", right? Remember that, because you'll have to use that value in the storyboard editing task, below.  
+
+Next, you will change the controller references, so that you're referring to the CourseList controller (and not the ExampleDetail controller). 
+
+Then, get a reference to the Program item. The existing `let item:` statement can be edited to extract it.  
+
+Remember our data model design: A *Program* object has a collection of *Course* objects. This collection of Course objects is what we want to pass on to the CourseList controller. If you have a reference to the Program object named "item", then the following will hold the collection of Course objects (because you designed this in the data model!):  
+
+```swift
+item.courses
+```
+
+What data type is `item.courses`? If you Option+click on it, it will tell you that it's an NSSet optional. What's that? Well, it's an unordered collection of objects. What kind of objects? Undefined.  
+
+Well, that can be a problem, because we want a collection of Course objects. We must "convert" this blob of goo into what we want. 
+
+As you would expect, there's a way to do this. The syntax is fairly conventional, and you may have seen it before:  
+
+```swift
+// The array intializer will accept an unordered set of undefined objects and make an array
+// Then, you can coerce it to a specific kind of array
+let courses = Array(item.courses!) as! [Course]
+```
+
+Well, this is reasonable, but it is *not* sorted. Can we do that? Yes. It turns out that the unordered set of undefined objects has a function that will convert it into a sorted array. Cool. The syntax is a bit challenging for newcomers, and is not called out in the Apple Swift book, so we'll do it here, so you learn a correct way to do it (as opposed to some random search engine result):  
+
+```swift
+// Uh... we want to sort the collection of Course objects
+// To do that, we have to choose an attribute for the sort
+// We could chose code, fullName, or courseDescription
+// This will sort the collection on the "code" attribute...
+let courses = item.courses!.sortedArray(using: [NSSortDescriptor(key: "code", ascending: true)]) as! [Course]
+```
+
+Great, now we have a sorted array of Course objects. We can pass that on to the CourseList controller. 
+
+Before you leave this function, make sure that you set the title of the CourseList controller. Set it to this string "(program code) courses", so that it appears on the view nicely, as:  
+
+**BSD courses**  
+-or-  
+**CPA courses**  
+<br>
+
+### Update and design the storyboard scene/view  
+The existing storyboard has three rectangles:  
+1. Left - Navigation controller  
+2. Middle - ProgramsList table view controller  
+3. Right - ExampleDetail standard view controller  
+
+We want to insert a new CoursesList table view controller between #2 and #3 above. Here's what we suggest:  
+
+Select the segue that links #2 and #3 above. Delete it.  
+
+Move the standard view controller to the right, to create or open up space between #2 and #3.  
+
+From the object browser, drag a new Table View Controller to the storyboard, to the right of #2 above.  
+
+Configure the following for this new table view controller:  
+1. Identity Inspector, its custom class name  
+2. Its title
+3. For its prototype cell, the table view cell style is "Subtitle", and configure the Identifier and Accessory as you have learned  
+
+Now, create a segue between ProgramList and CourseList:  
+1. Select the prototype cell on ProgramList  
+2. Control+click+drag to the CourseList controller, and choose the "Show" segue  
+3. Select the new segue, and set its identifier to "toCourseList" (remember that you used that string in the ProgramList `prepare(for segue: sender:)` function above?)  
+<br>
+
+#### Test your work
+
+Here's what you've done so far:
+1. Created and configured a new CourseList table view controller
+2. Edited its presenter - the ProgramList controller
+3. Edited the storyboard and app delegate
+
+Are you ready to test your work? Yes. If successful, your screen should enable the user to select BSD or CPA on the program list (whatever you have data for), and it should show the courses in that program. 
+<br>
+
+### Create a controller for the Course detail view  
+
+### Update and design the storyboard scenes/views  
 
 <br><br><br>
 > (more to come)
 
 <br><br><br>
 
-### Create a controller for the Course detail view  
 
-### Update and design the storyboard scenes/views  
 
 ### Clean up the project  
 (partial information, to be updated)  
