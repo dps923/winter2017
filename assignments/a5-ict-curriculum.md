@@ -4,7 +4,7 @@ Assignment 5 enables you to begin working with on-device storage, using Core Dat
 <br>
 
 ### Due date
-Wednesday, February 22, 2017, at 11:00pm ET  
+Sunday, February 26, 2017, at 11:00pm ET  
 Grade value: 5% of your final course grade  
 
 *If you wish to submit the assignment before the due date and time, you can do that.*  
