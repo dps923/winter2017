@@ -129,7 +129,8 @@ This is not the same as a Swift optional!
 The naming is unfortunate, but you can specify 
 whether a type in the Core Data model is 'optional'. By default this is checked on.
 If it is off for your entity, and you fail to set a value for this, you will get errors reported in your Core Data stack.
-The CDStack that is provided is very simple and doesn't handle these errors, so please leave that Optional checkbox on.
+~~The CDStack that is provided is very simple and doesn't handle these errors, so please leave that Optional checkbox on.~~
+*The CDStack was updated to report these errors clearly, so go ahead and use non-Optionals. Your app will still abort though if you fail to assign a value.*
 
 A common (and safe) use for this checkbox is when specifying a default value for an attribute, the attribute can also be
 set to non-optional.
