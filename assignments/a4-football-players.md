@@ -329,3 +329,4 @@ Follow these instructions to submit your work:
 2. Locate your project folder in Finder  
 3. Right-click the folder, and choose **Compress "(project-name)"**, which creates a zip file (make sure the zip file is fairly small, around 1MB or less)  
 4. Login to Blackboard/My.Seneca, and in this course's Assignments area, look for the upload link, and submit your work there  
+
