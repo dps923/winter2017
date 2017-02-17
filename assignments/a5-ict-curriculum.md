@@ -3,11 +3,6 @@
 Assignment 5 enables you to begin working with on-device storage, using Core Data. You will create a navigation-style app, with three levels of navigation (list, list, and detail).  
 <br>
 
-> This document is still being edited.  
-> This notice will be removed when the edits are complete.
-
-<br>
-
 ### Due date
 Wednesday, February 22, 2017, at 11:00pm ET  
 Grade value: 5% of your final course grade  
@@ -242,7 +237,7 @@ Also, mentioned above, we will be using a new-to-you table view cell style. Ther
 <br>
 
 ### Update the code in the app delegate    
-Study the app delegate class. What is the name of the "tvc" controller class? Ah, that must be changed, to ProgramList. 
+Study the app delegate class. What is the name of the "tvc" controller class? Ah, that must be changed, to ProgramList.  
 <br>
 
 #### Test your work
@@ -277,7 +272,7 @@ Well, it turns out that there are two strategies. We'll recommend one of them he
 <br>
 
 #### Create the new controller class
-In/under the Classes group, create a new Cocoa Touch Class. It will be a subclass of UITableViewController (right?). Name it "CourseList" (for consistency).
+In/under the Classes group, create a new Cocoa Touch Class. It will be a subclass of UITableViewController (right?). Name it "CourseList" (for consistency).  
 <br>
 
 #### Configure it for use
@@ -290,6 +285,7 @@ In contrast to the ProgramList controller, it does *not* need a reference to an 
 Instead, create an array property to hold the collection of Course objects. As you saw in the Model class of the [Basic TableView](https://github.com/dps923/winter2017/blob/master/notes/week_05/sample-code/tableview-demo/1-basic-tableview-no-nav/basic-tableview/Model.swift) code example, an array property was declared this way:
 
 ```swift
+// In a class that has an initializer...
 let colorNames = [String]
 ```
 
@@ -301,10 +297,11 @@ Well, we *cannot* use that same syntax here, in a view controller. Why? Well, we
 
 Therefore, we must declare it as a variable, and use the *implicitly unwrapped optional* syntax, which you have seen many times in the declarations of outlet variables. So, the statement above would become:  
 ```swift
+// In a class that will be passed the data...
 var colorNames: [String]!
 ```
 
-Now, write the statement that will declare a "courses" variable to hold an array of Course objects. 
+Now, write the statement that will declare a "courses" variable to hold an array of Course objects.  
 <br>
 
 #### Write the initialization code
@@ -350,7 +347,9 @@ As you would expect, there's a way to do this. The syntax is fairly conventional
 let courses = Array(item.courses!) as! [Course]
 ```
 
-Well, this is reasonable, but it is *not* sorted. Can we do that? Yes. It turns out that the unordered set of undefined objects has a function that will convert it into a sorted array. Cool. The syntax is a bit challenging for newcomers, and is not called out in the Apple Swift book, so we'll do it here, so you learn a correct way to do it (as opposed to some random search engine result):  
+Well, this is reasonable, but it is *not* sorted. Can we sort? Yes.  
+
+It turns out that the unordered set of undefined objects has a function that will convert it into a sorted array. Cool. The syntax is a bit challenging for newcomers, and is not called out in the Apple Swift book, so we'll do it here, so you learn a correct way to do it (as opposed to some random search engine result):  
 
 ```swift
 // Uh... we want to sort the collection of Course objects
@@ -401,30 +400,102 @@ Here's what you've done so far:
 2. Edited its presenter - the ProgramList controller
 3. Edited the storyboard and app delegate
 
-Are you ready to test your work? Yes. If successful, your screen should enable the user to select BSD or CPA on the program list (whatever you have data for), and it should show the courses in that program. 
+Are you ready to test your work? Yes. If successful, your screen should enable the user to select BSD or CPA on the program list (whatever you have data for), and it should show the courses in that program.  
 <br>
 
 ### Create a controller for the Course detail view  
+Almost done.  
 
-### Update and design the storyboard scenes/views  
+Create a new controller, a Cocoa Touch Class, that inherits from UIViewController, and name it "CourseDetail". (Are you seeing a pattern here, with the names of the controller classes?)  
 
-<br><br><br>
-> (more to come)
+This controller will manage a detail screen/view, with data about a selected Course object. 
 
-<br><br><br>
+It needs a property to hold the Course object, which will be passed in by the CourseList controller's `prepare(for segue: sender:)` function.  
 
+Then, it needs outlets to the screen/view.  Let's do the storyboard work now.  
+<br>
 
+#### Update and design the storyboard scene/view  
+Select the existing standard view controller scene, currently managed by the ExampleList controller.  In its Identity Inspector, change its custom class to CourseDetail. Optionally (but recommended for you as the person who has to use the storyboard), set its title to something like "Course" or "Course Detail" or "Course Info".  
+
+Now, create a segue between CourseList and CourseDetail:  
+1. Select the prototype cell on CourseList  
+2. Control+click+drag to the CourseDetail controller, and choose the "Show" segue  
+3. Select the new segue, and set its identifier to "toCourseDetail" (you will use that string in the CourseList `prepare(for segue: sender:)` function)  
+
+Next, add user interface elements to the view. We need a label for the course code. Set its font size to 24.  
+
+For the course name, use a text view. Its font size should be 18, and be about three lines in height. 
+
+The course description is a long string. Use a text view for that too. Its font size can be 16, and it can fill the remaining space.  
+
+For BOTH text views, turn off (un-check/clear) its User Interaction Enabled and Multipe Touch settings in the Attributes Inspector.  
+
+Now, add outlets. 
+
+> Tip:  
+> If possible, name the outlets with the same name as the Course object's attribute names.  
+> This will enable you to make a mental connection between the attributes in the Course object, and the user interface outlets.  
+
+<br>
+
+#### Return to the CourseDetail controller code editing
+Now that the outlets have been defined, you can add code to the `viewDidLoad()` method, to set the text values of the outlets with data from the passed-in Course object.  
+<br>
+
+#### Return to the CourseList controller to code the segue
+Add a `prepare(for segue: sender:)` function to the CourseList controller. 
+
+Its contents will be slightly different from the corresponding functions in the ExampleList or ProgramList controllers. Why? Well, both of those get their item-to-be-passed-on from the frc. 
+
+In this CourseList controller, we get the item-to-be-passed-on from the *courses array* (and not an frc). So, we must use an approach that is more similar to the [Basic Tableview](https://github.com/dps923/winter2017/blob/master/notes/week_05/sample-code/tableview-demo/2-tableview-nav%20/basic-tableview/TableViewController.swift) code example.  
+
+```swift
+override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+    // segue identifier is "toCourseDetail"
+
+    // get a reference to the destination view controller
+
+    // get the tapped/selected row number; can be done with...
+    let row = self.tableView.indexPathForSelectedRow!.row
+
+    // use this as the index to the courses array 
+    // to get the selected/desired course object
+
+    // pass on the item to the destination view controller
+    
+    // set the destination view controller's title to a string
+    // for example "BTP400 info" 
+}
+```
+<br>
+
+#### Test your work
+At this point in time, the app should enable three-level navigation.  
+<br>
 
 ### Clean up the project  
-(partial information, to be updated)  
+Now it's time to clean up the project, and remove all artifacts and references to the "Example..." controllers and code.  
 
-In the project navigator, locate the Example.swift class, and delete it.  
+In the project navigator, locate these classes, and delete them:  
+* Example.swift  
+* ExampleList controller  
+* ExampleDetail controller  
 
-Next, in the project navigator, locate and choose/select the *ObjectModel.xcdatamodeld* object. The data model editor will open.  
+In the store initializer, remove all code that references these just-deleted classes.  
 
-Choose/select the existing "Example" entity, and delete it.  
+In the Core Data model, remove the Example entity.  
 
-In the project navigator, locate the Model class. Comment out the fetched results controller (frc) declaration near line 17. Then, comment out the frc configuration statement near line 40. 
+Now, you will learn something new: How to "clean" a project, and then rebuild/recompile.  
+
+If you attempted a build/compile/run right now, it is likely that there would be an error (and that error's message isn't really helpful). The reason is due to the cleanup that we just did. Therefore, we can "clean" the project of any past compilation assets, and start anew. How?  
+
+On the Xcode Product menu, there is a Clean option (with keyboard shortcut Command+Shift+K). Choose/run it.  
+
+Then, build/compile (Command+B). It should be successful now. 
+
+Remember, when testing / retesting, you must delete the app from the iOS Simulator or your device, because the data model was just changed.  
 <br>
 
 ### Test your work
@@ -443,14 +514,14 @@ If you do not have an iOS device, the School of ICT has a limited supply of iPod
 <br>
 
 #### Show / prove that your app works
-Final testing of your app must be on a device. Then, take a screenshot of **each** scene (list and detail). 
+Final testing of your app must be on a device. Then, take a screenshot of **each** scene (list, list, and detail). 
 
 Screenshots can be taken:
 - on the device itself
 - using the Xcode Devices window (on the Window menu), you can use the "take screenshot" button, and it will be stored on the desktop.
 - in the Simulator, File>Screenshot, it will store the file on the desktop
 
-Submit **both** screenshots with your project. Put them in the project folder, before doing the zip task.  
+Submit **all three** screenshots with your project. Put them in the project folder, before doing the zip task.  
 <br>
 
 ### Submitting your work
