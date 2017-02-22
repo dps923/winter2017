@@ -12,10 +12,6 @@ Next week is study week, so there are no classes/sessions.
 Our next class/session is on Monday, March 6. The plan is to introduce the networking topic on that day. We will begin the class with a test.  
 <br>
 
-### More to come  
-
-(end)  
-
 ### Checkpoint, and the next week or two
 Its worthwhile to pause for a moment, and list the topic sequence we have covered to date:
 <ol>
