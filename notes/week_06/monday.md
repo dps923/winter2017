@@ -333,5 +333,3 @@ You _should attempt_ to re-create this example, using your own copy of the CodeD
 Here is a diagram, click to open it full-size in a new tab/window.
 
 [![iOSAppObjectsWithCoreData](https://petermcintyre.files.wordpress.com/2014/02/iosappobjectswithcoredata.png?w=595&h=467)](https://petermcintyre.files.wordpress.com/2014/02/iosappobjectswithcoredata.png)
-
-.
