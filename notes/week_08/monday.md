@@ -88,8 +88,8 @@ let example = {
 #### Closures as function arguments
 
 Closures are super-handy (and commonly used) to pass in to functions as arguments.<br>
-The WWDC video linked above shows an interesting use closures for iterating collections, such that your closure gets called for every item of the collection.<br>
-Although this is a popular use of closures, in this class, we will only focus on using closures as _completion callbacks_, so that the caller can be notified a function is complete.
+The WWDC video linked above shows an interesting use of closures for iterating collections, such that your closure gets called for every item of the collection.<br>
+Although this is a popular use of closures, in this class, we will instead focus on using closures as _completion callbacks_, so that the caller can be notified a function is complete.
 
 ```
 func doLotsOfWork(completion: () -> Void) {
@@ -209,7 +209,7 @@ the `Data` object to JSON and then to an array or dictionary, as appropriate for
 `NSData` is the term most often used in docs and examples to describe the type,  
 and is still the only one documented, see https://developer.apple.com/reference/foundation/nsdata  
 >  
-> The doc for `Data` is empty: https://developer.apple.com/reference/foundation/data
+> On the other hand, the doc for Swift `Data` is empty: https://developer.apple.com/reference/foundation/data
 
 #### Code example
 
@@ -257,7 +257,7 @@ to create an upload task, and provides request body data through the from:Data p
 > Your app must provide any additional header information that the server might require—content type, for example—as part of the URL request object.
 
 
-> **Life Cycle of a URL Session with System-Provided Delegates**
+**Life Cycle of a URL Session with System-Provided Delegates**
 
 Here is the basic sequence of method calls that your app must make and completion handler calls that your app receives when using NSURLSession with the system-provided delegate:
 
