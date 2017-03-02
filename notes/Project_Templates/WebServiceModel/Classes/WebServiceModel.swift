@@ -3,7 +3,7 @@
 //  Classes
 //
 //  Created by Peter McIntyre on 2015-02-01.
-//  Copyright (c) 2015 School of ICT, Seneca College. All rights reserved.
+//  Copyright (c) 2017 School of ICT, Seneca College. All rights reserved.
 //
 
 import CoreData
@@ -13,24 +13,22 @@ class WebServiceModel : Model {
     var programs = [AnyObject]()
 
     // Method to fetch the collection
-    func programsGet() -> [AnyObject] {
+    func programsGet(completion: @escaping ([AnyObject])->Void) {
         let request = WebServiceRequest()
-        request.sendRequestToUrlPath("/programs", forDataKeyName: "Collection", from: self, propertyNamed: "programs")
-
-        // Return an empty array; when the request completes,
-        // the WebServiceRequest object will replace the value of 'programs'
-        // with the fetched results, and will send a notification
-        return [AnyObject]()
+        request.sendRequest(toUrlPath: "/programs", dataKeyName: "Collection", propertyNamed: "programs", completion: {
+            (result: [AnyObject]) in
+            completion(result)
+        })
     }
 
     // The next two properties may - or may not - survive the final version of the
 
     // Interim; may be changed
-    lazy var networkCollection: [AnyObject] = {
+    lazy var networkCollection: [Any] = {
         // Placeholder
-        return ["hello", "world"]
-    }() as [AnyObject]
-
+        return ["hello", "world"] as [Any]
+    }()
+    
     // Interim; may be changed
     lazy var networkObject: AnyObject = {
         // Placeholder
