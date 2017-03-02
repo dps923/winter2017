@@ -165,6 +165,8 @@ The response to each request will be displayed in its own grey-bordered box. Try
 
 https://ict.senecacollege.ca/api/programs
 
+https://ict.senecacollege.ca/api/courses
+
 https://itunes.apple.com/search?term=big+bang+theory&entity=tvEpisode&limit=10&sort=recent
 
 ALternatively, on the command-line you can type:<br>
