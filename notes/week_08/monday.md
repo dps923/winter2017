@@ -87,9 +87,9 @@ let example = {
 
 #### Closures as function arguments
 
-Closures are super-handy (and commonly used) to pass in to functions as arguments.
-The WWDC video above shows how a closure can be used to iterate collections so that your closure gets called for every item of the collection visited.
-We will focus on using closures as _completion callbacks_, so that the caller can be notified a function is complete.
+Closures are super-handy (and commonly used) to pass in to functions as arguments.<br>
+The WWDC video linked above shows an interesting use closures for iterating collections, such that your closure gets called for every item of the collection.<br>
+Although this is a popular use of closures, in this class, we will only focus on using closures as _completion callbacks_, so that the caller can be notified a function is complete.
 
 ```
 func doLotsOfWork(completion: () -> Void) {
