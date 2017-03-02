@@ -79,8 +79,9 @@ you can leave out the `-> Void`.
 
 This will look like:
 ```swift
-let example = { (x: Int) in // no '-> Void' needed
-  print("\(x)")
+let example = { 
+    (x: Int) in // no '-> Void' needed
+    print("\(x)")
 }
 ```
 
