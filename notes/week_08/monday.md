@@ -71,10 +71,10 @@ func noReturnValue() -> Void {
 }
 ```
 
-If the closure has no parameters are returns nothing, that is `() -> Void`, you can leave out the line<br>
+If the closure has _no parameters and returns nothing_, that is `() -> Void`, you can leave out the line<br>
 `() -> Void in`.
 
-If the closure takes parameters and returns nothing, like `(Int) -> Void`,<br>
+If the closure _takes parameters and returns nothing_, like `(Int) -> Void`,<br>
 you can leave out the `-> Void`.
 
 This will look like:
