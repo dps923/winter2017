@@ -35,6 +35,7 @@ A closure, like a regular function, has parameters and a return type:
 func myFunc(parameters) -> returnValue {
   statements
 }
+
 // ...a closure looks like this
 { (parameters) -> returnValue in
     statements
@@ -70,7 +71,8 @@ func noReturnValue() -> Void {
 }
 ```
 
-Tip: If the closure has no parameters are returns nothing, that is `() -> Void`, you can leave out the line `() -> Void in`.
+If the closure has no parameters are returns nothing, that is `() -> Void`, you can leave out the line<br>
+`() -> Void in`.
 If the closure takes parameters and returns nothing, like `(Int) -> Void`, you can leave out the `-> Void`.
 This will look like:
 ```swift
@@ -87,22 +89,22 @@ We will focus on using closures as _completion callbacks_, so that the caller ca
 
 ```
 func doLotsOfWork(completion: () -> Void) {
-    // do lots of work
+    // do lots of work, and then
     completion() // call the completion closure
 }
 
 // Calling the function and having it tell us when it is done
 doLotsOfWork(completion: {
-    () -> Void in
     print("Yay you are done!")
-}
+})
 ```
 
 #### Asynchronous code and Closures go together like peas and carrots
 
-When you call an asynchronous function, your code does not stop to wait for it complete.
+When you call an asynchronous function, your code does not stop to wait for it complete.<br>
 We will see our first asynchronous function this week when performing a networking call to get data.
-Networking code is asynchronous because it can take long periods of time to complete and your program should not stop executing to wait.
+
+Networking code is asynchronous because it can take long periods of time to complete and your program should not stop executing to wait.<br>
 The _URLSessionDataTask.resume()_ function behaves like this.
 
 ```swift
@@ -113,13 +115,13 @@ let task = URLSession.sharedSession.dataTask(with: request, completionHandler: o
 task.resume()
 ```
 
-This last line, `task.resume()`, does not block the program execution. So how do we know when the data is downloaded and ready?
+This last line, `task.resume()`, does not block the program execution. So how do we know when the data is downloaded and ready?<br>
 Notice the `completionHandler` parameter. That is a closure of the form `(Data?, URLResponse?, Error?) -> Void`.
 
 The `onComplete` variable used above would look like:
 ```
 let onComplete = { (data: Data?, response: URLResponse?, error: Error?) -> Void
-    if error != nil {
+    if let error = error {
         print(error)
     } else {
         // do something with data
