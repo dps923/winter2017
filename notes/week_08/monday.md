@@ -53,11 +53,11 @@ let closure = { (value: Int) -> Void in
 closure(10)
 ```
 
-Here we assigned the closure to a variable, then called it by using the variable with function syntax.
-The important point here is that a _closure can be assigned to a variable_.
+Here we assigned the closure to a variable, then called it by using the variable with function syntax.<br>
+The key point is that a _closure can be assigned to a variable_.
 
-Being able to assign to a variable means that closures can be used as _function parameters_.<br>
-This is useful concept in this week's examples.
+If follows from being able to assign closures to a variable, that _closures can be used as function parameters_.<br>
+'Closures as function parameters' is an important concept in this week's lecture.
 
 #### Void and ()
 
@@ -73,6 +73,7 @@ func noReturnValue() -> Void {
 }
 ```
 
+##### Syntax Tip
 If the closure has _no parameters and returns nothing_, that is `() -> Void`, you can leave out the line<br>
 `() -> Void in`.
 
