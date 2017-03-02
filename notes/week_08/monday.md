@@ -2,15 +2,20 @@
 
 There are some very important things to know before you begin coding network tasks:
 
-**Basic knowledge of HTTP is required.** You must know what a ‘request’ is, and what a ‘response’ is. These are the fundamental building blocks in an app that uses the network.
+**Basic knowledge of HTTP is required.** You must know what a ‘request’ is, and what a ‘response’ is. 
+These are the fundamental building blocks in an app that uses the network.
 
-**Basic knowledge of web services is required.** You must know what a ‘web service’ is, and how to use one. In this course, you do not have to code/create a web service – you simply have to use one. You must also be able to understand and use [JSON](http://json.org).
+**Basic knowledge of web services is required.** You must know what a ‘web service’ is, and how to use one. 
+In this course, you do not have to code/create a web service – you simply have to use one. 
+You must also be able to understand and use [JSON](http://json.org).
 
 **Network operations are asynchronous.** That means that we do not know _if_ or _when_ our request will be responded to.
 
-**You must learn something about closures.** A closure in Swift is an executable code object. Network operations use closures.
+**You must learn something about closures.** A closure in Swift is an executable code object. 
+Network operations use closures.
 
-**Simple tasks are easy to code, but complex tasks require more study.** Simple tasks include ‘get one’ and ‘get all’ from a resource. More complex tasks include HTTP POST, data modifications, authentication, and so on.
+**Simple tasks are easy to code, but complex tasks require more study.** Simple tasks include ‘get one’ and ‘get all’ from a resource. 
+More complex tasks include HTTP POST, data modifications, authentication, and so on.
 
 ### Swift Closures
 
@@ -23,20 +28,20 @@ Watch the WWDC video on Swift closures, from 25 min->33 min in this video:
 [WWDC Intro to Swift Video](https://developer.apple.com/videos/play/wwdc2016/404/)
 <sub><sup><b>This requires Safari. Without Safari, you can open a 'network stream' in VLC player with this URL: http://devstreaming.apple.com/videos/wwdc/2016/404hskg1ijeev16mdej/404/hls_vod_mvp.m3u8</b></sup></sub>
 
-A closure, like a function, has parameters and a return type:
+A closure, like a regular function, has parameters and a return type:
 
 ```
-// Instead of this
+// Instead of this..
 func myFunc(parameters) -> returnValue {
   statements
 }
-// a closure looks like this
+// ...a closure looks like this
 { (parameters) -> returnValue in
     statements
 }
 ```
 
-But you can't call that closure, in fact it does absolutely nothing.
+But you can't call that closure.
 Let's look at how you might call a closure:
 
 ```
@@ -49,18 +54,18 @@ closure(10)
 
 Here we assigned the closure to a variable, then called it by using the variable with function syntax.
 The important point here is that a _closure can be assigned to a variable_.
-This is very useful in this week's examples. 
+This is useful concept in this week's examples.
 
-#### Void and () 
+#### Void and ()
 
-To indicate a closure takes no parameters, use `()`, 
+To indicate a closure takes no parameters, use `()`,
 or to indicate it returns nothing, `Void` or `()` is used:
 ```swift
-// These are the same 
+// These are the same
 () -> ()
 () -> Void
 
-// A func in swift that doesn't specify a return value is implicity returning Void:
+// TIP: A func in swift that doesn't specify a return value is implicity returning Void:
 func noReturnValue() -> Void {
 }
 ```
@@ -69,7 +74,7 @@ Tip: If the closure has no parameters are returns nothing, that is `() -> Void`,
 If the closure takes parameters and returns nothing, like `(Int) -> Void`, you can leave out the `-> Void`.
 This will look like:
 ```swift
-let example = { (x: Int) in // no ->Void needed
+let example = { (x: Int) in // no '-> Void' needed
   print("\(x)")
 }
 ```
@@ -77,40 +82,59 @@ let example = { (x: Int) in // no ->Void needed
 #### Closures as function arguments
 
 Closures are super-handy (and commonly used) to pass in to functions as arguments.
-The WWDC video above shows how a closure can be used to iterate collections so that you closure gets called for every item of the collection visited.
+The WWDC video above shows how a closure can be used to iterate collections so that your closure gets called for every item of the collection visited.
 We will focus on using closures as _completion callbacks_, so that the caller can be notified a function is complete.
 
 ```
 func doLotsOfWork(completion: () -> Void) {
     // do lots of work
-    completion() // call the completion closure 
+    completion() // call the completion closure
 }
 
-doLotsOfWork(completion: { 
-    () -> Void in 
+// Calling the function and having it tell us when it is done
+doLotsOfWork(completion: {
+    () -> Void in
     print("Yay you are done!")
 }
 ```
 
 #### Asynchronous code and Closures go together like peas and carrots
 
-When you call an asynchronous function, your code does not stop to wait for it complete. 
+When you call an asynchronous function, your code does not stop to wait for it complete.
 We will see our first asynchronous function this week when performing a networking call to get data.
 Networking code is asynchronous because it can take long periods of time to complete and your program should not stop executing to wait.
-The URLSessionDataTask.execute() function behaves like this.
+The _URLSessionDataTask.resume()_ function behaves like this.
 
 ```swift
 // setup a networking task
-let task: URLSessionDataTask = session.dataTask(with: request, completionHandler: onComplete) 
+let task = URLSession.sharedSession.dataTask(with: request, completionHandler: onComplete)
 
 // tell the task to start
-task.execute()
+task.resume()
 ```
-This last line does not block the program execution. So how do we know when the data is downloaded and ready?
+
+This last line, `task.resume()`, does not block the program execution. So how do we know when the data is downloaded and ready?
 Notice the `completionHandler` parameter. That is a closure of the form `(Data?, URLResponse?, Error?) -> Void`.
 
-This closure is chock-full of information, it has the data retreived, the error (if there is one), and other response information.
+The `onComplete` variable used above would look like:
+```
+let onComplete = { (data: Data?, response: URLResponse?, error: Error?) -> Void
+    if error != nil {
+        print(error)
+    } else {
+        // do something with data
+    }
+}
+```
 
+Because of Swift's type inference, if a closure is defined in-place as a function parameter, you can leave out the types.
+This looks like:
+```swift
+let task = URLSession.sharedSession.dataTask(with: request, completionHandler: {
+    (data, response, error) in // for instance, Swift knows that 'data' is of type 'Data?'
+    // check for an error or use the data
+})
+```
 
 
 ### Getting started, hands-on
@@ -129,40 +153,51 @@ By itself, a web browser is not a good tool to use to inspect a web service. Ins
 
 [http://jsonformatter.curiousconcept.com](http://jsonformatter.curiousconcept.com)
 
-Enter a resource URI in its “JSON Data Url” field, and click its “Process” button. The response to each request will be displayed in its own grey-bordered box. Try it with these URIs:
+Enter a resource URI in its “JSON Data Url” field, and click its “Process” button.
+The response to each request will be displayed in its own grey-bordered box. Try it with these URIs:
 
 http://<fill in>azurewebsites.net/api/programs
 
-[https://itunes.apple.com/search?term=big+bang+theory&entity=tvEpisode&limit=10&sort=recent](https://itunes.apple.com/search?term=big+bang+theory&entity=tvEpisode&limit=10&sort=recent)
+https://itunes.apple.com/search?term=big+bang+theory&entity=tvEpisode&limit=10&sort=recent
 
 
 #### Composing a network request, and handling the response
 
 In iOS (and OS X), we use a ‘task’ object to compose a network request, and handle the response.
 
-The ‘task’ object is an instance of [NSURLSessionDataTask](https://developer.apple.com/library/ios/documentation/Foundation/Reference/NSURLSessionDataTask_class/Reference/Reference.html). It uses a ‘session’ object, and a ‘request’ object.
+The ‘task’ object is an instance of 
+[NSURLSessionDataTask](https://developer.apple.com/library/ios/documentation/Foundation/Reference/NSURLSessionDataTask_class/Reference/Reference.html).
+It uses a ‘session’ object, and a ‘request’ object.
 
-The ‘session’ object is an instance of [NSURLSession](https://developer.apple.com/library/ios/documentation/Foundation/Reference/NSURLSession_class/Introduction/Introduction.html), which represents a logical session between your app and a web service. A ‘session’ object must be configured, using a ‘session configuration’ object (which is an instance of [NSURLSessionConfiguration](https://developer.apple.com/library/ios/documentation/Foundation/Reference/NSURLSessionConfiguration_class/Reference/Reference.html)).
+The ‘session’ object is an instance of 
+[NSURLSession](https://developer.apple.com/library/ios/documentation/Foundation/Reference/NSURLSession_class/Introduction/Introduction.html),
+which represents a logical session between your app and a web service. 
+A ‘session’ object must be configured, using a ‘session configuration’ object (which is an instance of 
+[NSURLSessionConfiguration](https://developer.apple.com/library/ios/documentation/Foundation/Reference/NSURLSessionConfiguration_class/Reference/Reference.html)).
 
-The ‘request’ object is an instance of [NSMutableURLRequest](https://developer.apple.com/library/ios/documentation/cocoa/reference/foundation/Classes/NSMutableURLRequest_Class/Reference/Reference.html), which needs a ‘URL’ object, and can be configured with request headers if necessary.
+The ‘request’ object is an instance of [NSMutableURLRequest](https://developer.apple.com/library/ios/documentation/cocoa/reference/foundation/Classes/NSMutableURLRequest_Class/Reference/Reference.html),
+which needs a ‘URL’ object, and can be configured with request headers if necessary.
 
 In summary, a ‘task’ object relies on the presence of a number of other initialized and configured objects.
 
 #### Configuring and executing the ‘task’ object
 
-When a ‘task’ object is created, it does not immediately execute. You must execute it, when you are ready, by sending the ‘resume’ message to the object. The ‘task’ object executes in the background, so it does not impair the responsiveness of your app’s user interface.
+As discussed in the first part of the lecture, when a ‘task’ object is created, it does not immediately execute (it is in a suspended state). You must execute it with `resume()`.
+The ‘task’ object executes in the background, so it does not impair the responsiveness of your app’s user interface.
 
-More important is the configuration of the ‘task’ object: You must write a _block of code_ that will run when the task completes execution.
-
-This _block of code_ is known as a _closure_ in Swift. 
-
+The ‘task’ requires a _block of code_ that will run when the task completes execution, which is a _closure_ .
 The _closure_ is defined on the ‘task’ object’s _completionHandler_ parameter. It exposes these values:
 
 *   The data returned in the response body
 *   Metadata about the response
 *   If necessary, error information
 
-The data type of the data returned in the response body is NSData. Therefore, we must transform it into the format we expect. In this course, we plan to work with web services that use JSON, so we will [transform](https://developer.apple.com/library/mac/documentation/Foundation/Reference/NSJSONSerialization_Class/Reference/Reference.html) the NSData object to JSON and then to an array or dictionary, as appropriate for the request.
+They are all _optional types_, so unwrapping is necessary to use them safely.
+
+The data type of the data returned in the response body is NSData. Therefore, we must transform it into the format we expect. 
+In this course, we plan to work with web services that use JSON, 
+so we will [transform](https://developer.apple.com/library/mac/documentation/Foundation/Reference/NSJSONSerialization_Class/Reference/Reference.html) 
+the NSData object to JSON and then to an array or dictionary, as appropriate for the request.
 
 #### Code example
 
