@@ -12,7 +12,7 @@ class WebServiceRequest {
     
     // MARK: - Properties
     
-    var urlBase = "http://dps907fall2013.azurewebsites.net/api"
+    var urlBase = "https://ict.senecacollege.ca/api"
     var httpMethod = "GET"
     var headerAccept = "application/json"
     var headerContentType = "application/json"
@@ -22,7 +22,7 @@ class WebServiceRequest {
     
     // MARK: - Public methods
 
-    func sendRequest(toUrlPath urlPath: String, dataKeyName: String, propertyNamed: String, completion: @escaping ([AnyObject])->Void) {
+    func sendRequest(toUrlPath urlPath: String, dataKeyName: String?, propertyNamed: String?, completion: @escaping ([AnyObject])->Void) {
         
         // Assemble the URL
         guard let url = URL(string: "\(urlBase)\(urlPath)") else {
@@ -78,13 +78,18 @@ class WebServiceRequest {
                 }
 
                 // The request was successful, and deserialization was successful.
-                // Therefore, extract the data we want from the dictionary, and call the completion callback.
-                // This version of the code works only with
-                // top/first level key-value pairs in the source JSON data
-                if let resultDict = results as? NSDictionary, let extractedData = resultDict[dataKeyName] as? [AnyObject] {
-                    completion(extractedData)
+
+                if let dataKeyName = dataKeyName {
+                    // Therefore, extract the data we want from the dictionary, and call the completion callback.
+                    // This version of the code works only with
+                    // top/first level key-value pairs in the source JSON data
+                    if let resultDict = results as? NSDictionary, let extractedData = resultDict[dataKeyName] as? [AnyObject] {
+                        completion(extractedData)
+                    } else {
+                        print("Error extracting from json dict for key \(dataKeyName)")
+                    }
                 } else {
-                    print("Error extracting from json dict for key \(dataKeyName)")
+                    completion(results as! [AnyObject])
                 }
             }
             

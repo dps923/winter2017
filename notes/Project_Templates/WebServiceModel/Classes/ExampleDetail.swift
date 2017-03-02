@@ -11,16 +11,14 @@ import UIKit
 class ExampleDetail: UIViewController {
 
     // Data object, passed in by the parent view controller in the segue method
-    var detailItem: Example!
+    var detailItem: Program!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Simply display some data in the debug console
-        if let att1 = self.detailItem.attribute1 {
-            let att2 = self.detailItem.attribute2
-            print("Detail item: \(att1), \(att2)")
-        }
+        print("Detail item: \(detailItem.code), \(detailItem.id)")
+
     }
 
 }

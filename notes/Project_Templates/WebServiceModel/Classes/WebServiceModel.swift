@@ -8,30 +8,52 @@
 
 import CoreData
 
-class WebServiceModel : Model {
-    // Property to hold/store the fetched collection
-    var programs = [AnyObject]()
+struct Program {
+    var code = ""
+    var id = -1
+    var name = ""
+}
 
-    // Method to fetch the collection
-    func programsGet(completion: @escaping ([AnyObject])->Void) {
-        let request = WebServiceRequest()
-        request.sendRequest(toUrlPath: "/programs", dataKeyName: "Collection", propertyNamed: "programs", completion: {
-            (result: [AnyObject]) in
-            completion(result)
-        })
+protocol WebServiceModelDelegate : class {
+    func webServiceModelDidChangeContent(model: WebServiceModel)
+}
+
+class WebServiceModel {
+    // Property to hold/store the fetched collection
+    var programs = [Program]()
+
+    // The delegate gets called to report that the data has changed
+    weak var delegate: WebServiceModelDelegate? = nil
+
+    init() {
+        programsGet()
     }
 
-    // The next two properties may - or may not - survive the final version of the
+    // Method to fetch the collection
+    func programsGet() {
+        let request = WebServiceRequest()
+        request.sendRequest(toUrlPath: "/programs", dataKeyName: nil, propertyNamed: nil, completion: {
+            (result: [AnyObject]) in
+            for item in result {
+                guard let programDict = item as? [String:AnyObject] else {
+                    continue
+                }
 
-    // Interim; may be changed
-    lazy var networkCollection: [Any] = {
-        // Placeholder
-        return ["hello", "world"] as [Any]
-    }()
-    
-    // Interim; may be changed
-    lazy var networkObject: AnyObject = {
-        // Placeholder
-        return "hello"
-    }() as AnyObject
+                var program = Program()
+                if let name = programDict["Name"] as? String {
+                    program.name = name
+                }
+                if let code = programDict["Code"] as? String {
+                    program.code = code
+                }
+                if let id = programDict["Id"] as? Int {
+                    program.id = id
+                }
+                self.programs.append(program)
+            }
+
+            // notify the delegate
+            self.delegate?.webServiceModelDidChangeContent(model: self)
+        })
+    }
 }
