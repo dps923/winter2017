@@ -65,7 +65,7 @@ The data type of the data returned in the response body is NSData. Therefore, we
 
 #### Code example
 
-See the “ICT WS v1” code example on the GitHub code example repository, in the Week_06 folder.
+See the <fill in> code example on the GitHub code example repository, in the Week_08 folder.
 
 #### Learning resources
 
