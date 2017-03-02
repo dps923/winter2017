@@ -55,6 +55,8 @@ closure(10)
 
 Here we assigned the closure to a variable, then called it by using the variable with function syntax.
 The important point here is that a _closure can be assigned to a variable_.
+
+Being able to assign to a variable means that closures can be used as _function parameters_.<br>
 This is useful concept in this week's examples.
 
 #### Void and ()
