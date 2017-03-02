@@ -14,15 +14,15 @@ There are some very important things to know before you begin coding network tas
 
 #### Getting started, hands-on
 
-This week, you will use the ClassesV2 template to create a simple app that uses a web service.
+This week, you will use the Project_Templates/WebServiceModel template to create a simple app that uses a web service.
 
-Download the ClassesV2 template from the [GitHub code example repository](https://github.com/peteratseneca/dps923winter2014). Then, perform the project-rename task.
+Download the template from the [GitHub code example repository](../Project_Templates/WebServiceModel/). Then, perform the project-rename task.
 
 We will use a public web service that your professor created recently. It is here:
 
-[http://dps907fall2013.azurewebsites.net/api](http://dps907fall2013.azurewebsites.net/api)
+http://<fill in>.azurewebsites.net/api
 
-It enables requestors to work with academic program data from the School of ICT. For example, you can obtain a collection of academic “Program” objects, or a collection of academic “Subject” objects. The web service is designed to be self-documenting, so you can discover its data and permitted operations.
+The web service is designed to be self-documenting, so you can discover its data and permitted operations.
 
 By itself, a web browser is not a good tool to use to inspect a web service. Instead, use this web app:
 
@@ -30,9 +30,7 @@ By itself, a web browser is not a good tool to use to inspect a web service. Ins
 
 Enter a resource URI in its “JSON Data Url” field, and click its “Process” button. The response to each request will be displayed in its own grey-bordered box. Try it with these URIs:
 
-[http://dps907fall2013.azurewebsites.net/api/programs](http://dps907fall2013.azurewebsites.net/api/programs)
-
-[http://dps907fall2013.azurewebsites.net/api/subjects/94](http://dps907fall2013.azurewebsites.net/api/subjects/94)
+http://<fill in>azurewebsites.net/api/programs
 
 [https://itunes.apple.com/search?term=big+bang+theory&entity=tvEpisode&limit=10&sort=recent](https://itunes.apple.com/search?term=big+bang+theory&entity=tvEpisode&limit=10&sort=recent)
 
