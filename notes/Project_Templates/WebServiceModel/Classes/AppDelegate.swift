@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         // Create an instance of the model object
-        let model = Model()
+        let model = WebServiceModel()
         
         // Get a reference to the navigation controller
         let nav = window!.rootViewController as! UINavigationController
