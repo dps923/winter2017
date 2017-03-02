@@ -196,10 +196,16 @@ The _closure_ is defined on the ‘task’ object’s _completionHandler_ parame
 
 They are all _optional types_, so unwrapping is necessary to use them safely.
 
-The data type of the data returned in the response body is NSData. Therefore, we must transform it into the format we expect. 
+The data type of the data returned in the response body is `Data`. Therefore, we must transform it into the format we expect. 
 In this course, we plan to work with web services that use JSON, 
 so we will [transform](https://developer.apple.com/library/mac/documentation/Foundation/Reference/NSJSONSerialization_Class/Reference/Reference.html) 
-the NSData object to JSON and then to an array or dictionary, as appropriate for the request.
+the `Data` object to JSON and then to an array or dictionary, as appropriate for the request.
+
+> The types `NSData` and `Data` are equivalent in Swift 3 (the version we use).  
+`NSData` is the term most often used in docs and examples to describe the type,  
+and is still the only one documented, see https://developer.apple.com/reference/foundation/nsdata  
+>  
+> The doc for `Data` is empty: https://developer.apple.com/reference/foundation/data
 
 #### Code example
 
@@ -213,54 +219,57 @@ See the <fill in> code example on the GitHub code example repository, in the Wee
 
 The following is a summary of the important parts of the URL Loading System Programming Guide, as well as the class reference documents for NSURLSession and others.
 
-> Content copied directly/verbatim from the Apple documentation is <span style="color:#0000ff;">blue-coloured</span>.
+> Content copied directly/verbatim from the Apple documentation is shown in quoted block style
 
-<span style="color:#0000ff;">The URL loading system is a set of classes and protocols that allow your app to access content referenced by a URL.</span>
+> The URL loading system is a set of classes and protocols that allow your app to access content referenced by a URL.
 
-<span style="color:#0000ff;">The most commonly used classes in the URL loading system allow your app to retrieve the content of a URL from the source. In iOS 7 and later or OS X v10.9 and later, NSURLSession is the preferred API for new code that performs URL requests.</span> Old code examples and search engine results will use other classes (NSURLConnection, AFNetworking). While useful and instructive, you should not rely on old code examples.
+> The most commonly used classes in the URL loading system allow your app to retrieve the content of a URL from the source. In iOS 7 and later or OS X v10.9 and later, NSURLSession is the preferred API for new code that performs URL requests. Old code examples and search engine results will use other classes (NSURLConnection, AFNetworking). While useful and instructive, you should not rely on old code examples.
 
-<span style="color:#0000ff;">The URL loading classes use two helper classes that provide additional metadata—one for the request itself (NSURLRequest) and one for the server’s response (NSURLResponse).</span>
+> The URL loading classes use two helper classes that provide additional metadata—one for the request itself (NSURLRequest) and one for the server’s response (NSURLResponse).
 
-<span style="color:#0000ff;">The NSURLSession class and related classes provide an API for downloading content via HTTP. Like most networking APIs, the NSURLSession API is highly asynchronous. If you use the default, system-provided delegate, you must provide a completion handler block that returns data to your app when a transfer finishes successfully or with an error. </span>
+> The NSURLSession class and related classes provide an API for downloading content via HTTP. Like most networking APIs, the NSURLSession API is highly asynchronous. If you use the default, system-provided delegate, you must provide a completion handler block that returns data to your app when a transfer finishes successfully or with an error. 
 
-<span style="color:#0000ff;">The NSURLSession API supports three types of sessions.</span> We will use the “default session” type.
+> The NSURLSession API supports three types of sessions. We will use the “default session” type.
 
-<span style="color:#0000ff;">Within a session, the NSURLSession class supports three types of tasks: data tasks, download tasks, and upload tasks.</span> We will mostly use “data tasks”.
+> Within a session, the NSURLSession class supports three types of tasks: data tasks, download tasks, and upload tasks. We will mostly use “data tasks”.
 
-<span style="color:#0000ff;">The NSURLSession API provides a wide range of configuration options. Most settings are contained in a separate configuration object</span> (which is an instance of NSURLSessionConfiguration).
+> The NSURLSession API provides a wide range of configuration options. Most settings are contained in a separate configuration object (which is an instance of NSURLSessionConfiguration).
 
-For many of our getting-started examples, <span style="color:#0000ff;">when you instantiate <span style="color:#333333;">an NSURLSession</span> object, you specify the following: </span>
+For many getting-started examples, when you instantiate an NSURLSession object, you specify the following: 
 
-1.  <span style="color:#0000ff;">A configuration object that governs the behavior of that session and the tasks within it</span>
-2.  <span style="color:#0000ff;">Optionally, a delegate object</span>; however, we will use _nil_. <span style="color:#0000ff;">If you do not provide a delegate, the NSURLSession object uses a system-provided delegate. </span>
-3.  The name of an _operation queue_ that performs the task specified in the _completion handler block_. We will use _[NSOperationQueue mainQueue]_.
+1.  A configuration object that governs the behavior of that session and the tasks within it
+2.  Optionally, a delegate object; however, we will use _nil_. If you do not provide a delegate, the NSURLSession object uses a system-provided delegate.
+3.  The name of an _operation queue_ that performs the task specified in the _completion handler block_. We will use _NSOperationQueue.mainQueue_.
 
-<span style="color:#0000ff;">Your app can provide the request body content for an HTTP POST request in three ways.</span> We will use an NSData object.
+> Your app can provide the request body content for an HTTP POST request in three ways. 
+We will use an NSData object.
 
-<span style="color:#0000ff;">To upload body content with an NSData object, your app calls … the uploadTaskWithRequest:fromData:completionHandler: method to create an upload task, and provides request body data through the fromData parameter.  </span>
+> To upload body content with an NSData object, your app calls … the 
+uploadTask(with: URLRequest, from: Data, completionHandler:) method
+to create an upload task, and provides request body data through the from:Data parameter.  
 
-<span style="color:#0000ff;">The session object computes the Content-Length header based on the size of the data object.</span>
+> The session object computes the Content-Length header based on the size of the data object.
 
-<span style="color:#0000ff;">Your app must provide any additional header information that the server might require—content type, for example—as part of the URL request object.</span>
+> Your app must provide any additional header information that the server might require—content type, for example—as part of the URL request object.
 
 
-<span style="color:#0000ff;">**Life Cycle of a URL Session with System-Provided Delegates**</span>
+> **Life Cycle of a URL Session with System-Provided Delegates**
 
 Here is the basic sequence of method calls that your app must make and completion handler calls that your app receives when using NSURLSession with the system-provided delegate:
 
-<span style="color:#0000ff;">1\. Create a session configuration. </span>
+1. Create a session configuration.
 
-<span style="color:#0000ff;">2\. Create a session, specifying a configuration object, a nil delegate</span>, and an operation queue.
+2. Create a session, specifying a configuration object, a nil delegate, and an operation queue.
 
-<span style="color:#0000ff;">3\. Create task objects within a session that each represent a resource request.</span> Write a completion handler block.
+3. Create task objects within a session that each represent a resource request. Write a completion handler block.
 
-<span style="color:#0000ff;">Each task starts out in a suspended state. After your app calls resume on the task, it begins downloading the specified resource.</span>
+> Each task starts out in a suspended state. After your app calls resume on the task, it begins downloading the specified resource.
 
-<span style="color:#0000ff;">When a task completes, the NSURLSession object calls the task’s completion handler.</span>
+> When a task completes, the NSURLSession object calls the task’s completion handler.
 
-<span style="color:#0000ff;">When your app no longer needs a session, invalidate it by calling _finishTasksAndInvalidate_ (to allow outstanding tasks to finish before invalidating the object).</span>
+> When your app no longer needs a session, invalidate it by calling _finishTasksAndInvalidate_ (to allow outstanding tasks to finish before invalidating the object).
 
-> <span style="color:#0000ff;">Note: NSURLSession does not report server errors through the error parameter. The only errors your app receives through the error parameter are client-side errors, such as being unable to resolve the hostname or connect to the host. </span>
-> 
-> <span style="color:#0000ff;">Server-side errors are reported through the HTTP status code in the NSHTTPURLResponse object. </span>
+> Note: NSURLSession does not report server errors through the error parameter. The only errors your app receives through the error parameter are client-side errors, such as being unable to resolve the hostname or connect to the host. 
+ 
+> Server-side errors are reported through the HTTP status code in the NSHTTPURLResponse object. 
 
