@@ -25,7 +25,7 @@ Read the Apple doc on this topic:
 https://developer.apple.com/library/prerelease/content/documentation/Swift/Conceptual/Swift_Programming_Language/Closures.html
 
 Watch the WWDC video on Swift closures, from 25 min->33 min in this video:
-[WWDC Intro to Swift Video](https://developer.apple.com/videos/play/wwdc2016/404/)
+[WWDC Intro to Swift Video](https://developer.apple.com/videos/play/wwdc2016/404/)<br>
 <sub><sup><b>This requires Safari. Without Safari, you can open a 'network stream' in VLC player with this URL: http://devstreaming.apple.com/videos/wwdc/2016/404hskg1ijeev16mdej/404/hls_vod_mvp.m3u8</b></sup></sub>
 
 A closure, like a regular function, has parameters and a return type:
