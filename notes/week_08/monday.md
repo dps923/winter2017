@@ -152,11 +152,9 @@ This week, you will use the Project_Templates/WebServiceModel template to create
 
 Download the template from the [GitHub code example repository](../Project_Templates/WebServiceModel/). Then, perform the project-rename task.
 
-We will use a public web service that your professor created recently. It is here:
+We will use a public web service. It is here:
 
-http://<fill in>.azurewebsites.net/api
-
-The web service is designed to be self-documenting, so you can discover its data and permitted operations.
+https://ict.senecacollege.ca/api
 
 By itself, a web browser is not a good tool to use to inspect a web service. Instead, use this web app:
 
@@ -165,10 +163,13 @@ By itself, a web browser is not a good tool to use to inspect a web service. Ins
 Enter a resource URI in its “JSON Data Url” field, and click its “Process” button.
 The response to each request will be displayed in its own grey-bordered box. Try it with these URIs:
 
-http://<fill in>azurewebsites.net/api/programs
+https://ict.senecacollege.ca/api/programs
 
 https://itunes.apple.com/search?term=big+bang+theory&entity=tvEpisode&limit=10&sort=recent
 
+ALternatively, on the command-line you can type:<br>
+`curl https://ict.senecacollege.ca/api/programs`
+<br>And you can see the JSON response.
 
 #### Composing a network request, and handling the response
 
@@ -216,7 +217,7 @@ and is still the only one documented, see https://developer.apple.com/reference/
 
 #### Code example
 
-See the <fill in> code example on the GitHub code example repository, in the Week_08 folder.
+The [../Project_Templates/WebServiceModel](../Project_Templates/WebServiceModel) template has a functional code example. It loads a list of programs in a table view, and each row can be tapped to output the details for a program in the console.
 
 #### Learning resources
 
