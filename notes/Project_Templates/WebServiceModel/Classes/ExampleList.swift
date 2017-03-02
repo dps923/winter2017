@@ -3,7 +3,7 @@
 //  Classes
 //
 //  Created by Peter McIntyre on 2015-02-01.
-//  Copyright (c) 2015 School of ICT, Seneca College. All rights reserved.
+//  Copyright (c) 2017 School of ICT, Seneca College. All rights reserved.
 //
 
 import UIKit
@@ -52,15 +52,19 @@ class ExampleList: UITableViewController, NSFetchedResultsControllerDelegate {
         return self.frc.sections?[section].numberOfObjects ?? 0
     }
 
-    // This code you will customize
+    // You can use this code as-is, it should handle most cases
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
 
-        // Now customize the cell
-        let item: Example = frc.object(at: indexPath)
-        cell.textLabel!.text = item.attribute1
+        self.configure(cell: cell, atIndexPath: indexPath)
 
         return cell
+    }
+
+    // Code you will customize to setup the cell
+    func configure(cell: UITableViewCell, atIndexPath indexPath: IndexPath) {
+        let item: Example = frc.object(at: indexPath)
+        cell.textLabel!.text = item.attribute1
     }
 
     // MARK: - Navigation

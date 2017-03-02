@@ -3,7 +3,7 @@
 //  Classes
 //
 //  Created by Peter McIntyre on 2015-02-01.
-//  Copyright (c) 2015 School of ICT, Seneca College. All rights reserved.
+//  Copyright (c) 2017 School of ICT, Seneca College. All rights reserved.
 //
 
 import CoreData
@@ -18,7 +18,15 @@ class Model {
 
     // MARK: - Public methods
 
+    // Shortcut to get the managed object context.
+    // This uses a Swift 'calculated property', and is the same as writing a getter-type function:
+    // `func context() -> NSManagedObjectContext { return cdStack.managedObjectContext }`
+    var context: NSManagedObjectContext {
+        return cdStack.managedObjectContext
+    }
+
     init() {
+        var useStoreInitializer = false
         if Model.isFirstLaunch() {
             // URL to the object store file in the app bundle
             let storeFileInBundle = Bundle.main.url(forResource: "ObjectStore", withExtension: "sqlite")
@@ -29,17 +37,19 @@ class Model {
             if hasStarterData {
                 // Use the supplied starter data, abort if error copying
                 try! FileManager.default.copyItem(at: storeFileInBundle!, to: Model.pathToStoreFileInDocumentsDir())
-                cdStack = CDStack()
             } else {
-                // Create some new data
-                cdStack = CDStack()
-                StoreInitializer.populateInitialData(cdStack: cdStack)
+                useStoreInitializer = true // used at the end of init to load in initial data 
             }
-        } else {
-            cdStack = CDStack()
         }
 
+        cdStack = CDStack()
+
         frc_example = cdStack.frcForEntityNamed("Example", withPredicateFormat: nil, predicateObject: nil, sortDescriptors: [NSSortDescriptor(key: "attribute1", ascending: true)], andSectionNameKeyPath: nil)
+
+        if useStoreInitializer {
+            // In init(), you can only use 'self' after all properties have been initialised. Leave this function near the end.
+            StoreInitializer.populateInitialData(model: self)
+        }
     }
 
     static func pathToStoreFileInDocumentsDir() -> URL {
