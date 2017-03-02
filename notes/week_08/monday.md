@@ -12,7 +12,108 @@ There are some very important things to know before you begin coding network tas
 
 **Simple tasks are easy to code, but complex tasks require more study.** Simple tasks include ‘get one’ and ‘get all’ from a resource. More complex tasks include HTTP POST, data modifications, authentication, and so on.
 
-#### Getting started, hands-on
+### Swift Closures
+
+Think of a _closure_ as an _inline function_. (You have likely worked with similar constructs in the past, including JavaScript functions (and closures), and C# lambda expressions.)
+
+Read the Apple doc on this topic:
+https://developer.apple.com/library/prerelease/content/documentation/Swift/Conceptual/Swift_Programming_Language/Closures.html
+
+Watch the WWDC video on Swift closures, from 25 min->33 min in this video:
+[WWDC Intro to Swift Video](https://developer.apple.com/videos/play/wwdc2016/404/)
+<sub><sup><b>This requires Safari. Without Safari, you can open a 'network stream' in VLC player with this URL: http://devstreaming.apple.com/videos/wwdc/2016/404hskg1ijeev16mdej/404/hls_vod_mvp.m3u8</b></sup></sub>
+
+A closure, like a function, has parameters and a return type:
+
+```
+// Instead of this
+func myFunc(parameters) -> returnValue {
+  statements
+}
+// a closure looks like this
+{ (parameters) -> returnValue in
+    statements
+}
+```
+
+But you can't call that closure, in fact it does absolutely nothing.
+Let's look at how you might call a closure:
+
+```
+// A closure that takes and Int and returns nothing (Void)
+let closure = { (value: Int) -> Void in
+    print("The value is \(value)")
+}
+closure(10)
+```
+
+Here we assigned the closure to a variable, then called it by using the variable with function syntax.
+The important point here is that a _closure can be assigned to a variable_.
+This is very useful in this week's examples. 
+
+#### Void and () 
+
+To indicate a closure takes no parameters, use `()`, 
+or to indicate it returns nothing, `Void` or `()` is used:
+```swift
+// These are the same 
+() -> ()
+() -> Void
+
+// A func in swift that doesn't specify a return value is implicity returning Void:
+func noReturnValue() -> Void {
+}
+```
+
+Tip: If the closure has no parameters are returns nothing, that is `() -> Void`, you can leave out the line `() -> Void in`.
+If the closure takes parameters and returns nothing, like `(Int) -> Void`, you can leave out the `-> Void`.
+This will look like:
+```swift
+let example = { (x: Int) in // no ->Void needed
+  print("\(x)")
+}
+```
+
+#### Closures as function arguments
+
+Closures are super-handy (and commonly used) to pass in to functions as arguments.
+The WWDC video above shows how a closure can be used to iterate collections so that you closure gets called for every item of the collection visited.
+We will focus on using closures as _completion callbacks_, so that the caller can be notified a function is complete.
+
+```
+func doLotsOfWork(completion: () -> Void) {
+    // do lots of work
+    completion() // call the completion closure 
+}
+
+doLotsOfWork(completion: { 
+    () -> Void in 
+    print("Yay you are done!")
+}
+```
+
+#### Asynchronous code and Closures go together like peas and carrots
+
+When you call an asynchronous function, your code does not stop to wait for it complete. 
+We will see our first asynchronous function this week when performing a networking call to get data.
+Networking code is asynchronous because it can take long periods of time to complete and your program should not stop executing to wait.
+The URLSessionDataTask.execute() function behaves like this.
+
+```swift
+// setup a networking task
+let task: URLSessionDataTask = session.dataTask(with: request, completionHandler: onComplete) 
+
+// tell the task to start
+task.execute()
+```
+This last line does not block the program execution. So how do we know when the data is downloaded and ready?
+Notice the `completionHandler` parameter. That is a closure of the form `(Data?, URLResponse?, Error?) -> Void`.
+
+This closure is chock-full of information, it has the data retreived, the error (if there is one), and other response information.
+
+
+
+### Getting started, hands-on
 
 This week, you will use the Project_Templates/WebServiceModel template to create a simple app that uses a web service.
 
@@ -53,7 +154,7 @@ When a ‘task’ object is created, it does not immediately execute. You must e
 
 More important is the configuration of the ‘task’ object: You must write a _block of code_ that will run when the task completes execution.
 
-This _block of code_ is known as a _closure_ in Swift. Think of a _closure_ as an _inline function_. (You have likely worked with similar constructs in the past, including JavaScript functions (and closures), and C# lambda expressions.)
+This _block of code_ is known as a _closure_ in Swift. 
 
 The _closure_ is defined on the ‘task’ object’s _completionHandler_ parameter. It exposes these values:
 
