@@ -32,7 +32,7 @@ class WebServiceModel {
     // Method to fetch the collection
     func programsGet() {
         let request = WebServiceRequest()
-        request.sendRequest(toUrlPath: "/programs", dataKeyName: nil, propertyNamed: nil, completion: {
+        request.sendRequest(toUrlPath: "/programs", dataKeyName: nil, completion: {
             (result: [AnyObject]) in
             for item in result {
                 guard let programDict = item as? [String:AnyObject] else {
