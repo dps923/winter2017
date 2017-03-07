@@ -16,13 +16,10 @@ class WebServiceRequest {
     var httpMethod = "GET"
     var headerAccept = "application/json"
     var headerContentType = "application/json"
-
-    var headerAuthorization: String?
-    var messageBody: AnyObject?
     
     // MARK: - Public methods
 
-    func sendRequest(toUrlPath urlPath: String, dataKeyName: String?, propertyNamed: String?, completion: @escaping ([AnyObject])->Void) {
+    func sendRequest(toUrlPath urlPath: String, dataKeyName: String?, completion: @escaping ([AnyObject])->Void) {
         
         // Assemble the URL
         guard let url = URL(string: "\(urlBase)\(urlPath)") else {
@@ -33,28 +30,25 @@ class WebServiceRequest {
         // Diagnostic
         print(url.description)
 
-        // Create a session configuration object
-        let sessionConfig = URLSessionConfiguration.default
+        // Create a session object. This is a handy shortcut to a default URLSession (with a default configuration)
+        let session = URLSession.shared
 
-        // Create a session object
-        let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: OperationQueue.main)
-        
+        // Alternatively, you can customize the NSURLSession with these two steps:
+        //
+        // 1) Create a session configuration object (for example to set the timeout to 30 secs):
+        // let sessionConfig = URLSessionConfiguration.default
+        // sessionConfig.timeoutIntervalForRequest = 30
+        //
+        // 2) Create the URLSession using the configuration:
+        // let URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: OperationQueue.main)
+
+
         // Create a request object
         let request = NSMutableURLRequest(url: url)
 
         // Set its important properties
         request.httpMethod = httpMethod
         request.setValue(headerAccept, forHTTPHeaderField: "Accept")
-
-        // If a message body was configured...
-        if let mb: AnyObject = messageBody {
-            do {
-                let message = try JSONSerialization.data(withJSONObject: mb)
-                request.httpBody = message
-            } catch {
-                print("Error creating message body: \(error.localizedDescription)")
-            }
-        }
 
         // Define a network task; after it's created, it's in a "suspended" state
         let task: URLSessionDataTask = session.dataTask(with: request as URLRequest, completionHandler: {
@@ -91,6 +85,9 @@ class WebServiceRequest {
                 } else {
                     completion(results as! [AnyObject])
                 }
+            } else {
+                let r = response as? HTTPURLResponse
+                print("No data!\nStatus code: \(r?.statusCode)\nHeaders:\n\(r?.allHeaderFields.description)")
             }
             
             // Finally, reference the app's network activity indicator in the status bar
