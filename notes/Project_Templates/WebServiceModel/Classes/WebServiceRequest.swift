@@ -30,17 +30,14 @@ class WebServiceRequest {
         // Diagnostic
         print(url.description)
 
-        // Create a session object. This is a handy shortcut to a default URLSession (with a default configuration)
-        let session = URLSession.shared
+        // Create a session configuration object
+        let sessionConfig = URLSessionConfiguration.default
 
-        // Alternatively, you can customize the NSURLSession with these two steps:
-        //
-        // 1) Create a session configuration object (for example to set the timeout to 30 secs):
-        // let sessionConfig = URLSessionConfiguration.default
-        // sessionConfig.timeoutIntervalForRequest = 30
-        //
-        // 2) Create the URLSession using the configuration:
-        // let URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: OperationQueue.main)
+        // Create a session object
+        let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: OperationQueue.main)
+
+        // ^^^ Beware: there is a `URLSession.shared` available, this will respond off the main thread.
+        // This URLSession uses OperationQueue.main, which directs it to callback on the main thread only.
 
 
         // Create a request object
