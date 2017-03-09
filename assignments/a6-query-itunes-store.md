@@ -180,6 +180,8 @@ Song - no
 All works by the artist   
 https://itunes.apple.com/search?term=the+rolling+stones&limit=15  
 
+> The "limit" key is not required. It is used here to simply make the result set smaller.  
+
 Artist - no  
 Album - no  
 Song - yes  
@@ -204,7 +206,7 @@ Artist - yes
 Album - no  
 Song - yes  
 A specific song by an artist  
-https://itunes.apple.com/search?term=rolling+stones+under+my+thumb&entity=song  
+https://itunes.apple.com/search?term=rolling+stones+under+my+thumb&entity=song&limit=25  
 
 **All three**
 
@@ -219,16 +221,19 @@ https://itunes.apple.com/search?term=the+rolling+stones+hot+rocks+thumb&entity=s
 As you would expect, all data items have identifiers. Two common identifiers that you will see include artistId and collectionId (for the album). Here's some more information:
 
 To extract the collectionId, which is the album identifier  
-"artistId":1249595, "collectionId":368520559
+"artistId":275557, "collectionId":251792623  
+
+Info about the artist  
+https://itunes.apple.com/lookup?id=275557  
 
 Info about the album  
-https://itunes.apple.com/lookup?id=368520559  
+https://itunes.apple.com/lookup?id=251792623    
 
 Songs on an album  
-https://itunes.apple.com/lookup?id=368520559&entity=song  
+https://itunes.apple.com/lookup?id=251792623&entity=song  
 
 Songs by an artist  
-https://itunes.apple.com/lookup?id=1249595&entity=song&limit=15  
+https://itunes.apple.com/lookup?id=275557&entity=song&limit=25  
 <br>
 
 #### Wrapper types
