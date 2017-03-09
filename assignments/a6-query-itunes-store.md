@@ -3,6 +3,13 @@
 Assignment 6 enables you to begin working with the network, in read-only mode. We will send queries to the iTunes Store web service, and display the results on the device.  
 <br>
 
+~~~
+This document is being edited.  
+We expect to be finished the edits by mid-day on Friday, March 10.  
+When the edits are complete, this notice will be removed.  
+~~~
+<br>
+
 ### Due date
 Wednesday, March 15, 2017, at 11:00pm ET  
 Grade value: 5% of your final course grade  
@@ -120,7 +127,9 @@ In/under the Classes group, create a new Cocoa Touch Class. It will be a subclas
 <br>
 
 #### Configure it for use  
-Next, study the ExampleList controller code. Notice that it has a reference to the model class. Do the same for the MediaSearch controller.   
+Next, study the ExampleList controller code. Notice that it has a reference to the model class. Do the same for the MediaSearch controller.  
+
+In viewDidLoad(), set/configure the scene's title property with something (like "Search music").  
 <br>
 
 #### Fix the app delegate startup method  
@@ -134,8 +143,125 @@ Now that we have the MediaSearch controller created and partially configured, fi
 <br>
 
 #### Test your work
-At this point in time, the app should enable three-level navigation.  
+At this point in time, the app should load, and show the "search" scene. It will not have any functionality yet, but it should load.  
 <br>
+
+### Learn how to use the iTunes Store web service
+The iTunes Search API (web service) enables you to search for content within the iTUnes Store, App Store, iBooks Store, and Mac App Store.  
+
+[Here is a link](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/) to its documentation. The text below will get you started, but you will need to read/scan the documentation to get full value out of the API.  
+
+As you learned in the Week 8 Monday notes and class, it is an open web service, and does not require a developer key for casual use. Specifying a resource URL that begins with  
+```
+https://itunes.apple.com/search?parameterkeyvalues  
+```
+will return plain-text JSON results.  
+<br>
+
+#### Searching for music
+We want to enable the user to search for music. We will enable them to enter search terms, for at least one, but maybe any of:  
+* Artist  
+* Album  
+* Song  
+
+There are seven (7) kinds of queries that are possible:  
+* Any one search term (3 possible)  
+* Any two search term (3 possible)  
+* All three search terms
+
+For example:  
+
+**Any one**
+
+Artist - yes  
+Album - no  
+Song - no  
+All works by the artist   
+https://itunes.apple.com/search?term=the+rolling+stones&limit=15  
+
+Artist - no  
+Album - no  
+Song - yes  
+A specific song (from any artist on any album)  
+https://itunes.apple.com/search?term=under+my+thumb&entity=song  
+
+**Any two**
+
+Artist - yes  
+Album - yes  
+Song - no  
+A specific album by the artist  
+https://itunes.apple.com/search?term=the+rolling+stones+exile+on+main&entity=album&limit=15  
+
+Artist - no  
+Album - yes  
+Song - yes  
+A specific song on a specific album  
+https://itunes.apple.com/search?term=hot+rocks+under+my+thumb&entity=song  
+
+Artist - yes  
+Album - no  
+Song - yes  
+A specific song by an artist  
+https://itunes.apple.com/search?term=rolling+stones+under+my+thumb&entity=song  
+
+**All three**
+
+Artist - yes  
+Album - yes  
+Song - yes  
+A specific song on a specific album by the artist  
+https://itunes.apple.com/search?term=the+rolling+stones+hot+rocks+thumb&entity=song  
+<br>
+
+#### Identifiers
+As you would expect, all data items have identifiers. Two common identifiers that you will see include artistId and collectionId (for the album). Here's some more information:
+
+To extract the collectionId, which is the album identifier  
+"artistId":1249595, "collectionId":368520559
+
+Info about the album  
+https://itunes.apple.com/lookup?id=368520559  
+
+Songs on an album  
+https://itunes.apple.com/lookup?id=368520559&entity=song  
+
+Songs by an artist  
+https://itunes.apple.com/lookup?id=1249595&entity=song&limit=15  
+<br>
+
+#### Wrapper types
+Values in the results are organized in a certain way. For example you would expect a "song" query to include just the info about that song. Alternatively, you would expect an "album" query to include a *collection* of song items.  
+
+We will use wrapper type values to determine what scene to show after an item is tapped/selected from a list-of-results scene (table view). Here's some more information:  
+
+wrapperType = artist  
+artistId = <number>  
+artistName = ADELE  
+primaryGenreName = Pop  
+artistLinkUrl = <link>  
+
+wrapperType = collection  
+collectionId = <number>  
+artistName = ADELE  
+collectionName = 21  
+releaseDate = <date>  
+primaryGenreName = Pop  
+
+wrapperType = track  
+trackId = <number>  
+artistName = ADELE  
+collectionName = 21  
+trackName = Rolling in the Deep  
+releaseDate = <date>  
+primaryGenreName = Pop  
+<br>
+
+#### Interacting with the web service from your computer
+A browser can sometimes interact with a web service, but you should really use an HTTP inspector, which is an app that can configure and send HTTP requests, and accept the responses. Then, it enables you to inspect both, and learn about a web service.  
+
+Your professor team recommends that you add the Postman add-in to your Google Chrome browser configuration.  
+
 
 
 
@@ -144,6 +270,21 @@ At this point in time, the app should enable three-level navigation.
 <br><br><br><br><br><br>
 
 
+### Preview of what will come
+As you read above, this document is being edited. We expect to be finished the edits by mid-day on Friday, March 10. 
+
+However, here's a preview of the tasks that you will do, if you want to explore on your own.  
+* Fix the search scene  
+* Configure the MediaSearch controller to be able to search the iTunes Store API (which will require string assembly)  
+* Add a list-of-results controller, configure it, and the storyboard tasks  
+* Return to the search controller, and add the segue code  
+* Test  
+* Add the ability to handle requests for images (thumbnails), asynchronously  
+* Study the results of multiple queries to be prepared for changes to the list-of-results controller  
+* Edit the storyboard, to add two new scenes (controllers); one will be another list/table view (for collection results, e.g. songs on an album), and the other a standard view (for one-of result details)  
+* Add and code the two new controller classes  
+* Iterate and test  
+<br>
 
 ### Clean up the project  
 Now it's time to clean up the project (more to come).  
