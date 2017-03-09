@@ -61,8 +61,8 @@ In the sections that follow, you will perform these tasks:
 2. (to be determined)  
 <br>
 
-### Visualize the storyboard configuration
-(more to come)  
+### Visualize and then partially configure the storyboard  
+The storyboard in the project template enables the app to run successfully, but it will not be suitable for our use. In this section, you will learn how to modify the storyboard.    
 <br>
 
 #### Clean up the existing storyboard
@@ -116,53 +116,34 @@ There are a number of programming tasks that must be done:
 <br>
 
 #### Create the new controller class  
-In/under the Classes group, create a new Cocoa Touch Class. It will be a subclass of UITableViewController (right?). Name it "ProgramList" (for consistency).  
+In/under the Classes group, create a new Cocoa Touch Class. It will be a subclass of UIViewController (right?). We suggest that you name it "MediaSearch".  
 <br>
 
 #### Configure it for use  
-Before the class declaration, add another import statement, `import CoreData`.  
-
-Next, study the ExampleList controller code. Use its code and organization as an example of how you should write code for ProgramList. It will need properties to hold a reference 1) to the model, and 2) to its frc.  
+Next, study the ExampleList controller code. Notice that it has a reference to the model class. Do the same for the MediaSearch controller.   
 <br>
 
-#### Write the initialization code  
-In `viewDidLoad()`, initialize the frc, using the pattern that you see in the ExampleList controller.  
+#### Fix the app delegate startup method  
+In the application(didFinishLaunchingWithOptions) function, it has code that passes the model object reference to the ExampleList controller.  
+
+Change the code so that it passes the reference to the MediaSearch controller.  
 <br>
 
-#### (app delegate fix) (storyboard fix/config)  
-You have probably seen enough code examples to observe that the table view rendering code is done with several functions, and each is responsible for a specific task. (Remember, these functions are called by the iOS runtime as it is preparing to show the view on the screen.)  
-
-In a table view controller that uses our app architecture, we typically use four functions. Study the ExampleList controller, and then write the code for these functions in ProgramList:  
-1. Number of sections in table view  
-2. Number of rows in a section  
-3. Define the cell for the row at an index path  
-4. Configure cell contents  
-
-You will learn that the code for the first three functions is the same for all table view controllers. 
-
-> Well, *almost* all.  
-> When used with an frc, the first two will get their return values from the frc.  
-> Alternatively - as you have seen before - when used with a collection (like an array), they get their return values from hand-coded values and the size (item count) of the collection (array).  
-
-Only the function that actually configures the cell contents differs as different entity objects are rendered.  
-
-For this assignment, we will be using a new-to-you table view cell style (named "Subtitle"), so the cell configuration function will do *three* tasks (not just two):  
-
-```swift
-// from the frc, extract the item that we want at the current index path
-// configure the cell's text label
-// new - configure the cell's detail text label
-// configure the cell's image view
-```
-
-As you can see, you will configure the cell's image view. Use the technique that you learned in a previous assignment to import the icon images (in the Assignment5Data.zip file) into the app's asset catalog. Notice the name of the icon/image files - they should match the value that you used for the "credential" attribute when you created starter data.  
-
-At this point in time, you can remove code or comments that will not be needed. However, maybe keep the `prepare(for segue: sender:)` function, because we'll code that later (but soon).  
+#### Fix the storyboard  
+Now that we have the MediaSearch controller created and partially configured, fix the "search" scene on the storyboard. Set its custom class to MediaSearch.  
 <br>
 
 #### Test your work
 At this point in time, the app should enable three-level navigation.  
 <br>
+
+
+
+<br><br><br><br><br><br>
+(more to come)
+<br><br><br><br><br><br>
+
+
 
 ### Clean up the project  
 Now it's time to clean up the project (more to come).  
