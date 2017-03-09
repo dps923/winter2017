@@ -242,24 +242,24 @@ Values in the results are organized in a certain way. For example you would expe
 We will use wrapper type values to determine what scene to show after an item is tapped/selected from a list-of-results scene (table view). Here's some more information:  
 
 wrapperType = artist  
-artistId = <number>  
+artistId = (a number)  
 artistName = ADELE  
 primaryGenreName = Pop  
-artistLinkUrl = <link>  
+artistLinkUrl = (link)  
 
 wrapperType = collection  
-collectionId = <number>  
+collectionId = (a number)  
 artistName = ADELE  
 collectionName = 21  
-releaseDate = <date>  
+releaseDate = (a date)  
 primaryGenreName = Pop  
 
 wrapperType = track  
-trackId = <number>  
+trackId = (a number)  
 artistName = ADELE  
 collectionName = 21  
 trackName = Rolling in the Deep  
-releaseDate = <date>  
+releaseDate = (a date)  
 primaryGenreName = Pop  
 <br>
 
@@ -267,6 +267,26 @@ primaryGenreName = Pop
 A browser can sometimes interact with a web service, but you should really use an HTTP inspector, which is an app that can configure and send HTTP requests, and accept the responses. Then, it enables you to inspect both, and learn about a web service.  
 
 Your professor team recommends that you add the Postman add-in to your Google Chrome browser configuration.  
+
+![Postman example](images/a6-postman-example.png)  
+<br>
+
+### Circle back to the search scene and controller
+Above, you tested your work, and were able to build, load, and run the app, which showed you the search scene. It's now time to make it work properly.  
+
+#### Storyboard tasks
+Here are some suggestions:  
+
+Each text field should span the width of the scene. Use constraints to do that. Center align. Choose an 18-point font size.  
+
+> Hint - You can select all three text fields at once. Command+click, or lasso. Then, make the changes.  
+
+Add "Placeholder" text to each text field. In case you don't know, the text appears in an empty field, and acts as a hint/guide to the user. It disappears when the user begins to enter text.  
+
+Change the button font size to 18, to match the others. 
+
+Select the segue (to the list/table view controller). Give it an Identifier (maybe something like "toMediaList").  
+
 
 
 
