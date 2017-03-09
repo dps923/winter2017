@@ -94,6 +94,7 @@ As described above, the app's start screen is a data entry screen. So, add a vie
 Add three text fields to the top area of the scene. 
 
 > We will configure some more properties of the text fields later/soon.  
+
 Add a button to the view, located below the text fields. Configure its visible text to be "Search".  
 
 > We will configure an outlet for it later/soon.  
