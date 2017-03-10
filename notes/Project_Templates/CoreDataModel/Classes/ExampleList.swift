@@ -78,7 +78,7 @@ class ExampleList: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        frc = model.cdStack.frcForEntityNamed("Example", withPredicateFormat: "name beginswith 'Gar'", predicateObject: nil, sortDescriptors: [NSSortDescriptor(key: "attribute1", ascending: true)], andSectionNameKeyPath: nil)
+        frc = model.cdStack.frcForEntityNamed("Example", withPredicateFormat: nil, predicateObject: nil, sortDescriptors: [NSSortDescriptor(key: "attribute1", ascending: true)], andSectionNameKeyPath: nil)
 
         // This controller will be the frc delegate
         frc.delegate = self;
