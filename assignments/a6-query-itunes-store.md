@@ -5,7 +5,7 @@ Assignment 6 enables you to begin working with the network, in read-only mode. W
 
 ~~~
 This document is being edited.  
-We expect to be finished the edits by mid-day on Friday, March 10.  
+We expect to be finished the edits by mid-day on Saturday, March 11.  
 When the edits are complete, this notice will be removed.  
 ~~~
 <br>
