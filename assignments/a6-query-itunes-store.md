@@ -377,7 +377,7 @@ Number of sections? 1.
 
 Number of rows in a section? Return the count of the temporary string array. (You'll change this later/soon.)  
 
-Cell content?  The array element at ```indexPath.row```. 
+Cell content?  The array element at ```indexPath.row```.  
 <br>
 
 #### Code the segue in the MediaSearch controller
@@ -414,7 +414,22 @@ At this point in time, the search scene is done, and works. Also, the list-of-re
 
 Now it's time to get the network involved.  
 
+#### Add structs that describe the entities
+In the WebServiceModel source code file, add new structs for Artist, Album, and Song.  
 
+For each, add some properties. Interact with the iTunes API, and decide for yourself what properties would be useful to have and display. For example, your teacher team thinks that these may be useful:  
+
+<kbd>![Search test, temp](images/a6-structs-for-entities.png)</kbd>  
+<br>
+
+#### Add a function to send a request to the iTunes API
+Study the code in the class. You will write another function that looks similar to ```programsGet()```.  
+
+~~~
+change the base url  
+add a query string  
+(to be continued)  
+~~~
 
 
 <br><br><br><br><br><br>
@@ -426,11 +441,7 @@ Now it's time to get the network involved.
 As you read above, this document is being edited. We expect to be finished the edits by mid-day on Friday, March 10. 
 
 However, here's a preview of the tasks that you will do, if you want to explore on your own.  
-* Fix the search scene  
-* Configure the MediaSearch controller to be able to search the iTunes Store API (which will require string assembly)  
-* Add a list-of-results controller, configure it, and the storyboard tasks  
-* Return to the search controller, and add the segue code  
-* Test  
+* Configure the web service object to be able to search the iTunes Store API (which will require string assembly)  
 * Add the ability to handle requests for images (thumbnails), asynchronously  
 * Study the results of multiple queries to be prepared for changes to the list-of-results controller  
 * Edit the storyboard, to add two new scenes (controllers); one will be another list/table view (for collection results, e.g. songs on an album), and the other a standard view (for one-of result details)  
