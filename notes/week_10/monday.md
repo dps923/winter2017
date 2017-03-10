@@ -1,7 +1,7 @@
 
 ## Core Data relationships
 
-These were introduced in Assignment 5, lets review and cover in more detail.
+These were introduced in Assignment 5, let's review and cover in more detail.
 
 ### Reading:
 https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/HowManagedObjectsarerelated.html
@@ -107,7 +107,7 @@ https://developer.apple.com/library/content/documentation/UserExperience/Concept
 
 https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/TableView_iPhone/Art/table_view_editing.jpg
 
-Let's modify the CoreDataModel template table view to support edit mode, by default the __editingStyle__ of a table view is __delete__.
+Let's modify the CoreDataModel template table view to support edit mode; by default the __editingStyle__ of a table view is __delete__.
 
 In the ExampleList class (which is a UITableViewController):
 
