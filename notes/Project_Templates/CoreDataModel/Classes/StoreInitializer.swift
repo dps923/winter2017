@@ -30,17 +30,13 @@ class StoreInitializer {
         // If you have run the app in the simulator,
         // you will have to do the above, AND delete the app from the simulator
 
+        model.deleteAll()
+
         guard let entity = NSEntityDescription.entity(forEntityName: "Example", in: model.context) else {
             fatalError("Can't create entity named Example")
         }
-        
-        let obj: Example
-        if #available(iOS 10.0, *) {
-            // Once you switch to iOS 10-only, the API looks nicer. I just put this here for reference.
-            obj = Example(context: model.context)
-        } else {
-            obj = Example(entity: entity, insertInto: model.context)
-        }
+
+        let obj = Example(entity: entity, insertInto: model.context)
         obj.attribute1 = "Peter"
         obj.attribute2 = 33
 

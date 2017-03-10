@@ -14,7 +14,6 @@ import CoreData
 
 class Model {
     let cdStack: CDStack
-    let frc_example: NSFetchedResultsController<Example>
 
     // MARK: - Public methods
 
@@ -44,8 +43,6 @@ class Model {
 
         cdStack = CDStack()
 
-        frc_example = cdStack.frcForEntityNamed("Example", withPredicateFormat: nil, predicateObject: nil, sortDescriptors: [NSSortDescriptor(key: "attribute1", ascending: true)], andSectionNameKeyPath: nil)
-
         if useStoreInitializer {
             // In init(), you can only use 'self' after all properties have been initialised. Leave this function near the end.
             StoreInitializer.populateInitialData(model: self)
@@ -66,8 +63,58 @@ class Model {
         cdStack.save()
     }
 
+    func exampleEntity() -> NSEntityDescription {
+        guard let entity = NSEntityDescription.entity(forEntityName: "Example", in: context) else {
+            fatalError("Can't create entity named Example")
+        }
+        return entity
+    }
+
     // Add more methods here for data maintenance
     // For example, get-all, get-some, get-one, add, update, delete
     // And other command-oriented operations
 
+    func get(withPredicate: NSPredicate?) -> [Example]? {
+        let fetchRequest: NSFetchRequest<Example> = Example.fetchRequest()
+        fetchRequest.predicate = withPredicate
+
+        do {
+            let results = try context.fetch(fetchRequest)
+            return results
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+        }
+        return nil
+    }
+
+    func getAll() -> [NSManagedObject]? {
+        return get(withPredicate: nil)
+    }
+
+    func count(withPredicate: NSPredicate) -> Int {
+        let fetchRequest: NSFetchRequest<Example> = Example.fetchRequest()
+        fetchRequest.predicate = withPredicate
+
+        do {
+            let results = try context.count(for: fetchRequest)
+            return results
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+        }
+        return 0
+    }
+
+    func deleteAll() {
+        if let result = getAll() {
+            for obj in result {
+                context.delete(obj)
+            }
+        }
+    }
+
+    func delete(item: Example) {
+        context.delete(item)
+    }
 }
