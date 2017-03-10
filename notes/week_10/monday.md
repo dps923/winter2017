@@ -13,19 +13,19 @@ Read these sections only:
     - In assignment 5, you saw that creating a _Program_ didn't automatically create any _Course_ objects, you had to do that manually.
 - Inverse Relationships
     - Relationships are inherently bidirectional. This is a very useful concept. In assignment 5, the _Program_ entity had a _courses_ attribute, and a _Course_ had a _program_ attribute. Thus, given a _Program_ object in your code you can access the courses that it contains, or given a _Course_ object you can access the programs.
-    - In assignment 5, _Course_ entities were created, then their _program_ attribute was set. This will automatically add this course object to the _Program's_ _courses_ collection. <br>Alternatively, we could have added the course to the _Program's_ _courses_ collection.< In this case, would the _Course_ object's _program_ get set to a value automatically?
+    - In assignment 5, _Course_ entities were created, then their _program_ attribute was set. This will automatically add this course object to the _Program's_ _courses_ collection. <br>Alternatively, we could have added the course to the _Program's_ _courses_ collection. In this case, would the _Course_ object's _program_ get set to a value automatically?
 - Relationship Delete Rules (specifically Cascade, Nullify)
-    - __Cascade__ and __Nullify__ are the two delete rules you will use most commonly. The Nullify rule is the default; thus in assignment 5, if a _Program_ was deleted, the courses it contained would not be deleted.<br>What do you think would happen if a _Program_ entity is deleted in this case?
+    - __Cascade__ and __Nullify__ are the two delete rules you will use most commonly. The Nullify rule is the default; thus in assignment 5, if a _Program_ was deleted, the courses it contained would not be deleted.<br>What do you think would happen if a _Course_ object is deleted in this case?
     - What would happen if the _Program_ entity's _courses_ relationship was set to the __Cascade__ delete rule?
 
 ## Core Data and fetching specific data with NSPredicate
 
-NSFetchRequest is used to specify which entity you will be fetching, and what the predicate is.
+__NSFetchRequest__ is used to specify which entity you will be fetching, and what the predicate is.
 
-The predicate uses the class _NSPredicate_ to specify how data should filtered during a fetch request.
+The predicate uses the class __NSPredicate__ to specify how data should filtered during a fetch request.
 
-In assignment 5, we did some fetching with NSFetchedResultsController (which is the magical object to connect Core Data with UITableView).
-No predicate was used on the fetch request, therefore no filter was applied on the data and all entities were returned.
+In assignment 5, we did some fetching with NSFetchedResultsController (which is the magical object to connect Core Data with UITableView).<br>
+No predicate was used on the fetch request, therefore no filter was applied on the data and all objects for the given entity were returned.
 
 Let's say we wanted to fetch only programs whose code name started with "BT":
 ```swift
