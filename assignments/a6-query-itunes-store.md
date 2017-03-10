@@ -93,7 +93,7 @@ As described above, the app's start screen is a data entry screen. So, add a vie
 
 Add three text fields to the top area of the scene. 
 
-> We will configure some more properties of the text fields later/soon.  
+> We will configure some properties of the text fields, and outlets, later/soon.  
 
 Add a button to the view, located below the text fields. Configure its visible text to be "Search".  
 
@@ -118,9 +118,8 @@ In this section, you will create a *new* view controller, which will display a l
 
 There are a number of programming tasks that must be done:  
 1. Create the new controller class  
-2. Configure it for use with Core Data and our app architecture (in other words, the Model class)  
-3. Write the initialization code  
-4. Write the code that will render the data in the table view  
+2. Configure it for initialize/load, and for use with the model class  
+3. Configure it in the app delegate and the storyboard  
 <br>
 
 #### Create the new controller class  
@@ -283,10 +282,137 @@ Each text field should span the width of the scene. Use constraints to do that. 
 
 Add "Placeholder" text to each text field. In case you don't know, the text appears in an empty field, and acts as a hint/guide to the user. It disappears when the user begins to enter text.  
 
+Also, configure the "Clear Button" setting to appear while editing. This will make your user happier.  
+
 Change the button font size to 18, to match the others. 
 
 Select the segue (to the list/table view controller). Give it an Identifier (maybe something like "toMediaList").  
 
+Next, add outlets for ALL FOUR elements (three text fields, and the button). Note that we will NOT need an "action" connection for the button, because the button will trigger the segue.  We WILL need an outlet, so that we can disable the button when the text fields are empty.  
+
+> Why? Think about it...  
+
+Finally, configure the delegate property for each text field, because we will be interested in handling events (text changed, etc.). Reminder (from past assignments and practice work), Control+click+drag from each text field, to the view controller icon in the dock at the top of the view controller scene.  
+<br> 
+
+#### Controller code tasks
+Above, you just configured the delegate property for each of the text fields. We recommend that you add the UITextFieldDelegate protocol adoption phrase to the controller's class declaration. That will make the methods in the protocol available to Xcode code sense.  
+
+Let's stay with the text fields for a moment. We have an important *user interaction* goal: The "search" button should be active ONLY when there's something in one or more text fields. How are we going to do that?  
+
+Well, we must be able to do two tasks:  
+1. Be able to quickly check if the text fields are empty or not  
+2. Be able to quickly enable or disable the "search" button  
+
+When? On initial load (or appearance), and whenever the contents of ANY text field changes. 
+
+How? While the language and SDK has ways to determine this, we want to reduce or eliminate repeated code. Therefore, we'll write a few functions.  
+
+First, write a function that will check if the text fields are empty or not. How? Yes, you could write "if" statements, but there are three text fields, and that's not syntax or algorithm design. Let's look for a different way. Here's a question: If the total character count of ALL text fields is zero, then are the text fields empty? Or not?
+
+```swift
+// declare a function that will return true or false
+// add the character count of all fields
+// return true or false, appropriate to your function name 
+```
+
+Uh, OK, that's pretty vague. And what's this about the function name? Well, according to the [Swift style guide](https://swift.org/documentation/api-design-guidelines/), "Uses of Boolean methods should read as assertions about the receiver" (the receiver being the thing we're looking at).  
+
+So the advice here is to name the function with a true or false assertion, and code the function body accordingly. The function name could therefore be either one of these general forms:  
+
+```userHasEnteredSearchText``` (or ```doesAnyTextFieldHaveContent```) which would obviously return *true* if the user has entered search text, or  
+
+```areTextFieldsEmpty``` which would obviously return *false* if the user has entered search text.  
+
+Is one better than the other? Your teacher team is pretty neutral on the answer to that. However, we suggest that you look at the intended use: We want to be able to quickly enable or disable the "search" button. Let's look at the properties of a UIButton. Hmmm, there is a boolean property named ```isEnabled```. If true, the button is enabled and usable. Therefore, your teacher team has a slight preference to the first form of function name (something like userHasEnteredSearchText). Why? Easy matching of "true" conditions.  
+
+> Stay with us. We're trying to teach you something here. And prevent crashes due to coding errors due to user interaction.  
+
+At this point, we have task #1 above done (quickly check if the text fields are empty or not). Let's do task #2 now. 
+
+Add a statement to ```viewDidLoad()``` that sets the button's ```isEnabled``` state. That's just safe coding practice.  
+
+Next, write another function, probably named something like ```textFieldDidChange```. It does not need any parameters, and it won't return anything. Its only purpose is to call the function you just wrote above, and use the result to set the button's ```isEnabled``` setting.  
+
+When will this new function be called? Whenever a "text field did change". Does this happen automatically? No - we must configure this. We suggest that you configure this in ```viewDidLoad()```. Here's a typical configuration statement, assuming a placeholder name for the outlet:
+
+```swift
+ui-object-outlet-name.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+```
+
+The addTarget method enables you to handle an event from a user interface control - in this case ```editingChanged``` - with an event handler, which is our new ```textFieldDidChange``` function.  
+
+The value for the "action" parameter is essentially the name of the function that will handle the event. Its syntax is [relatively new](https://swift.org/blog/swift-2-2-new-features/):  
+
+```swift
+#selector(name-of-function)
+```
+<br>
+
+#### Test your work
+At this point in time, when the app loads for the first time, the button state is disabled. As soon as one of the text fields has one (or more) characters, the button state should be enabled. Make sure this is happening before you continue.  
+<br>
+
+### Add a list/table view controller to hold the search results
+In/under the Classes group, create a new Cocoa Touch Class. It will be a subclass of UITableViewController (right?). We suggest that you name it "MediaList".  
+<br>
+
+#### Edit the storyboard
+On the storyboard, select the table view. Set its custom class to the new controller "MediaList".  
+
+On its prototype cell settings:  
+* Set the reuse identifier value (we've been using "cell")  
+* The cell style should be "Subtitle"  
+* The accessory should be "Disclosure Indicator"  
+<br>
+
+#### Configure it for use  
+Return to the MediaList controller code. Next, study the ExampleList controller code. Notice that it has a reference to the model class. Do the same for the MediaSearch controller. Notice also that it adopts the WebServiceModelDelegate protocol. Do that here too. (When you do, you'll need to copy in the delegate method from the ExampleList controller - do that too.)  
+
+In viewDidLoad(), set/configure the scene's title property with something (like "Search results"). Also, set the table view property's row height to be larger than default, for example, about 60.0.  
+
+Now... *temporarily*, we will use a string array to be the data source. (We'll un-do this later/soon.) So, add a property to hold a string array. Its contents will be filled by the MediaSearch controller's ```prepare(forSegue: sender:)``` function.  
+
+Number of sections? 1.  
+
+Number of rows in a section? Return the count of the temporary string array. (You'll change this later/soon.)  
+
+Cell content?  The array element at ```indexPath.row```. 
+<br>
+
+#### Code the segue in the MediaSearch controller
+We suggest that you configure the segue now, to confirm that it is working correctly. Do this BEFORE working with the network.  
+
+The idea will be to simply gather the text that is entered in the artist, album, and song text fields, and pass them to the list/table view controller, where they will be rendered.  
+
+```swift
+override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+    // Temporary array, used to test our logic, will be removed later/soon
+    var searchWords = [String]()
+        
+    // Get the user-entered values, add to the array
+    searchWords.append((artist.text?.isEmpty)! ? "(no artist)" : artist.text!)
+    searchWords.append((album.text?.isEmpty)! ? "(no album)" : album.text!)
+    searchWords.append((song.text?.isEmpty)! ? "(no song)" : song.text!)
+        
+    let vc = segue.destination as! MediaList
+    vc.model = model
+    vc.searchWords = searchWords
+    }
+```
+<br>
+
+#### Test your work
+Test your work. It should look something like the following:  
+
+<kbd>![Search test, temp](images/a6-search-test-temp.png)</kbd>&nbsp;&nbsp;<kbd>![Search test, temp results](images/a6-search-test-temp-result.png)</kbd>  
+<br>
+
+### Use the network
+At this point in time, the search scene is done, and works. Also, the list-of-results scene works, with temporary data.  
+
+Now it's time to get the network involved.  
 
 
 
