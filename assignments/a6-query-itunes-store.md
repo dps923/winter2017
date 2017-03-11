@@ -39,7 +39,22 @@ Then, when the app user taps/selects an item on the list, another  screen will s
 
 <br>
 
-<kbd>![Startup](images/a6-startup.png)</kbd>&nbsp;&nbsp;<kbd>![Search scene](images/a6-search-terms.png)</kbd>&nbsp;&nbsp;<kbd>![Search results scene](images/a6-search-results.png)</kbd>  
+<kbd>![Startup](images/a6-search-begin.png)</kbd>  
+<br>
+
+Search artist only:  
+
+<kbd>![Artist](images/a6-search-artist.png)</kbd>&nbsp;&nbsp;<kbd>![Artist results](images/a6-search-artist-result.png)</kbd>&nbsp;&nbsp;<kbd>![Artist detail](images/a6-search-artist-result-detail.png)</kbd>  
+<br>
+
+Search artist and album:  
+
+<kbd>![Artist and album](images/a6-search-artist-album.png)</kbd>&nbsp;&nbsp;<kbd>![Artist and album results](images/a6-search-artist-album-result.png)</kbd>&nbsp;&nbsp;<kbd>![Artist and album detail](images/a6-search-artist-album-result-detail.png)</kbd>  
+<br>
+
+Search artist and song:  
+
+<kbd>![Artist and song](images/a6-search-artist-song.png)</kbd>&nbsp;&nbsp;<kbd>![Artist and song results](images/a6-search-artist-song-result.png)</kbd>&nbsp;&nbsp;<kbd>![Artist and song detail](images/a6-search-artist-song-result-detail.png)</kbd>  
 <br>
 
 ### Getting started
@@ -182,6 +197,12 @@ https://itunes.apple.com/search?term=the+rolling+stones&limit=15
 > The "limit" key is not required. It is used here to simply make the result set smaller.  
 
 Artist - no  
+Album - yes  
+Song - no  
+A specific album   
+https://itunes.apple.com/search?term=same+trailer+different+park&entity=album  
+
+Artist - no  
 Album - no  
 Song - yes  
 A specific song (from any artist on any album)  
@@ -214,6 +235,17 @@ Album - yes
 Song - yes  
 A specific song on a specific album by the artist  
 https://itunes.apple.com/search?term=the+rolling+stones+hot+rocks+thumb&entity=song  
+<br>
+
+**Summary**  
+
+Notice that an artist query term is the most general, and it does not need the "entity" key in the query string.  
+
+An album query term is more specific, and adds "entity=album" to the query string.  
+
+The most specific is a song query term. When present, it adds "entity=song" to the query string (even when an album query term is present).  
+
+We will use this knowledge later, when assembling the query string.  
 <br>
 
 #### Identifiers
@@ -272,6 +304,7 @@ Your professor team recommends that you add the Postman add-in to your Google Ch
 
 ### Circle back to the search scene and controller
 Above, you tested your work, and were able to build, load, and run the app, which showed you the search scene. It's now time to make it work properly.  
+<br>
 
 #### Storyboard tasks
 Here are some suggestions:  
@@ -367,7 +400,7 @@ On its prototype cell settings:
 <br>
 
 #### Configure it for use  
-Return to the MediaList controller code. Next, study the ExampleList controller code. Notice that it has a reference to the model class. Do the same for the MediaSearch controller. Notice also that it adopts the WebServiceModelDelegate protocol. Do that here too. (When you do, you'll need to copy in the delegate method from the ExampleList controller - do that too.)  
+Return to the MediaList controller code. Next, study the ExampleList controller code. Notice that it has a reference to the model class. Do the same for the MediaList controller. Notice also that it adopts the WebServiceModelDelegate protocol. Do that here too. (When you do, you'll need to copy in the delegate method from the ExampleList controller - do that too.)  
 
 In viewDidLoad(), set/configure the scene's title property with something (like "Search results"). Also, set the table view property's row height to be larger than default, for example, about 60.0.  
 
@@ -414,16 +447,10 @@ At this point in time, the search scene is done, and works. Also, the list-of-re
 
 Now it's time to get the network involved.  
 
-#### Add structs that describe the entities
-In the WebServiceModel source code file, add new structs for Artist, Album, and Song.  
-
-For each, add some properties. Interact with the iTunes API, and decide for yourself what properties would be useful to have and display. For example, your teacher team thinks that these may be useful:  
-
-<kbd>![Search test, temp](images/a6-structs-for-entities.png)</kbd>  
-<br>
-
 #### Add a function to send a request to the iTunes API
 Study the code in the class. You will write another function that looks similar to ```programsGet()```.  
+
+The function needs string parameters for artist, album, and song. 
 
 ~~~
 change the base url  
