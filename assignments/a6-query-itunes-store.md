@@ -3,13 +3,6 @@
 Assignment 6 enables you to begin working with the network, in read-only mode. We will send queries to the iTunes Store web service, and display the results on the device.  
 <br>
 
-~~~
-This document is being edited.  
-We expect to be finished the edits by mid-day on Saturday, March 11.  
-When the edits are complete, this notice will be removed.  
-~~~
-<br>
-
 ### Due date
 Wednesday, March 15, 2017, at 11:00pm ET  
 Grade value: 5% of your final course grade  
@@ -19,28 +12,23 @@ Grade value: 5% of your final course grade
 
 ### Objective(s)
 Use the network, and a public web service.  
-Create an interactive app with a search screen, which will lead to a navigation-based result, with two levels (list, and list-or-detail)  
+Create an interactive app with a search screen, which will lead to a navigation-based result, with two levels (list, and detail)  
 Continue using the foundation topics from previous classes.  
 <br>
 
 ### Introduction to the problem that you will solve
 We need an app that will enable the user to search the iTunes Store for music, and *display* the results. The app uses the network, so its essential nature is that it will perform its search/fetch and rendering tasks in an asynchronous manner.  
 
-The app's start screen is a data entry screen, and will be managed by a standard view controller. It will enable the user to enter values in one or more text fields. The purpose of this screen will be to gather search terms to be used when querying the iTunes Store web service.  
-
-When the app user taps/selects the "Search" button, a results list (managed by a table view controller) will slide in, and display a list of items that match the search term(s).  
-
-Then, when the app user taps/selects an item on the list, another  screen will slide in:  
-* If the item is a song, a standard details view will appear  
-* Alternatively, if the item is an album, a list will appear (managed by a standard view controller)  
-<br>
-
-> Notice - We plan to post a few more screen shots by mid-day Friday, March 10 (and then we'll remove this notice)  
-
-<br>
+The app's start screen is a data entry screen, and will be managed by a standard view controller.  
 
 <kbd>![Startup](images/a6-search-begin.png)</kbd>  
 <br>
+
+It will enable the user to enter values in one or more text fields. The purpose of this screen will be to gather search terms to be used when querying the iTunes Store web service.  
+
+When the app user taps/selects the "Search" button, a results list (managed by a table view controller) will slide in, and display a list of items that match the search term(s).  
+
+Then, when the app user taps/selects an item on the list, another  screen will slide in, a standard details view.  
 
 Search artist only:  
 
@@ -181,7 +169,7 @@ We want to enable the user to search for music. We will enable them to enter sea
 
 There are seven (7) kinds of queries that are possible:  
 * Any one search term (3 possible)  
-* Any two search term (3 possible)  
+* Any two search terms (3 possible)  
 * All three search terms
 
 For example:  
@@ -239,7 +227,7 @@ https://itunes.apple.com/search?term=the+rolling+stones+hot+rocks+thumb&entity=s
 
 **Summary**  
 
-Notice that an artist query term is the most general, and it does not need the "entity" key in the query string.  
+Notice that an artist query term is the most general, and it does not need the "entity" key in the query string. However, we WILL add "entity=musicArtist" to the query string, to improve the quality of the search results.  
 
 An album query term is more specific, and adds "entity=album" to the query string.  
 
@@ -386,7 +374,7 @@ The value for the "action" parameter is essentially the name of the function tha
 At this point in time, when the app loads for the first time, the button state is disabled. As soon as one of the text fields has one (or more) characters, the button state should be enabled. Make sure this is happening before you continue.  
 <br>
 
-### Add a list/table view controller to hold the search results
+### Add a list (table view) controller to hold the search results
 In/under the Classes group, create a new Cocoa Touch Class. It will be a subclass of UITableViewController (right?). We suggest that you name it "MediaList".  
 <br>
 
@@ -402,9 +390,9 @@ On its prototype cell settings:
 #### Configure it for use  
 Return to the MediaList controller code. Next, study the ExampleList controller code. Notice that it has a reference to the model class. Do the same for the MediaList controller. Notice also that it adopts the WebServiceModelDelegate protocol. Do that here too. (When you do, you'll need to copy in the delegate method from the ExampleList controller - do that too.)  
 
-In viewDidLoad(), set/configure the scene's title property with something (like "Search results"). Also, set the table view property's row height to be larger than default, for example, about 60.0.  
+In viewDidLoad(), set/configure the scene's title property with something (like "Search results"). Also, set the table view property's row height to be larger than default, for example, about 70.0. And, configure the model's delegate property to the controller.  
 
-Now... *temporarily*, we will use a string array to be the data source. (We'll un-do this later/soon.) So, add a property to hold a string array. Its contents will be filled by the MediaSearch controller's ```prepare(forSegue: sender:)``` function.  
+Now... *temporarily* (for testing purposes), we will use a string array to be the data source. (We'll un-do this later/soon.) So, add a property to hold a string array. Its contents will be filled by the MediaSearch controller's ```prepare(forSegue: sender:)``` function.  
 
 Number of sections? 1.  
 
@@ -416,7 +404,7 @@ Cell content?  The array element at ```indexPath.row```.
 #### Code the segue in the MediaSearch controller
 We suggest that you configure the segue now, to confirm that it is working correctly. Do this BEFORE working with the network.  
 
-The idea will be to simply gather the text that is entered in the artist, album, and song text fields, and pass them to the list/table view controller, where they will be rendered.  
+The idea will be to simply gather the text that is entered in the artist, album, and song text fields, and pass them to the list/table view controller, where they will be rendered. For example:  
 
 ```swift
 override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -447,43 +435,187 @@ At this point in time, the search scene is done, and works. Also, the list-of-re
 
 Now it's time to get the network involved.  
 
-#### Add a function to send a request to the iTunes API
-Study the code in the class. You will write another function that looks similar to ```programsGet()```.  
+#### Enable the app to send unsecure HTTP requests
+Albums have artwork images (in varying sizes). A query result includes URLs to the artwork. Their scheme uses unsecure HTTP. By default iOS apps use only secure HTTPS. Therefore, we must enable the app to send unsecure HTTP requests. 
 
-The function needs string parameters for artist, album, and song. 
+This is done by adding to the *info.plist* file. Open the file in the Xcode editor. Add a new row, and set its key-value to the following:  
 
-~~~
-change the base url  
-add a query string  
-(to be continued)  
-~~~
-
-
-<br><br><br><br><br><br>
-(more to come)
-<br><br><br><br><br><br>
-
-
-### Preview of what will come
-As you read above, this document is being edited. We expect to be finished the edits by mid-day on Friday, March 10. 
-
-However, here's a preview of the tasks that you will do, if you want to explore on your own.  
-* Configure the web service object to be able to search the iTunes Store API (which will require string assembly)  
-* Add the ability to handle requests for images (thumbnails), asynchronously  
-* Study the results of multiple queries to be prepared for changes to the list-of-results controller  
-* Edit the storyboard, to add two new scenes (controllers); one will be another list/table view (for collection results, e.g. songs on an album), and the other a standard view (for one-of result details)  
-* Add and code the two new controller classes  
-* Iterate and test  
+![New row in info.plist](images/a6-info-plist-edit.png)  
 <br>
 
-### Clean up the project  
-Now it's time to clean up the project (more to come).  
+Here's how to do this:  
+1. Right-click the top row named "Information Property List, then choose Add Row  
+2. A list of choices appear, type and choose "App Transport Security Settings", which adds a dictionary  
+3. Click the plus sign to the right of the key name; a list of choices appear, type and choose "Allow Arbitrary Loads", and set its value to YES  
+<br>
 
-Reminder about the recently-learned project "clean" task: If you attempted a build/compile/run right now, it is likely that there would be an error (and that error's message isn't really helpful). The reason is due to the cleanup that we just did. Therefore, we can "clean" the project of any past compilation assets, and start anew. How?  
+#### Edit the WebServiceModel class
+Study the code in the class. Notice that an array property "programs" is matched to a function "programsGet". We will follow that pattern.  
 
-On the Xcode Product menu, there is a Clean option (with keyboard shortcut Command+Shift+K). Choose/run it.  
+First, create an array of dictionaries. Why dictionaries? The iTunes API returns JSON results. When your app receives the JSON results, it materializes each JSON object as a Swift dictionary. Keys are always strings, but the values could be strings or numbers (AnyObject). 
 
-Then, build/compile (Command+B). It should be successful now. 
+Next write a new function that will look similar to ```programsGet()```.  
+
+> FYI, in your teacher team's sample solution, we used the names "media" for the array, and "mediaGet" for the function name.  
+
+The function needs string parameters for artist, album, and song. Just to preview, this function will be called from the MediaSearch controller's ```prepare(for segue: sender:)``` method.  
+
+Here's the algorithm that we'll use in the function:  
+1. Define the initial query string  
+2. Add the search terms to the query string; artist, album, then song  
+3. Add an "entity" key-value to improve the quality of the results  
+4. URL encode the query string  
+5. Create the web service request  
+6. Send it, and process the response  
+
+Here's some more detail:
+
+**Define the initial query string**  
+
+For best results, the initial query string should be:  
+```text
+https://itunes.apple.com/search?limit=20&media=music&term=  
+```
+
+Notice that we are asking only for "music" media items, and we're limiting the result set to improve performance.  
+
+**Add the search terms to the query string; artist, album, then song**  
+
+Add (append) the incoming search terms to the query string. Do not worry about spaces for now, because we will URL encode them later/soon. We must think about this task in a very specific way:
+
+![Pass 1](images/a6-mediaget-pass1.png)  
+<br>
+
+**Add an "entity" key-value to improve the quality of the results**  
+
+Add (append) an appropriate key-value. This will improve the quality of the results. For example:  
+
+![Pass 2](images/a6-mediaget-pass2.png)  
+<br>
+
+**URL encode the query string**  
+
+Look in the String class for a method that will replace the occurrences of a string with another. We want to replace a space with a plus sign (+).  
+
+At this point in time, our URL is ready, and can be used.  
+
+**Create the web service request**  
+
+Create the web service request object, and set its base URL.  
+
+Before continuing, remove all existing items from the "media" array. We must do this here/now, because the app can be used to send many queries, so we must clear out the old results before sending a new query.  
+
+**Send (execute) it, and process the response**  
+
+The body of the completion handler (closure) will be simpler than the code example that you saw. We will process the results as a collection of dictionaries, so we simply need to get each item as a dictionary [String: AnyObject], and add it to the "media" array.  
+<br>
+
+### Update the MediaSearch controller segue
+At the present time, the ```prepare(for segue: sender)``` method sends the search terms to the MediaList controller. Now that we have a web service request, let's change the code in the method.  
+
+Comment out the temporary/test code.  
+
+Then, add a statement that calls the web service "mediaGet" method (and passes the search terms as arguments). That's all you should have to do in this controller.  
+
+### Update the MediaList controller
+Some table-building methods need updates. The number of rows in a section is now provided by the model object's count of items in the "media" array.  
+
+In the ```tableView(cellForRow atIndexPath:)``` method, we need to get the array element at indexPath.row (which will be a dictionary object), and extract its artistName value, to use it in the cell's text label.  
+
+While there, we recommend that you set the cell's detail text label to the object's wrapper type.  
+
+#### Test your work
+At this point in time, the app should send a request to the iTunes API, and the results will appear on the table view. If yes, then continue, by creating a "details" view and controller.  
+
+### Add a MediaDetail controller
+In/under the Classes group, create a new Cocoa Touch Class. It will be a subclass of UIViewController (right?). We suggest that you name it "MediaDetail".  
+
+Add a property to hold a dictionary, which will be passed in by the segue method in the presenting controller. 
+<br>
+
+#### Update the storyboard
+On the storyboard, add a new view controller. Position it just to the right of the other three boxes. Set its custom class value to MediaDetail.  
+
+From the table view's prototype cell, add a segue to the new view controller. 
+
+What user interface objects should we use? Let's keep it simple - add a label, which will be used for the name of the artist or album or song. And, add a text view, which will accept and display multiple lines of text. (Un-check/clear its editable behaviour check box. We do NOT want users to edit the content.)  
+
+> FYI - We can add line breaks ```\n``` to the text that appears in a UITextView. This will be useful to us when we display details.  
+
+Now, create outlets for the label and text view.  
+<br>
+
+#### Back in the controller, update viewDidLoad()
+In the ```viewDidLoad()``` method, we will configure the label and text view. The content of these will be different, depending on whether the incoming item is an artist, album, or song.  
+
+We can determine this by looking at the value of the wrapperType key in the dictionary. Then, use a Swift "switch - case" statement to handle the different scenarios:  
+
+**"artist" case:**  
+Label - artist name  
+Text view - artist identifier, and primary genre name  
+
+**"collection" case:**  
+Label - album name  
+Text view - album identifier, artist name, date released, and primary genre name  
+
+**"artist" case:**  
+Label - artist name  
+Text view - artist identifier, and primary genre name  
+
+> Hint - The appearance of the date text can be improved...  
+> It's weird syntax, but here goes (assuming that "rd" has the "releaseDate" text):  
+> ```rd = rd.substring(to: rd.index(rd.startIndex, offsetBy: 10))```
+
+<br>
+
+#### Update the segue method in the MediaList controller
+Add code to the segue method that will:  
+1. Get the current/selected row number  
+2. Get the appropriate item in the array  
+3. Initialize the MediaDetail view controller  
+4. Pass on the item  
+5. Configure a title for the new view controller  
+
+#### Test your work
+At this point in time, the user should be able to tap/select an item in the table view, and the details should appear on its own scene.  
+<br>
+
+### Add "artwork" images
+We can make one more improvement to the list-of-results on the scene managed by the MediaList view controller: We can add "artwork" images.  
+
+Each album and song object includes URLs to artwork. Our table view row height is 70 points, so let's use the artwork that's sized to fit.  
+
+Each image gets fetched as a separate HTTP request. We will not use the web service request class to do this task. Instead, we will use a *best practice* method for getting images. This is a very common use case, and offers the best performance.  
+
+First, we must create a "placeholder" image. Use the Paintbrush program on a Mac to create a 60px square image, with a white background colour. Then, save it as a PNG. Finally, import it into the app's asset catalog. 
+
+Next, add more code to the MediaList method that configures the cell. First, we will configure the cell's image with the image from the asset catalog. Then, we will request the image from the web. When - or if - it arrives, it will replace the placeholder image. We have decided just to give you the code, as a best practice:  
+
+```swift
+cell.imageView?.image = UIImage(named: "mediaPlaceholder")
+        
+if let artworkUrl = data["artworkUrl60"] {
+
+    let url = URL(string: artworkUrl as! String)
+            
+    let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: OperationQueue.main)
+    let request = NSURLRequest(url: url!)
+    let task: URLSessionDataTask = session.dataTask(with: request as URLRequest, completionHandler: {
+        (data, response, error) in
+                
+        if let data = data {
+            let image = UIImage(data: data)
+            cell.imageView!.image = image
+            cell.setNeedsLayout()
+        }
+    })
+            
+    task.resume()
+}
+
+```  
+
+At this point in time, the artwork images should appear in the table view.   
 <br>
 
 ### Test your work
@@ -502,14 +634,14 @@ If you do not have an iOS device, the School of ICT has a limited supply of iPod
 <br>
 
 #### Show / prove that your app works
-Final testing of your app must be on a device. Then, take a screenshot of **each** scene (list, list, and detail). 
+Final testing of your app must be on a device. Then, take a few screenshots that shows/proves that your app works.  
 
 Screenshots can be taken:
 - on the device itself
 - using the Xcode Devices window (on the Window menu), you can use the "take screenshot" button, and it will be stored on the desktop.
 - in the Simulator, File>Screenshot, it will store the file on the desktop
 
-Submit **all three** screenshots with your project. Put them in the project folder, before doing the zip task.  
+Submit the screenshots with your project. Put them in the project folder, before doing the zip task.  
 <br>
 
 ### Submitting your work
