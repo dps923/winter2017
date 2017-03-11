@@ -355,7 +355,7 @@ Add a statement to ```viewDidLoad()``` that sets the button's ```isEnabled``` st
 
 Next, write another function, probably named something like ```textFieldDidChange```. It does not need any parameters, and it won't return anything. Its only purpose is to call the function you just wrote above, and use the result to set the button's ```isEnabled``` setting.  
 
-When will this new function be called? Whenever a "text field did change". Does this happen automatically? No - we must configure this. We suggest that you configure this in ```viewDidLoad()```. Here's a typical configuration statement, assuming a placeholder name for the outlet:
+When will this new function be called? Whenever a "text field did change". Does this happen automatically? No - we must configure this. We suggest that you configure this in ```viewDidLoad()```. Here's a typical configuration statement, assuming a placeholder name for the outlet. You will need three of these statements, one for each text field:  
 
 ```swift
 ui-object-outlet-name.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
@@ -434,6 +434,7 @@ Test your work. It should look something like the following:
 At this point in time, the search scene is done, and works. Also, the list-of-results scene works, with temporary data.  
 
 Now it's time to get the network involved.  
+<br>
 
 #### Enable the app to send unsecure HTTP requests
 Albums have artwork images (in varying sizes). A query result includes URLs to the artwork. Their scheme uses unsecure HTTP. By default iOS apps use only secure HTTPS. Therefore, we must enable the app to send unsecure HTTP requests. 
@@ -516,6 +517,7 @@ At the present time, the ```prepare(for segue: sender)``` method sends the searc
 Comment out the temporary/test code.  
 
 Then, add a statement that calls the web service "mediaGet" method (and passes the search terms as arguments). That's all you should have to do in this controller.  
+<br>
 
 ### Update the MediaList controller
 Some table-building methods need updates. The number of rows in a section is now provided by the model object's count of items in the "media" array.  
@@ -523,14 +525,16 @@ Some table-building methods need updates. The number of rows in a section is now
 In the ```tableView(cellForRow atIndexPath:)``` method, we need to get the array element at indexPath.row (which will be a dictionary object), and extract its artistName value, to use it in the cell's text label.  
 
 While there, we recommend that you set the cell's detail text label to the object's wrapper type.  
+<br>
 
 #### Test your work
 At this point in time, the app should send a request to the iTunes API, and the results will appear on the table view. If yes, then continue, by creating a "details" view and controller.  
+<br>
 
 ### Add a MediaDetail controller
 In/under the Classes group, create a new Cocoa Touch Class. It will be a subclass of UIViewController (right?). We suggest that you name it "MediaDetail".  
 
-Add a property to hold a dictionary, which will be passed in by the segue method in the presenting controller. 
+Add a property to hold a dictionary, which will be passed in by the segue method in the presenting controller.  
 <br>
 
 #### Update the storyboard
@@ -575,6 +579,7 @@ Add code to the segue method that will:
 3. Initialize the MediaDetail view controller  
 4. Pass on the item  
 5. Configure a title for the new view controller  
+<br>
 
 #### Test your work
 At this point in time, the user should be able to tap/select an item in the table view, and the details should appear on its own scene.  
