@@ -175,6 +175,8 @@ Then, in the controller, write code that will create a fetch request object, and
 
 #### Predicate - more information
 
+A fetch request does not need a predicate. If no predicate is configured, all results are returned. 
+
 While the information above is probably enough to help you get started, we will soon do work that requires a deeper understanding of predicates. The following links help you learn more. Read/skim as appropriate. 
 
 [NSPredicate class documentation](https://developer.apple.com/reference/foundation/nspredicate)
@@ -186,7 +188,9 @@ While the information above is probably enough to help you get started, we will 
 
 #### Sort descriptors
 
-While the information above is probably enough to help you get started, we will soon do work that requires a deeper understanding of predicates. The following links help you learn more. Read/skim as appropriate.  
+A fetch request (standalone or in an frc) does not need any sort descriptors. If no sort descriptors are configured, the order/sequence of the results cannot be predicted. A fetch request has an array of zero or more sort descriptors, and they are processed in sequence according to their array index.  
+
+While the information above is probably enough to help you get started, we will soon do work that requires a deeper understanding of sort descriptors. The following links help you learn more. Read/skim as appropriate.  
 
 [NSSortDescriptor class documentation](https://developer.apple.com/reference/foundation/nssortdescriptor)
 
