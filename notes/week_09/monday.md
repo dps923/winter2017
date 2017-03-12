@@ -2,9 +2,10 @@ Monday, March 13, 2017
 Classroom S2150 at 11:40am  
 
 Agenda and sequence for today:
-1. More about fetch requests  
-2. Test 6  
-3. Answer questions about, and help on Assignment 6  
+1. Web services and Core Data storage  
+2. More about fetch requests  
+3. Test 6  
+4. Answer questions about, and help on Assignment 6  
 <br>
 
 ### Reintroduction to Core Data
@@ -41,17 +42,21 @@ These tasks are implemented as methods in the Model class.
 
 ### What is a "fetch request"?
 
-"An instance of NSFetchRequest collects the criteria needed to select and - optionally - order a group of managed objects, or data about records held in a persistent store." (From the [NSFetchRequest class documentation](https://developer.apple.com/reference/coredata/nsfetchrequest) document.)
+"An instance of NSFetchRequest collects the criteria needed to select and - optionally - order a group of managed objects, or data about records held in a persistent store." (From the [NSFetchRequest class documentation](https://developer.apple.com/reference/coredata/nsfetchrequest) document, which you should read/skim.)
 
 What criteria?  
 * Name of entity being searched  
 * If required, a *predicate* (which is a logical condition that constrains or filters a search)  
 * If required, sort descriptors  
+
+> Before continuing...  
+> Read more about [Fetching Objects](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/FetchingObjects.html#//apple_ref/doc/uid/TP40001075-CH6-SW1) in the [Core Data Programming Guide](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/index.html#//apple_ref/doc/uid/TP40001075-CH2-SW1) document. 
+
 <br>
 
 #### Compare "fetch request" with "fetched results controller"
 
-A "fetched results controller to efficiently manage the results returned from a Core Data fetch request to provide data for a UITableView object." (From the [NSFetchedResultsController class documentation](https://developer.apple.com/reference/coredata/nsfetchedresultscontroller) document.)  
+A "fetched results controller to efficiently manage the results returned from a Core Data fetch request to provide data for a UITableView object." (From the [NSFetchedResultsController class documentation](https://developer.apple.com/reference/coredata/nsfetchedresultscontroller) document, which you should read/skim.)  
 
 A fetched results controller (frc) includes a fetch request object.  
 
@@ -168,6 +173,29 @@ Then, in the controller, write code that will create a fetch request object, and
 ```  
 <br>
 
+#### Predicate - more information
+
+While the information above is probably enough to help you get started, we will soon do work that requires a deeper understanding of predicates. The following links help you learn more. Read/skim as appropriate. 
+
+[NSPredicate class documentation](https://developer.apple.com/reference/foundation/nspredicate)
+
+[Predicate Programming Guide](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Predicates/AdditionalChapters/Introduction.html#//apple_ref/doc/uid/TP40001789)
+
+[Predicate Format String Syntax](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Predicates/Articles/pSyntax.html), from the Predicate Programming Guide.  
+<br>
+
+#### Sort descriptors
+
+While the information above is probably enough to help you get started, we will soon do work that requires a deeper understanding of predicates. The following links help you learn more. Read/skim as appropriate.  
+
+[NSSortDescriptor class documentation](https://developer.apple.com/reference/foundation/nssortdescriptor)
+
+[Creating and Using Sort Descriptors](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/SortDescriptors/Articles/Creating.html) from the Sort Descriptor Programming Topics document. 
+
+[NSHipster article on NSSortDescriptor](http://nshipster.com/nssortdescriptor/)
+
+
+<br><br><br><br><br>
 ( it is possible that more content will be posted )
 
 
