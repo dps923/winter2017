@@ -159,6 +159,17 @@ As you learned in the Week 8 Monday notes and class, it is an open web service, 
 https://itunes.apple.com/search?parameterkeyvalues  
 ```
 will return plain-text JSON results.  
+
+Notice that the results are in a JSON object. (You know this because the results begin with a **{** curly brace.) Most web services will return collection results as an array value of one of the top-level object's properties (keys). 
+
+![iTunes API collection](images/a6-json-results-format.png)  
+<br>
+
+You must inspect the response, to determine where the collection is. In the iTunes API results, there is a "results" key/property, with an array (collection) of items as its value. The name of the "results" key/property MUST be used as the value of the "dataKeyName" argument when you create a new web service request object. Otherwise, the code will not know where the collection is, and will return an error similar to the following:  
+
+```
+Could not cast value of type NSDictionary to NSArray.
+```  
 <br>
 
 #### Searching for music
