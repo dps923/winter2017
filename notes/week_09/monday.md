@@ -13,7 +13,8 @@ A few weeks ago, you were introduced to Core Data. As you know, it is an object 
 <br>
 
 #### Web services, and Core Data
-More recently, you began to learn how to use web services in an iOS app. Web services and Core Data go together. When you need local on-device and/or offline-enabled storage of data from a web service, Core Data is the storage scheme. 
+More recently, you began to learn how to use web services in an iOS app. Web services and Core Data go together. When you need local on-device and/or offline-enabled storage of data from a web service, Core Data is the storage scheme.  
+<br>
 
 #### Project template
 Recently, you used the WebServiceModel project template to begin learning about a web service enabled iOS app. It featured a "WebServiceModel.swift" class. This was done to isolate and highlight the code needed to fulfill the web service usage pattern, away from the larger code base in the Model class. 

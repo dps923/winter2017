@@ -66,9 +66,13 @@ The project includes a Core Data stack. We will not be using it in this Assignme
 #### Task preview
 In the sections that follow, you will perform these tasks:  
 1. Visualize the storyboard  
-2. Add new view controllers  
-1. (to be determined)  
-2. (to be determined)  
+2. Add a "search" controller (initial easy configuration)  
+3. Learn to use the iTunes API  
+4. Implement the search controller  
+5. Add a table view controller to hold the results  
+6. Begin to use the network (web service), and update the search and list controllers  
+7. Add a standard view controller to show media detail  
+8. Add "artwork" images  
 <br>
 
 ### Visualize and then partially configure the storyboard  
@@ -480,7 +484,7 @@ Here's the algorithm that we'll use in the function:
 5. Create the web service request  
 6. Send it, and process the response  
 
-Here's some more detail:
+Here's some more detail:  
 
 **Define the initial query string**  
 
