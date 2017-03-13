@@ -577,9 +577,9 @@ Text view - artist identifier, and primary genre name
 Label - album name  
 Text view - album identifier, artist name, date released, and primary genre name  
 
-**"artist" case:**  
-Label - artist name  
-Text view - artist identifier, and primary genre name  
+**"track" case:**  
+Label - track name  
+Text view - track identifier, artist name, album name, date released, and primary genre name  
 
 > Hint - The appearance of the date text can be improved...  
 > It's weird syntax, but here goes (assuming that "rd" has the "releaseDate" text):  
