@@ -1,7 +1,7 @@
 Monday, March 13, 2017  
 Classroom S2150 at 11:40am  
 
-Agenda and sequence for today:
+Agenda and sequence for today:  
 1. Web services and Core Data storage  
 2. More about fetch requests  
 3. Test 6  
@@ -95,6 +95,7 @@ How do I add, edit, and remove objects?
 * For ‘edit’, fetch the object. Then change its property values.  
 * For ‘remove’, fetch the object. Then ask the context to remove it.
 Always “save changes”.  
+<br>
 
 ### How do I . . . with a web service involved?
 
@@ -111,7 +112,8 @@ A *get-all* query will not need a predicate.
 
 A *get-some-filtered* or *get-one* query will need a predicate. Predicate string format examples are [fully documented here](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Predicates/Articles/pSyntax.html) (although some will not work with a Core Data store).
 
-For any query that will return a collection, you can choose to configure sort behaviour, if you wish.
+For any query that will return a collection, you can choose to configure sort behaviour, if you wish.  
+<br>
 
 #### Guidance
 
@@ -197,9 +199,4 @@ While the information above is probably enough to help you get started, we will 
 [Creating and Using Sort Descriptors](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/SortDescriptors/Articles/Creating.html) from the Sort Descriptor Programming Topics document. 
 
 [NSHipster article on NSSortDescriptor](http://nshipster.com/nssortdescriptor/)
-
-
-<br><br><br><br><br>
-( it is possible that more content will be posted )
-
 
