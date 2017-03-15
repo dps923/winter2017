@@ -519,6 +519,9 @@ At this point in time, our URL is ready, and can be used.
 
 Create the web service request object, and set its base URL.  
 
+> Remember, from above, to set the value of ```dataKeyName``` parameter to "results".  
+> Also, the ```toUrlPath``` parameter value must be an empty string, because we just (above) created the full resource URL, and we do not have anything to add to it.  
+
 Before continuing, remove all existing items from the "media" array. We must do this here/now, because the app can be used to send many queries, so we must clear out the old results before sending a new query.  
 
 **Send (execute) it, and process the response**  
