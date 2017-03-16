@@ -56,7 +56,8 @@ Gather data from the user on the upper part of the screen
 Text field - the person's name  
 Segmented control, 6 segments - the number of people going on the tour  
 Date picker - start date is tomorrow, end date is today plus 14 days  
-Button - send (HTTP POST) all this content to a web service resource  
+Button - send (HTTP POST) all this content to a web service resource (and then disable user interaction with the button and the data-input controls)  
+Button - clear the input data, enable user interaction with the button and the data-input controls  
 Response will include the data entered, plus a reservation number/code, and a date-and-time stamp; display the data on the lower part of the screen  
 
 Also / new:  
