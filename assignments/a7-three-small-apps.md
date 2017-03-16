@@ -86,6 +86,9 @@ The results are displayed on a list (table view controller)
 Another button runs a query (fetch request) that fetches all quarterbacks who play for teams that begin with the letters "C" or "D" (sorted)  
 The results are displayed on a list (table view controller)  
 
+URL (use Postman to inspect):  
+http://(tba).azurewebsites.net/api/tours  
+
 <br><br><br><br><br>
 ( more to come )
 <br><br><br><br><br>
@@ -107,6 +110,10 @@ On first launch, app will call a web service, and add the response/contents to t
 Nav style app, with two levels, list scene (table view) and details scene (standard view)  
 The list (table view) will show relevant info about courses  
 When the user taps/selects a row, the way that we get the data for the details scene *will be different* from what you have learned - we will use the unique object identifier (NSManagedObjectID) to query (fetch request) the Core Data store for the item that we want to display  
+
+URLs (use Postman to inspect):  
+https://ict.senecacollege.ca/api/courses/in/cpa  
+https://ict.senecacollege.ca/api/courses/in/bsd  
 
 <br><br><br><br><br>
 ( more to come )
