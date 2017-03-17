@@ -51,14 +51,70 @@ First, run the app in the iOS Simulator, so that you know that it does successfu
 In the sections that follow, you will perform these tasks:  
 1. (more to come)  
 
-Single view app, using a standard view controller  
-Gather data from the user on the upper part of the screen  
-Text field - the person's name  
-Segmented control, 6 segments - the number of people going on the tour  
-Date picker - start date is tomorrow, end date is today plus 14 days  
-Button - send (HTTP POST) all this content to a web service resource (and then disable user interaction with the button and the data-input controls)  
-Button - clear the input data, enable user interaction with the button and the data-input controls  
-Response will include the data entered, plus a reservation number/code, and a date-and-time stamp; display the data on the lower part of the screen  
+### Storyboard and controller work
+On the storyboard, the existing navigation controller and view controller can be deleted. We will need a single scene, a standard view controller, so you can leave that on the storyboard, if you wish.  
+
+Add a new view controller (Swift) code file to the project. Its name will not matter much, so you can name it "TourHome" or something like that. Adopt the UITextFieldDelegate protocol (for keyboard handling).  
+
+It will need a reference to the model. While you're thinking about this, edit the app delegate, and set a reference to this new view controller, instead of the original nav + table view.    
+
+Back on the storyboard, set the custom class to the just-added controller. Also, configure it to be the "initial" view controller.  
+<br>
+
+#### UI, outlets and actions
+From top to bottom, the scene will have the following user interface objects. Some will need labels (use your judgement).  
+
+Text field (outlet): For the name(s) of the people who want to go on the tour.  
+
+Segmented control (outlet): With 6 segments, and segment titles 1 through 6.  
+
+Date picker (outlet): Date mode (no time).  
+
+Button (action and outlet): For the "Buy" action. We need an outlet so that we can disable/enable user interaction with the button.   
+
+Button (action): For the "Clear" action.  
+
+Text view (outlet): Displays data from the web service response.  
+<br>
+
+### Web service
+A web service has been configured to listen for tour requests. It is designed to accept a package of data in a HTTP POST request, and respond with synthesized info about the tour.  
+
+The web service resource URL is:  
+```
+https://ios2017.azurewebsites.net/api/tours
+```
+
+It supports HTTP GET, but the response will simply tell you the following:  
+
+The request must have these settings:
+POST method
+Content type is application/json
+It needs a request with this data:  
+* CustomerName - string, length 2 to 100 characters  
+* NumberOfCustomers - integer, ranging from 1 through 6  
+* TourDate - string, a valid date in ISO 8601 format (see note below)  
+
+The response will include:  
+* The three data items in the request, unchanged  
+* Id - integer, an identifier  
+* Message - string, information about the tour  
+* ReservationCode - string, a reservation (confirmation) code  
+* DateCreated - string, in ISO 8601 format  
+
+Use Postman (or similar) to interact with the web service. Create a request, and send it. The data format is JSON, so write/create a suitable JSON object. Study the response.  
+
+#### ISO 8601 dates
+Many JSON interactions with web services use the ISO 8601 standard for dates and times. At a minimum, it needs a date, and hours and minutes. A full representation needs seconds and detailed time zone information.  
+
+We will use the "minimum" format. For example, the ISO 8601 date format for Friday at noon is:  
+```
+2017-03-17T12:00Z
+```
+<br>
+
+### Controller work
+(Response will include the data entered, plus a reservation number/code, and a date-and-time stamp; display the data on the lower part of the screen)  
 
 Also / new:  
 Background photo, washed out (translucent)  
