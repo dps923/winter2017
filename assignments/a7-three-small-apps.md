@@ -36,7 +36,7 @@ In this assignment, you will create three separate small apps. Each will enable 
 
 **App 2 - Players**: Load the NFL quarterback player data into a Core Data store (on first run of the app). Then, support querying, using *fetch request* objects.  
 
-<kbd>![Startup](images/a7-players-launch.png)</kbd>&nbsp;&nbsp;<kbd>![Startup](images/a7-players-top5.png)</kbd>  
+<kbd>![Startup](images/a7-players-launch.png)</kbd>&nbsp;&nbsp;<kbd>![Startup](images/a7-players-top5.png)</kbd>&nbsp;&nbsp;<kbd>![Startup](images/a7-players-cdteams.png)</kbd>  
 <br>
 
 **App 3 - Courses**: Loads School of ICT academic course data into a Core Data store (on first run of the app). Then, support querying, using *fetch request* objects.  
@@ -322,7 +322,7 @@ Therefore:
 4. Add a table view controller scene  
 5. Add a segue from the button to this new scene (and give it an identifier)  
 6. Add another button, which will be for a "QBs on teams named C or D" scene  
-7. Add a standard view controller scene
+7. Add another table view controller scene
 8. Add a segue from the button to this new scene (and give it an identifier)  
 
 Soon, we will return to the storyboard, and configure custom class, and so on.  
@@ -340,25 +340,44 @@ Edit the app delegate code, so that this is the new root view controller.
 On the storyboard, set the custom class of the standard view controller that has the buttons.  
 <br>
 
-#### Table view  
-Add a table view controller (maybe named "PlayerTop5List"). It needs a model property, and a fetched results controller variable. And a title set.  
+#### Top 5 table view  
+Add a table view controller (maybe named "PlayerTop5List"). It needs a model property, and a fetched results controller variable. And a title set. Oh, and maybe make the row height bigger.  
 
+In the ```viewDidLoad()``` method, the same code can be used as in other table view controllers that use Core Data. However, we will be configuring the *fetch request* property of the frc.  
 
+First, set its limit to 5 - we want only the top 5 by rating.  
 
+Next, we need a different sort. If you recall configuring the frc statement in the Model class, you probably specified "player" as the attribute to be sorted (in ascending order). Don't change that.  
 
+Instead, change it in this table view controller method. It's a two-step process:  
+1. Remove all existing sort descriptors  
+2. Add/append a new one, by rating (remember that you want the top 5)  
 
+Do we need a predicate? No.  
 
+The remaining methods in the table view controller can be coded in a way similar to other Core Data driven table view controllers.  
+<br>
 
-Nav style app, with a home scene that has two (or three, to be decided) buttons  
-One button runs a query (fetch request) that selects the "top 5" quarterbacks by "rating" (sorted)  
-The results are displayed on a list (table view controller)  
-Another button runs a query (fetch request) that fetches all quarterbacks who play for teams that begin with the letters "C" or "D" (sorted)  
-The results are displayed on a list (table view controller)  
+#### C and D table view  
+Add a table view controller (maybe named "PlayerCDTeamList"). It needs a model property, and an array (of Player) property. And a title set. And a bigger row height.  
 
+This controller will be using an array as a data source, and NOT a frc. The array contents will be returned from a call to a method in the Model class.  
 
-<br><br><br><br><br>
-( more to come )
-<br><br><br><br><br>
+We will configure a *fetch request* object in the ```viewDidLoad()``` method. [As you learned in a recent class](https://github.com/dps923/winter2017/blob/master/notes/week_09/monday.md#more-about-a-standalone-fetch-request-object), we create and configure a fetch request by adding a predicate and sort descriptors.  
+
+We want players from teams with team names that begin with the letters "C" or "D". There's a predicate string condition that will do that. Here's what it looks like, with one known string comparison condition:  
+
+```swift
+...(format: "team beginswith[cd] 'c'")
+```  
+<br>
+
+Notice the single quote marks around the letter 'c'. Also, notice the [cd] option on "beginswith", which enables a case- and diacritic-insensitive search.  
+
+The statement above is not enough to do the job. We need to match an "OR" condition. So, extend the predicate string format above to also look for teams that begin with the letter "D".  
+
+Configure a sort descriptor, to sort by team, ascending.  
+<br>
 
 ### App 3 - Courses
 Get (download) the new *CombinedModel* app, which is in the GitHub repo. (Its path is notes/Project_Templates).  
