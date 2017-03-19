@@ -257,7 +257,9 @@ First, run the app in the iOS Simulator, so that you know that it does successfu
 
 #### Task preview
 In the sections that follow, you will perform these tasks:  
-1. (more to come)  
+1. Core Data model and init  
+2. Plan the storyboard  
+3. Add controllers  
 <br>
 
 ### Core Data model and initialization  
