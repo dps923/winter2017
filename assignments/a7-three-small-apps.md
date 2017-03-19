@@ -44,6 +44,13 @@ Get (download) the new *CombinedModel* app, which is in the GitHub repo. (Its pa
 
 Follow the instructions in its Readme.txt, to create an iOS app named **PlanTour**.  
 
+> IMPORTANT!  
+> The WebServiceRequest.swift source code file was updated again to add support for the HTTP POST and PUT methods.  
+> If you downloaded the new *CombinedModel* app BEFORE Sunday, March 19, at 11:30am, then you have an old or obsolete version of the WebServiceRequest.swift source code file.  
+> Before continuing, replace your existing WebServiceRequest.swift source code file with the new file.  
+
+<br>
+
 #### Verify that the app runs
 First, run the app in the iOS Simulator, so that you know that it does successfully run. It will display a list of academic programs offered by the School of ICT, because that's what the project template does, by default. We will replace that functionality with our own.  
 
@@ -54,7 +61,11 @@ In the sections that follow, you will perform these tasks:
 ### Storyboard and controller work
 On the storyboard, the existing navigation controller and view controller can be deleted. We will need a single scene, a standard view controller, so you can leave that on the storyboard, if you wish.  
 
-Add a new view controller (Swift) code file to the project. Its name will not matter much, so you can name it "TourHome" or something like that. Adopt the UITextFieldDelegate protocol (for keyboard handling).  
+Add a new view controller (Swift) code file to the project. Its name will not matter much, so you can name it "TourHome" or something like that. Adopt the WebServiceRequestDelegate.  
+
+> More work on this  
+> add code to wsr
+> iso 8601 date
 
 It will need a reference to the model. While you're thinking about this, edit the app delegate, and set a reference to this new view controller, instead of the original nav + table view.    
 
