@@ -36,7 +36,8 @@ In this assignment, you will create three separate small apps. Each will enable 
 
 **App 2 - Players**: Load the NFL quarterback player data into a Core Data store (on first run of the app). Then, support querying, using *fetch request* objects.  
 
-> A few more screen captures will be posted  
+<kbd>![Startup](images/a7-players-launch.png)</kbd>&nbsp;&nbsp;<kbd>![Startup](images/a7-players-top5.png)</kbd>  
+<br>
 
 **App 3 - Courses**: Loads School of ICT academic course data into a Core Data store (on first run of the app). Then, support querying, using *fetch request* objects.  
 
@@ -293,7 +294,58 @@ Then, go through the array. Remember, the array holds a collection of "any objec
 // Create a new Core Data player entity object
 // Set its property values to the corresponding values from the dictionary  
 // At the end (or after all Core Data player entity objects have been created), save changes  
-```
+```  
+
+> Tip: Inside the for loop, if you wanted to, you could print (to the debug output window/panel) the new Core Data object:  
+> ```print(newPlayer.description)```  
+
+<br>
+
+#### In the Model class, add the frc bits  
+As you have learned, a Core Data entity collection is published in the Model class by using a fetched results controller (frc) property, and a statement in the init method that initializes its value. Do that now.  
+
+It will be useful to have an frc, even if we are not going to use it. It's only a few lines of code, and you need the practice.  
+<br>
+
+### Plan the storyboard  
+The existing template-provided storyboard must be changed. Leave the navigation controller box, but remove the other scenes.  
+
+Here's what we want to end up with:  
+
+![Storyboard](images/a7-players-storyboard.png)  
+<br>
+
+Therefore:  
+1. Add a standard view controller scene  
+2. Add a segue from the navigation controller to this new scene, it will be a root view controller relationship segue  
+3. Add a button, which will be for a "Top 5 by Rating" scene  
+4. Add a table view controller scene  
+5. Add a segue from the button to this new scene (and give it an identifier)  
+6. Add another button, which will be for a "QBs on teams named C or D" scene  
+7. Add a standard view controller scene
+8. Add a segue from the button to this new scene (and give it an identifier)  
+
+Soon, we will return to the storyboard, and configure custom class, and so on.  
+<br>
+
+### Add controllers  
+We will need three.  
+<br>
+
+#### Launch scene  
+Add a standard view controller (maybe named "PlayerQuery"). It needs a model property. And a title set in ```viewDidLoad()```.  
+
+Edit the app delegate code, so that this is the new root view controller.  
+
+On the storyboard, set the custom class of the standard view controller that has the buttons.  
+<br>
+
+#### Table view  
+Add a table view controller (maybe named "PlayerTop5List"). It needs a model property, and a fetched results controller variable. And a title set.  
+
+
+
+
 
 
 
