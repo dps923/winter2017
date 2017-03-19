@@ -30,15 +30,17 @@ In this assignment, you will create three separate small apps. Each will enable 
 
 **App 1 - Plan Tour**: Enable a user to make reservations for a full-day tour of Toronto. Data is sent to a web service, which processes the data and returns a response that confirms the reservation.  
 
+<kbd>![Startup](images/a7-tour-request.png)</kbd>&nbsp;&nbsp;<kbd>![Startup](images/a7-tour-response.png)</kbd>  
+<br>
+
 **App 2 - Players**: Load the NFL quarterback player data into a Core Data store (on first run of the app). Then, support querying, using *fetch request* objects.  
 
-**App 3 - Courses**: Loads School of ICT academic course data into a Core Data store (on first run of the app). Then, support querying, using *fetch request* objects. 
+> A few more screen captures will be posted  
 
-> Screen captures will be posted  
+**App 3 - Courses**: Loads School of ICT academic course data into a Core Data store (on first run of the app). Then, support querying, using *fetch request* objects.  
 
-App 1 - Plan Tour - screen captures:  
+> A few more screen captures will be posted  
 
-<kbd>![Startup](images/a7-tour-request.png)</kbd>&nbsp;&nbsp;<kbd>![Startup](images/a7-tour-response.png)</kbd>  
 <br>
 
 ### App 1 - Plan Tour
@@ -58,7 +60,11 @@ First, run the app in the iOS Simulator, so that you know that it does successfu
 
 #### Task preview
 In the sections that follow, you will perform these tasks:  
-1. (more to come)  
+1. Initial storyboard and controller work  
+2. Learning about the web service  
+3. Controller work  
+4. Model work  
+<br>
 
 ### Storyboard and controller work
 On the storyboard, the existing navigation controller and view controller can be deleted. We will need a single scene, a standard view controller, so you can leave that on the storyboard, if you wish.  
