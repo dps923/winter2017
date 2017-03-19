@@ -37,6 +37,7 @@ In this assignment, you will create three separate small apps. Each will enable 
 > Screen captures will be posted  
 
 App 1 - Plan Tour - screen captures:  
+
 <kbd>![Startup](images/a7-tour-request.png)</kbd>&nbsp;&nbsp;<kbd>![Startup](images/a7-tour-response.png)</kbd>  
 <br>
 
@@ -62,13 +63,9 @@ In the sections that follow, you will perform these tasks:
 ### Storyboard and controller work
 On the storyboard, the existing navigation controller and view controller can be deleted. We will need a single scene, a standard view controller, so you can leave that on the storyboard, if you wish.  
 
-Add a new view controller (Swift) code file to the project. Its name will not matter much, so you can name it "TourHome" or something like that. Adopt the WebServiceRequestDelegate.  
+Add a new view controller (Swift) code file to the project. Its name will not matter much, so you can name it "TourHome" or something like that. Adopt the WebServiceRequestDelegate, which means that you will have to copy in the ```webServiceRequestDidChangeContent``` method stub.  
 
-> More work on this  
-> add code to wsr
-> iso 8601 date
-
-It will need a reference to the model. While you're thinking about this, edit the app delegate, and set a reference to this new view controller, instead of the original nav + table view.    
+It will need a reference to the model. While you're thinking about this, go and edit the app delegate, and set a reference to this new view controller, instead of the original nav + table view.    
 
 Back on the storyboard, set the custom class to the just-added controller. Also, configure it to be the "initial" view controller.  
 <br>
@@ -76,7 +73,7 @@ Back on the storyboard, set the custom class to the just-added controller. Also,
 #### UI, outlets and actions
 From top to bottom, the scene will have the following user interface objects. Some will need labels (use your judgement).  
 
-Text field (outlet): For the name(s) of the people who want to go on the tour.  
+Text field (outlet): For the name(s) of the people who want to go on the tour. Set the text and keyboard properties so that data input is not annoying for the user.  
 
 Segmented control (outlet): With 6 segments, and segment titles 1 through 6.  
 
@@ -86,7 +83,7 @@ Button (action and outlet): For the "Buy" action. We need an outlet so that we c
 
 Button (action): For the "Clear" action.  
 
-Text view (outlet): Displays data from the web service response.  
+Text view (outlet): Displays data from the web service response. Disable editing.  
 <br>
 
 ### Web service
@@ -97,43 +94,150 @@ The web service resource URL is:
 https://ios2017.azurewebsites.net/api/tours
 ```
 
-It supports HTTP GET, but the response will simply tell you the following:  
+It supports HTTP GET, but the response will simply tell you what to send.  
 
 The request must have these settings:
 POST method
 Content type is application/json
-It needs a request with this data:  
+It needs a request with this data, as a JSON object:  
 * CustomerName - string, length 2 to 100 characters  
 * NumberOfCustomers - integer, ranging from 1 through 6  
 * TourDate - string, a valid date in ISO 8601 format (see note below)  
 
+For example:  
+
+```json
+{
+    "CustomerName": "Garvan Keeley",
+    "NumberOfCustomers": 4,
+    "TourDate": "2017-03-29T12:00Z"
+}
+```
+
 The response will include:  
 * The three data items in the request, unchanged  
-* Id - integer, an identifier  
+* Id - integer, which is an identifier  
 * Message - string, information about the tour  
 * ReservationCode - string, a reservation (confirmation) code  
 * DateCreated - string, in ISO 8601 format  
 
 Use Postman (or similar) to interact with the web service. Create a request, and send it. The data format is JSON, so write/create a suitable JSON object. Study the response.  
+<br>
 
 #### ISO 8601 dates
 Many JSON interactions with web services use the ISO 8601 standard for dates and times. At a minimum, it needs a date, and hours and minutes. A full representation needs seconds and detailed time zone information.  
 
 We will use the "minimum" format. For example, the ISO 8601 date format for Friday at noon is:  
 ```
-2017-03-17T12:00Z
+2017-03-24T12:00Z
 ```
+
+The date picker's "date" property value is a Swift "Date" type. How can we convert the "Date" value to an ISO 8601 compatible string? With the [ISO8601DateFormatter](https://developer.apple.com/reference/foundation/iso8601dateformatter) class. For example:  
+
+```swift
+let isoDateString = ISO8601DateFormatter()
+isoDateString.timeZone = TimeZone.current
+// Then... use the "isoDateString.string..." method
+// to get a string from a Swift "Date" value
+```
+
 <br>
 
 ### Controller work
-(Response will include the data entered, plus a reservation number/code, and a date-and-time stamp; display the data on the lower part of the screen)  
+There are several tasks to be done.  
+<br>
 
-Also / new:  
-Background photo, washed out (translucent)  
+#### Initialization (viewDidLoad())
+As you have seen and done before, set this class to be the delegate of the model class.
 
-<br><br><br><br><br>
-( more to come )
-<br><br><br><br><br>
+We must set the allowable dates for the date picker:  
+* The minimum allowable date will be tomorrow  
+* The maximum allowable date will be two weeks from today  
+
+We cannot set these values in the storyboard's Attribute Inspector. They must be set programmatically here.  
+
+To do date arithmetic in Swift, we use the [Calendar](https://developer.apple.com/reference/foundation/calendar) class. For example, if we have a Date object that represents today, we can create another that represents tomorrow:  
+
+```swift
+let now = Date()
+let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: now)
+```   
+<br>
+
+#### Write code for the Clear method
+The purpose of this method is to clear any data in the view, and enable user interaction with the objects on the top part of the scene. (Later, you will learn how to disable user interaction, in the Buy method.)  
+
+The other task that must be done in this method is to dismiss the keyboard. This is done by calling the ```resignFirstResponder``` method on the text field.  
+<br>
+
+#### Write code for the Buy method
+The purpose of this method is to send the data to the web service, and display the response. During this request-response cycle, the code will disable user interaction with most of the objects on the top part of the scene. The Clear button will remain enabled. 
+<br>
+
+**Important tasks to do first**  
+
+One of the first things that you should do is ensure that the user has entered something in the customer name field. If not, just return. (Later, we will learn ways to communicate error info to the user.)  
+
+Then, dismiss the keyboard.  
+
+Next, disable most of the controls. Each has an "enabled" property.  
+
+Finally, get the selected date from the date picker, as an ISO 8601 date string.  
+
+Now you're ready to package the data, and call the web service.  
+<br>
+
+**Package the data, call the web service**
+
+Create a Dictionary (string key, any value). Get the data from the user interface objects. The key names MUST match the names shown in the sample JSON request above. And, the value types must match.  
+
+> Note: A Dictionary is a standard packaging format when working with JSON objects and a web service. Request and response.  
+> The built-in JSON serializer/deserializer expects to work with Dictionary instances when reading or writing JSON objects.  
+
+The last thing to do is to call the method in the Model class which will interact with the web service.  Let's switch to the Model class now, and write that code.  
+<br>
+
+### Model work  
+As recently discussed, the Model class (in the CombinedModel app project template) now includes all the bits needed for both Core Data and web service interaction. So, this is where we place our code.  
+
+As before, we ALWAYS add two members to the class, to support interaction with a web service:  
+* A property to hold the results of the web service request  
+* A method that calls the web service  
+<br>
+
+#### Property to hold the results  
+As you have learned above, we send a POST request to the web service, with a JSON object. The web service responds with HTTP 201, and a JSON object. Not an array, but a single object.
+
+Therefore, create a Dictionary property (string key, any value) to hold the result.  
+<br>
+
+#### Method that calls the web service  
+This method can (should) accept a single parameter, which will be a Dictionary (string key, any value). Remember, the controller's "Buy" method will be calling this method eventually, and passing on a Dictionary with the data entered by the user.  
+
+Following the pattern you have seen before, write the code, and add in code for the tasks that are new to you:  
+```swift
+// Create the web service request object  
+// Set the HTTP method to POST  
+// Configure the resource URL (do this however you wish, with a separate URL base and path, or all-in-one URL base)  
+
+// Set the message body; the syntax is a bit tricky, because "messageBody" can be any type, but we have an incoming Dictionary object  
+// This should work:
+request.messageBody = userData as AnyObject?
+
+// Send the request
+// The code in the "completion" closure does the following:
+// The response is available in the "result" variable, which is an ARRAY of AnyObject  
+// Recall from above that the web service responds with a single JSON object  
+// It can be found as the first (and only) element of the result array, so extract that (it will be a Dictionary)
+// Then, set the just-created property value to the extracted Dictionary  
+
+// Notify the delegate that the web service request did change content  
+```  
+<br>
+
+#### Go back to finish writing code in the controller "Buy" method  
+Now that we have a Model class method to call, return to the controller code, in the Buy method, and add the statement that calls the new Model class method.  
+<br>
 
 ### App 2 - Players
 Get (download) the new *CombinedModel* app, which is in the GitHub repo. (Its path is notes/Project_Templates).  
