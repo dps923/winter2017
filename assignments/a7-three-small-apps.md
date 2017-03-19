@@ -27,6 +27,7 @@ Continue using the foundation topics from previous classes.
 In this assignment, you will create three separate small apps. Each will enable you to learn and get experience in a common mobile app interaction and data-handling pattern.  
 
 (Your teacher team decided that it was better to do three separate small apps, instead of attempting to create an all-in-one app scenario.)  
+<br>
 
 **App 1 - Plan Tour**: Enable a user to make reservations for a full-day tour of Toronto. Data is sent to a web service, which processes the data and returns a response that confirms the reservation.  
 
@@ -256,17 +257,52 @@ First, run the app in the iOS Simulator, so that you know that it does successfu
 #### Task preview
 In the sections that follow, you will perform these tasks:  
 1. (more to come)  
+<br>
 
-Create a Core Data model that will hold NFL quarterback data  
-On first launch, app will open a plist file, and add the contents to the Core Data store  
+### Core Data model and initialization  
+In this section, a new entity will be added to the Core Data model. Then, the store initializer class "init" method will be modified, to process starter data if the app is being launched for the first time.  
+<br>
+
+#### Get the starter data  
+In Assignment 4, an app was created to display information about NFL quarterbacks. We will use that data again.  
+
+Get (download) the "Assignment4Data.zip" file from the ["assignment-assets" folder](https://github.com/dps923/winter2017/tree/master/assignments/assignment-assets).  
+
+Add the plist file to your project, using the "add files" task. Import the images, using the asset catalog import task.  
+<br>
+
+#### Add a new entity to the Core Data model  
+Study the plist data. Create a new entity, with an attribute for each of the property list keys. Data types will include string, integer, and double. For easier coding, configure the numbers (integer and double) as scalar types.  
+
+Configure the entity for code generation: As you have done before, the codegen setting will be "Category/Extension".  
+
+Next, create a new Swift source code file to hold the class declaration stub for the just-added entity. Here's a reminder:  
+
+<kbd>![Managed object class declaration stub](images/a7-players-moclass.png)</kbd>  
+<br>
+
+#### Modify the store intializer init method  
+In Assignment 4, [you learned how to](https://github.com/dps923/winter2017/blob/master/assignments/a4-football-players.md#add-and-configure-the-model-class) read a plist file, and load its contents into an array.  
+
+We will do this here. Create a local variable. It does not need to be an enduring property, because after we read the plist data once (and only once), it will create data in the Core Data store, and we will not need to keep the array data.  
+
+Then, go through the array. Remember, the array holds a collection of "any object" objects, without a specified type. During processing, we will treat each as a Dictionary object (string key, any value). Here's the general algorithm:  
+
+```swift
+// Cast / convert the current player object to a dictionary
+// Create a new Core Data player entity object
+// Set its property values to the corresponding values from the dictionary  
+// At the end (or after all Core Data player entity objects have been created), save changes  
+```
+
+
+
 Nav style app, with a home scene that has two (or three, to be decided) buttons  
 One button runs a query (fetch request) that selects the "top 5" quarterbacks by "rating" (sorted)  
 The results are displayed on a list (table view controller)  
 Another button runs a query (fetch request) that fetches all quarterbacks who play for teams that begin with the letters "C" or "D" (sorted)  
 The results are displayed on a list (table view controller)  
 
-URL (use Postman to inspect):  
-http://(tba).azurewebsites.net/api/tours  
 
 <br><br><br><br><br>
 ( more to come )
