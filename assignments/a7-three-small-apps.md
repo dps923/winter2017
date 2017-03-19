@@ -36,7 +36,8 @@ In this assignment, you will create three separate small apps. Each will enable 
 
 > Screen captures will be posted  
 
-<kbd>![Startup](images/a7-tour-start.png)</kbd>  
+App 1 - Plan Tour - screen captures:  
+<kbd>![Startup](images/a7-tour-request.png)</kbd>&nbsp;&nbsp;<kbd>![Startup](images/a7-tour-response.png)</kbd>  
 <br>
 
 ### App 1 - Plan Tour
