@@ -39,10 +39,9 @@ In this assignment, you will create three separate small apps. Each will enable 
 <kbd>![Startup](images/a7-players-launch.png)</kbd>&nbsp;&nbsp;<kbd>![Startup](images/a7-players-top5.png)</kbd>&nbsp;&nbsp;<kbd>![Startup](images/a7-players-cdteams.png)</kbd>  
 <br>
 
-**App 3 - Courses**: Loads School of ICT academic course data into a Core Data store (on first run of the app). Then, support querying, using *fetch request* objects.  
+**App 3 - Courses**: Loads School of ICT academic course data into a Core Data store (on first run of the app). Then, support querying, using a *fetch request* object.  
 
-> A few more screen captures will be posted  
-
+<kbd>![Startup](images/a7-courses-list.png)</kbd>&nbsp;&nbsp;<kbd>![Startup](images/a7-courses-list.png)</kbd>  
 <br>
 
 ### App 1 - Plan Tour
@@ -418,6 +417,14 @@ Send a GET request, and the web service will deliver data in JSON format. Use Po
 In this section, a new entity will be added to the Core Data model. Then, the store initializer class "init" method will be modified, to process starter data if the app is being launched for the first time.  
 <br>
 
+#### Code cleanup  
+Before writing our code, let's disable (or comment out or delete) some code.  
+
+In the store initializer, disable the code that adds the objects for the Example entity.  
+
+In the model class initializer, disable the ```programsGet()``` statement.  
+<br>
+
 #### Add a new entity to the Core Data model  
 Study the plist data. Create a new entity, with an attribute for each of the property list keys. Data types will include string, integer, and double. For easier coding, configure the numbers (integer and double) as scalar types. For this assignment, it is OK to configure the date fields as strings.  
 
@@ -427,35 +434,56 @@ Next, create a new Swift source code file to hold the class declaration stub for
 <br>
 
 #### Add the Model class bits to call the web service  
-In the Model class, add a method to call the web service. You can use the existing code as a template or indication of how to write the code.  
+In the Model class, add a method to call the web service. You can use the existing code as a template or indication of how to write the code. Call the resource URL that matches your program of study (CPA or BSD).  
 
 > We probably do not need a property to hold the results from the call to the web service. Loading the data is a one-time task, and after that, the Core Data store on the device has the data needed for the scenes.    
 
 Reminder, as noted above, the response is delivered as a JSON array of objects. Therefore, the value of the ```dataKeyName``` parameter will be nil.  
 
+Go through the results, and for each item, add a new object in the Core Data store. If you want to see progress in the debug output window/panel, use a print statement at the bottom of the loop:  
+
+```swift
+print(newCourse.description)
+```  
+<br>
+
+#### Call the just-added method  
+In the store initializer, call the method that you just completed.  
+
+> We do all data loading at first launch in the store initializer.  
+
+<br> 
+
+#### Test your work  
+If you used the print command, it will display each added Core Data object. That can be your goal, before continuing with controller and storyboard work.  
+
+Remember, if the Core Data model is edited/fixed, delete the app from the simulator before attempting to run it again. (Otherwise, it will likely complain.)  
+<br>
+
+#### Model work  
+After loading the data, we must prepare the model class to work with the Course entity collection of data.  
+
+Add an frc property to the class. Then, initialize its value, consistent with the existing code example.  
+<br>
+
+### Controller work, list of courses  
+For a change, let's do the controller work before we do the storyboard work. The project template/base already has a good-enough storyboard to start with, so we'll leave it for now.  
+
+Add a new controller to display a list of course objects. Configure it with the standard code that is expected. Assume that we will use the "Subtitle" table view cell style.  
+<br>
+#### Test your work  
+If you wish, go to the storyboard, and change the custom class of the existing table view scene to match this new controller. Verify that the table view cell identifier is correct, and that the cell will use the "Subtitle" style.  
+
+Then, go to the app delegate, and change the identity of the root view controller. Then, the app should run correctly.  
+<br>
+
+### Controller work, course detail  
+In this section, the task will be a bit different than a typical master > detail interaction. We will create a *fetch request* in the course detail controller, which will fetch the data it displays.  
 
 
 
-#### Modify the store initializer init method
-In the "Players" app (above), the store initializer opened a plist file, and created Core Data objects, when the app was launched for the first time.  
-
-Here, we will fetch the initial data from the web service. 
 
 
-
-Create a Core Data model that will hold School of ICT course data  
-On first launch, app will call a web service, and add the response/contents to the Core Data store  
-Nav style app, with two levels, list scene (table view) and details scene (standard view)  
-The list (table view) will show relevant info about courses  
-When the user taps/selects a row, the way that we get the data for the details scene *will be different* from what you have learned - we will use the unique object identifier (NSManagedObjectID) to query (fetch request) the Core Data store for the item that we want to display  
-
-URLs (use Postman to inspect):  
-https://ict.senecacollege.ca/api/courses/in/cpa  
-https://ict.senecacollege.ca/api/courses/in/bsd  
-
-<br><br><br><br><br>
-( more to come )
-<br><br><br><br><br>
 
 
 ### Test your work
