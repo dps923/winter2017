@@ -3,11 +3,6 @@
 Assignment 7 enables you to continue working with the network and Core Data, separately and/or together. Three separate small apps will enable you to get experience with some common mobile app patterns.  
 <br>
 
-> This document is being edited.  
-> This notice will be removed when the edits are complete.  
-
-<br>
-
 ### Due date
 Wednesday, March 22, 2017, at 11:00pm ET  
 Grade value: 5% of your final course grade  
@@ -41,7 +36,7 @@ In this assignment, you will create three separate small apps. Each will enable 
 
 **App 3 - Courses**: Loads School of ICT academic course data into a Core Data store (on first run of the app). Then, support querying, using a *fetch request* object.  
 
-<kbd>![Startup](images/a7-courses-list.png)</kbd>&nbsp;&nbsp;<kbd>![Startup](images/a7-courses-list.png)</kbd>  
+<kbd>![Startup](images/a7-courses-list.png)</kbd>&nbsp;&nbsp;<kbd>![Startup](images/a7-courses-detail.png)</kbd>  
 <br>
 
 ### App 1 - Plan Tour
@@ -471,6 +466,7 @@ For a change, let's do the controller work before we do the storyboard work. The
 
 Add a new controller to display a list of course objects. Configure it with the standard code that is expected. Assume that we will use the "Subtitle" table view cell style.  
 <br>
+
 #### Test your work  
 If you wish, go to the storyboard, and change the custom class of the existing table view scene to match this new controller. Verify that the table view cell identifier is correct, and that the cell will use the "Subtitle" style.  
 
@@ -482,15 +478,50 @@ In this section, the task will be a bit different than a typical master > detail
 
 Begin by adding a new controller to display course details. Configure it with the standard code that is expected.  
 
+Go over to the storyboard, and configure the standard view controller scene with a custom class, and some user interface objects. Maybe a label for the course name, and a text view (not editable) to display course details. Configure outlets. Make sure the segue identifier has a name that you like.  
+<br>
+
 #### Learn about a managed object identifier  
+In other persistent stores, a unique identifier (often known as a  primary key) is a visible part of the storage schema. Also, it is sometimes assigned by the storage engine. In summary, the unique identifier is typically visible and can be queried.  
 
+Core Data objects have a "managed object identifier" (its class is [NSManagedObjectID](https://developer.apple.com/reference/coredata/nsmanagedobjectid)), which does the same job - it is the unique identifier. However, we cannot see it in the schema. In other words, it's not an attribute that you can inspect in the editor. But we can get to it programmatically.  
 
+In the controller, add another property to hold the object ID.  
+<br>
 
+#### In the list controller, write code for the segue  
+Now that we know the plan, go back to the list controller.  
 
-<br><br><br><br>  
-> More to come  
+Write code for the segue. We will pass on a reference to the model object, and the managed object identifier.  
 
-<br><br><br><br>  
+> In the past, we passed on an entity object. Not this time. We want to give you some experience with a different kind of query plan.  
+
+<br>
+
+#### In the detail controller, write viewDidLoad() code  
+In this method, we extract data from the object, and write it to the user interface. How do we get the object? We query the *context*. It has a method that lets us do that. For example:  
+
+```swift
+// Assuming "objectId" is the managed object identifier
+let course = model.context.object(with: objectId) as! Course
+```  
+
+Write code that will display some useful information about the course object. Make sure it works correctly before continuing.  
+<br>
+
+#### Replace the functionality with a fetch request  
+Save the code that works with the object ID - comment it out.  
+
+Now, we're going to do the same task - query for an object, but this time we'll use a fetch request. Here's how it will work:  
+
+**List controller, segue** - From the tapped item, extract a piece of data that will represent uniqueness. You learned above (when studying the web service) that "CourseId" is the unique identifier of a course *at the web service*. We save that value in the Core Data store, so we can feel confident that it will be unique.  
+
+Pass it on to the detail controller. Obviously, you will need a property in the detail controller to hold the value.  
+
+**Detail controller, viewDidLoad()** - Create and configure a fetch request object. Then execute it. The return result - the matching course object - will be used to update the user interface.  
+
+Test your work to ensure that this query method works correctly.  
+<br>
 
 ### Test your work
 Run the app on the iOS Simulator, using different devices (that have different screen sizes):  
