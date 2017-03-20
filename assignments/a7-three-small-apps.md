@@ -480,11 +480,17 @@ Then, go to the app delegate, and change the identity of the root view controlle
 ### Controller work, course detail  
 In this section, the task will be a bit different than a typical master > detail interaction. We will create a *fetch request* in the course detail controller, which will fetch the data it displays.  
 
+Begin by adding a new controller to display course details. Configure it with the standard code that is expected.  
+
+#### Learn about a managed object identifier  
 
 
 
 
+<br><br><br><br>  
+> More to come  
 
+<br><br><br><br>  
 
 ### Test your work
 Run the app on the iOS Simulator, using different devices (that have different screen sizes):  
