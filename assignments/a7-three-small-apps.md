@@ -275,7 +275,7 @@ Add the plist file to your project, using the "add files" task. Import the image
 <br>
 
 #### Add a new entity to the Core Data model  
-Study the plist data. Create a new entity, with an attribute for each of the property list keys. Data types will include string, integer, and double. For easier coding, configure the numbers (integer and double) as scalar types.  
+Study the plist data. Create a new entity, with an attribute for each of the property list keys. Data types will include string, integer, and double. For easier coding, configure the numbers (integer and double) as scalar types. For this assignment, it is OK to configure the date fields as strings.  
 
 Configure the entity for code generation: As you have done before, the codegen setting will be "Category/Extension".  
 
@@ -386,12 +386,62 @@ Get (download) the new *CombinedModel* app, which is in the GitHub repo. (Its pa
 
 Follow the instructions in its Readme.txt, to create an iOS app named **Courses**.  
 
+> IMPORTANT!  
+> The WebServiceRequest.swift source code file was updated again to add support for the HTTP POST and PUT methods.  
+> If you downloaded the new *CombinedModel* app BEFORE Sunday, March 19, at 11:30am, then you have an old or obsolete version of the WebServiceRequest.swift source code file.  
+> Before continuing, replace your existing WebServiceRequest.swift source code file with the new file.  
+
+<br>
+
 #### Verify that the app runs
 First, run the app in the iOS Simulator, so that you know that it does successfully run. It will display a list of academic programs offered by the School of ICT, because that's what the project template does, by default. We will replace that functionality with our own.  
+<br>
 
 #### Task preview
 In the sections that follow, you will perform these tasks:  
-1. (more to come)  
+1. Learn about the web service  
+2. Core Data work  
+
+<br>
+
+### Web service  
+The School of ICT has a public web service API. One of the entity groupings that is available is the academic programs and courses collections.  
+
+The following resource URLs will deliver useful collections:  
+https://ict.senecacollege.ca/api/courses/in/cpa  
+https://ict.senecacollege.ca/api/courses/in/bsd  
+
+Send a GET request, and the web service will deliver data in JSON format. Use Postman (or similar) to inspect the response, so that you will know how to design a Core Data entity. Notice that the response is delivered as a JSON array of objects.  
+<br>
+
+### Core Data model and initialization  
+In this section, a new entity will be added to the Core Data model. Then, the store initializer class "init" method will be modified, to process starter data if the app is being launched for the first time.  
+<br>
+
+#### Add a new entity to the Core Data model  
+Study the plist data. Create a new entity, with an attribute for each of the property list keys. Data types will include string, integer, and double. For easier coding, configure the numbers (integer and double) as scalar types. For this assignment, it is OK to configure the date fields as strings.  
+
+Configure the entity for code generation: As you have done before, the codegen setting will be "Category/Extension".
+
+Next, create a new Swift source code file to hold the class declaration stub for the just-added entity.  
+<br>
+
+#### Add the Model class bits to call the web service  
+In the Model class, add a method to call the web service. You can use the existing code as a template or indication of how to write the code.  
+
+> We probably do not need a property to hold the results from the call to the web service. Loading the data is a one-time task, and after that, the Core Data store on the device has the data needed for the scenes.    
+
+Reminder, as noted above, the response is delivered as a JSON array of objects. Therefore, the value of the ```dataKeyName``` parameter will be nil.  
+
+
+
+
+#### Modify the store initializer init method
+In the "Players" app (above), the store initializer opened a plist file, and created Core Data objects, when the app was launched for the first time.  
+
+Here, we will fetch the initial data from the web service. 
+
+
 
 Create a Core Data model that will hold School of ICT course data  
 On first launch, app will call a web service, and add the response/contents to the Core Data store  
