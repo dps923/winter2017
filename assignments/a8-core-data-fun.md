@@ -42,9 +42,20 @@ And:
 <kbd>![Startup](images/a8-edit-delete.png)</kbd>  
 <br>
 
+### Getting started  
+Get (download) the new *CombinedModel* app, which is in the GitHub repo. (Its path is notes/Project_Templates).  
 
+Follow the instructions in its Readme.txt, to create an iOS app named **MyFriends**.  
 <br>
 
+#### Verify that the app runs
+First, run the app in the iOS Simulator, so that you know that it does successfully run. It will display a list of academic programs offered by the School of ICT, because that's what the project template does, by default. We will replace that functionality with our own.  
+<br>
+
+#### Task preview
+In the sections that follow, you will perform these tasks:  
+1. (more to come)  
+<br>
 
 
 <br><br><br><br><br>
