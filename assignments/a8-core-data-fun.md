@@ -43,19 +43,31 @@ And:
 <br>
 
 ### Getting started  
-Get (download) the new *CombinedModel* app, which is in the GitHub repo. (Its path is notes/Project_Templates).  
+Get (download) the *CoreDataModel* app, which is in the GitHub repo. (Its path is notes/Project_Templates).  
 
 Follow the instructions in its Readme.txt, to create an iOS app named **MyFriends**.  
 <br>
 
 #### Verify that the app runs
-First, run the app in the iOS Simulator, so that you know that it does successfully run. It will display a list of academic programs offered by the School of ICT, because that's what the project template does, by default. We will replace that functionality with our own.  
+First, run the app in the iOS Simulator, so that you know that it does successfully run. It will display a list of teacher names, because that's what the project template does, by default. We will replace that functionality with our own.  
 <br>
 
 #### Task preview
 In the sections that follow, you will perform these tasks:  
 1. (more to come)  
 <br>
+
+Design a Core Data model.  
+
+Create a table view controller to manage the list of friends.  
+
+Create a controller to handle the "add" functionality.  
+
+Storyboard work:  
+Delete the existing detail scene.  
+Configure the list scene to work with the new table view controller.  
+Make and configure a new "add" scene, it will work with a toolbar button.  
+
 
 
 <br><br><br><br><br>
