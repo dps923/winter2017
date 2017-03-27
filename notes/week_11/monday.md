@@ -152,8 +152,9 @@ extension MyLocation: MKMapViewDelegate {
 The function `map​View(MKMapView, view​For:​ MKAnnotation)` gets called when the pin is tapped.
 
 The demo uses the built-in **MKPinAnnotationView** to show a bubble (called a **callout**) at the pin location.<br>
-It sets the **rightCalloutAccessoryView** to an info button, that when pressed, will call the second function above (the func **annotationView, calloutAccessoryControlTapped**).
+It sets the **rightCalloutAccessoryView** to an info button, that when pressed, will call the second function above (the func **annotationView, calloutAccessoryControlTapped**).  
+<br>
 
-
-
+### For more information  
+For more information, read the [Location and Maps Programming Guide](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/LocationAwarenessPG/Introduction/Introduction.html). 
 
