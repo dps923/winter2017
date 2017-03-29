@@ -115,10 +115,10 @@ extension MyLocation : CLLocationManagerDelegate {
 
             // When the map first loads, it is zoomed out to show country or world level, let's detect that
             // and zoom in to 2km x 2km
-            let kmPerDegreeLongitude = 111.325 // roughly!
+            let kmPerDegreeLat = 111.325 // roughly!
             let maxKmSpanToShow = 100.0
             // If more than 100km from top-to-bottom is being shown, zoom in to 2km x 2km
-            if myMap.region.span.longitudeDelta * kmPerDegreeLongitude > maxKmSpanToShow {
+            if myMap.region.span.latitudeDelta * kmPerDegreeLat > maxKmSpanToShow {
                 // Set the display region of the map
                 myMap.setRegion(MKCoordinateRegionMakeWithDistance(l.coordinate, 2000, 2000), animated: true)
             }
