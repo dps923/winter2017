@@ -33,12 +33,27 @@ Download *OpenStreetMapModel*, and rename it to "MyMapping", using the project-r
 <br>
 
 #### Verify that the app runs
-First, run the app in the iOS Simulator, so that you know that it does successfully run. It will display some restaurants near to a specific location. We will replace that functionality with our own.  
+First, run the app in the iOS Simulator, so that you know that it does successfully run. It will display some restaurants near to a specific location. We will add and replace that functionality with our own.  
 <br>
 
 #### Task preview
 In the sections that follow, you will perform these tasks:  
 1. (more to come)  
+
+(preview) Essentially, the idea will be to replace the hard-coded location with the device's current location.  
+
+Then, show a list of matches for a selected kind/category of nearby locations (restaurants etc.).  
+
+Then, map them (using the native iOS map view), with info-bubbles that give the user more info.  
+<br>
+
+#### Learn about another service that delivers map-related data
+In this assignment, you will be able to work with the *OpenStreetMap* service. It delivers map-related data, and is a good learning tool, with low use/implementation barriers.  
+
+[OpenStreetMap web site](https://www.openstreetmap.org)  
+<br>
+
+![OpenStreetMap on the web](images/a9-osm-web-home.png)  
 <br>
 
 <br><br><br><br><br>
