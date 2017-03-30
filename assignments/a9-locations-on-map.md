@@ -15,18 +15,21 @@ Grade value: 5% of your final course grade
 <br>
 
 ### Objective(s)  
-TBA  
+Work with Location Services.  
+Work with Mapping Services.  
+Create an interactive iOS app.  
 <br>
 
 ### Introduction to the problem that you will solve
-TBA  
+We thought it would be a good idea to create a special-purpose app that enables the device user to quickly locate and map *points of interest* near to them.  
 
-<br><br><br><br><br>
-( more to come )
-<br><br><br><br><br>
+Yes, the Maps app can be used for this, but that app is  general-purpose and feature-rich. This app will be a good opportunity to learn how to customize location and mapping to meet a specific need. Location-aware apps are growing in importance in the mobile space, so this will be useful now and into the future.  
+<br>
 
 ### Getting started  
-TBA  
+A *new* project template has been created, and can be found in the [Project_Templates](https://github.com/dps923/winter2017/tree/master/notes/Project_Templates) folder.  
+
+Download *OpenStreetMapModel*, and rename it to "MyMapping", using the project-rename procedure that you have used in the past. 
 <br>
 
 #### Verify that the app runs
@@ -37,6 +40,10 @@ First, run the app in the iOS Simulator, so that you know that it does successfu
 In the sections that follow, you will perform these tasks:  
 1. (more to come)  
 <br>
+
+<br><br><br><br><br>
+( more to come )
+<br><br><br><br><br>
 
 ### Screenshots
 TBA  
