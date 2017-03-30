@@ -8,7 +8,7 @@ Assignment 9 enables you to work with the device's location services, and perfor
 <br>
 
 ### Due date
-Wednesday, April 5, 2017, at 11:00pm ET  
+Friday, April 7, 2017, at 12:00pm ET (noon)  
 Grade value: 5% of your final course grade  
 
 *If you wish to submit the assignment before the due date and time, you can do that.*  
@@ -39,6 +39,7 @@ First, run the app in the iOS Simulator, so that you know that it does successfu
 #### Task preview
 In the sections that follow, you will perform these tasks:  
 1. (more to come)  
+<br>
 
 (preview) Essentially, the idea will be to replace the hard-coded location with the device's current location.  
 
