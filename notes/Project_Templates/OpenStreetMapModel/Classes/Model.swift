@@ -28,10 +28,25 @@ class Model {
     // The delegate gets called to report that the data has changed
     weak var delegate: WebServiceRequestDelegate? = nil
 
+    // Shortcut to get the managed object context.
+    // This uses a Swift 'calculated property', and is the same as writing a getter-type function:
+    // `func context() -> NSManagedObjectContext { return cdStack.managedObjectContext }`
+    let cdStack: CDStack
+
+    var context: NSManagedObjectContext {
+        return cdStack.managedObjectContext
+    }
+
     init() {
+
+        cdStack = CDStack()
+        
         getSomeTorontoRestaurants()
     }
 
+    func saveChanges() {
+        cdStack.save()
+    }
     
     // Method to fetch restaurants in 5km region around center coordinate for Toronto
     func getSomeTorontoRestaurants() {
