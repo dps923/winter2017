@@ -33,7 +33,7 @@ Download *OpenStreetMapModel*, and rename it to "MyMapping", using the project-r
 <br>
 
 #### Verify that the app runs
-First, run the app in the iOS Simulator, so that you know that it does successfully run. It will display a list of teacher names, because that's what the project template does, by default. We will replace that functionality with our own.  
+First, run the app in the iOS Simulator, so that you know that it does successfully run. It will display some restaurants near to a specific location. We will replace that functionality with our own.  
 <br>
 
 #### Task preview
