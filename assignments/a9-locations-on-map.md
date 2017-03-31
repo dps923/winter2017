@@ -38,7 +38,16 @@ First, run the app in the iOS Simulator, so that you know that it does successfu
 
 #### Task preview
 In the sections that follow, you will perform these tasks:  
-1. (more to come)  
+1. Clear out the storyboard, we won't use any of the existing scenes
+1. Copy the scene with the MKMapView from week 11 WhereAmI into the storyboard, also add this file to your project:<br>
+https://github.com/dps923/winter2017/blob/master/notes/week_11/WhereAmI/Classes/MyLocation.swift
+1. Set the scene you added as the 'Initial View Controller' for the storyboard.
+1. We won't need the AppDelegate app init code, you can comment that out. This app will just load the map view scene.
+1. You will change MyLocation didUpdateLocations to only get a _single_ location and then stop updating.
+1. Using that same function, put the code for searching OpenStreetMaps in there: `let request = WebServiceRequest(); request.osmSearch(...)`, search based on the location received. Use a 5 km radius.
+1. Change the request.osmSearch(...) response to create Pin objects. Set the pin name and detail, and add to the map with addAnnotion()
+1. In the calloutAccessoryControlTapped, which is called when the info button on the callout is tapped, output the pin details to the console
+
 <br>
 
 (preview) Essentially, the idea will be to replace the hard-coded location with the device's current location.  
