@@ -9,15 +9,14 @@ Grade value: 5% of your final course grade
 *If you wish to submit the assignment before the due date and time, you can do that.*  
 <br>
 
-```
-Special note:  
-
-The College had to change the room access policy for the T3078 computer-lab. It is now locked (and empty) when it does not have a scheduled class.  
-
-How can you make progress on your assignment? Well, if there are available seats, and if you are quiet, non-disruptive, and sit near the back (south end) of the room, you can enter during other scheduled classes on Monday, Tuesday, and Wednesday. Be courteous.  
-
-Here is a T3078 timetable:  
-```
+>Special note:  
+>
+>The College had to change the room access policy for the T3078 computer-lab. It is now locked (and empty) when it does not have a scheduled class.  
+>
+>How can you make progress on your assignment? Well, if there are available seats, and if you are quiet, non-disruptive, and sit near the back (south end) of the room, you can enter during other scheduled classes on Monday, Tuesday, and Wednesday. Be courteous.  
+>
+>Here is a T3078 timetable:  
+<br>
 
 ![T3078](images/a9-t3078-timetable.png)  
 <br>
