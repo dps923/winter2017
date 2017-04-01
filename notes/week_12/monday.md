@@ -12,9 +12,9 @@ That link is for future reference and isn't required reading, but it gives you a
 
 Fortunately, simple media playback -and control of the playback- is straightforward.
 
-Today's sample code focuses on playing an mp3 in an app.
+Today's sample code `PlayMusic` focuses on playing an mp3 in an app.
 
-// link
+https://github.com/garvankeeley/winter2017/blob/edits/notes/week_12/PlayMusic/PlayMusic/ViewController.swift
 
 It has a button for playing/pausing the sound playback, as well as volume.<br>
 Please review the view controller class in the code to see how audio playback is performed.
@@ -91,10 +91,7 @@ http://nshipster.com/cmdevicemotion/
 
 Note particularly the diagram showing the X,Y, and Z axis that these sensors provide data for, and descriptions of the sensors.
 
-The sample code for this is:
-
+Today's sample for this is `MotionSwift`, all the interesting code is in the view controller:
+https://github.com/garvankeeley/winter2017/blob/edits/notes/week_12/MotionSwift/MotionSwift/ViewController.swift
 
 It shows the effect of these sensors by displaying the X,Y,Z values for the accelerometer and gyroscope.
-
-
-
