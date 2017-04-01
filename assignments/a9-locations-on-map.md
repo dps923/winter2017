@@ -64,8 +64,8 @@ In this assignment, you will be able to work with the *OpenStreetMap* service. I
 ### Task sequence  
 Clear out the storyboard, we won't use any of the existing scenes.  
 
-Copy the scene with the MKMapView from week 11 WhereAmI into the storyboard, also add this file to your project:<br>
-https://github.com/dps923/winter2017/blob/master/notes/week_11/WhereAmI/Classes/MyLocation.swift  
+Copy the scene with the MKMapView from week 11 WhereAmI into the storyboard. 
+<br>Most modifications in this assignment will be made to the file MyLocation.swift.
 
 Set the scene you added as the 'Initial View Controller' for the storyboard.  
 
