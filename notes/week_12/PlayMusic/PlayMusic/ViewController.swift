@@ -1,6 +1,5 @@
 import UIKit
 import AVFoundation
-import AVKit
 
 class ViewController: UIViewController {
 
@@ -15,16 +14,6 @@ class ViewController: UIViewController {
     }
 
     func setupSoundPlayer() {
-        let url = URL(string: "http://example.com/movie.mov")
-        let player = AVPlayer(url: url!)
-
-        let playerViewController = AVPlayerViewController()
-        playerViewController.player = player
-
-        present(playerViewController, animated: true) {
-            playerViewController.player?.play()
-        }
-        
         guard let soundData = NSDataAsset(name: "At Last") else {
             print("asset not found")
             return
