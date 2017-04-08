@@ -1,8 +1,10 @@
+## Note: There is no test on Monday Apr 10
+
 UISplitViewController
 
 https://developer.apple.com/reference/uikit/uisplitviewcontroller
 
-The UISplit​View​Controller class is a container view controller that presents a master-detail interface. In a master-detail interface, changes in the primary view controller (the master) drive changes in a secondary view controller (the detail).
+The UISplitViewController class is a container view controller that presents a master-detail interface. In a master-detail interface, changes in the primary view controller (the master) drive changes in a secondary view controller (the detail).
 
 The two view controllers can be arranged so that they
 - are side-by-side,
